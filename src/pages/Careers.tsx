@@ -1,6 +1,6 @@
 function Careers() {
   return (
-    <div className="min-h-screen bg-[#1a1a2e] text-white py-20">
+    <div className="min-h-screen bg-dark-bg text-white py-20">
       <div className="container mx-auto px-4">
         <h1 className="text-5xl font-bold text-center mb-12">
           인재채용

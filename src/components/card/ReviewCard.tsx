@@ -20,18 +20,6 @@ function ReviewCard({ review }: ReviewCardProps) {
           />
         </div>
       </a>
-      <div className="mt-4">
-        <h5 className="line-clamp-1 text-3xl font-semibold mb-2">
-          <a href={review.link} className="hover:text-blue-600 transition-colors">
-            {review.title}
-          </a>
-        </h5>
-        <span className="text-lg flex items-center gap-2">
-          {review.categoryEn}
-          <i className="bi bi-dash">-</i>
-          {review.categoryKr}
-        </span>
-      </div>
     </div>
   );
 }

@@ -1,56 +1,55 @@
 import heroImg from '@/assets/images/hero.png';
-import circle from '@/assets/images/hero_circle_text.png';
 
 function HeroSection() {
   return (
     <div className="w-full h-screen overflow-hidden relative">
+      {/* Background Image */}
       <img
         src={heroImg}
         alt="Hero"
         className="w-full h-full object-cover"
       />
 
-      {/* Hero Content Overlay */}
-      <div
-        className="absolute inset-0 flex items-end px-3 mx-auto"
-        style={{
-          width: 'calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))'
-        }}
-      >
-        <div className="w-full px-4 pb-20">
-          <div className="flex">
-            {/* Main Content - 10/12 width on large screens */}
-            <div className="w-full lg:w-10/12 flex flex-col gap-5">
-              <h3 className="text-white text-4xl lg:text-5xl font-bold">
-                소상공인을 위한
-              </h3>
-              <h3 className="text-white text-4xl lg:text-5xl font-bold">
-                정부 정책자금 컨설팅
-              </h3>
-              <p className="text-white text-lg lg:text-xl leading-relaxed max-w-3xl">
-                정부 지원제도는 많지만, 실제로 어떤 걸 받을 수 있는지 알기 어려우셨죠?<br />
-                저희의 전문 컨설턴트와 함께 1:1 맞춤형 솔루션을 제공합니다.
-              </p>
-            </div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/55"></div>
 
-            {/* Circle Text Link - 2/12 width on large screens, hidden on mobile */}
-            <div className="hidden lg:block lg:w-2/12 text-right">
-              <a href="#service-section" className="inline-block relative w-[243px] h-[243px]">
-                {/* Rotating circle text */}
-                <img
-                  src={circle}
-                  alt="circle-text"
-                  className="circle-text w-full h-full object-contain animate-spin-slow absolute inset-0"
-                />
-                {/* Center icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src="/kcsclogo.svg"
-                    alt="circle-icon"
-                    className="circle-icon w-24 h-24"
-                  />
-                </div>
-              </a>
+      {/* Hero Content Overlay */}
+      <div className="absolute inset-0 flex items-center">
+        <div
+          className="px-3 mx-auto w-full"
+          style={{
+            maxWidth: '1280px'
+          }}
+        >
+          <div className="w-full px-4">
+            <div className="flex flex-col gap-8">
+              {/* Main Content */}
+              <div className="flex flex-col gap-4">
+                
+                <h1 className="text-white text-5xl lg:text-5xl leading-tight" style={{ fontFamily: 'InkLiquid, sans-serif' }}>
+                  대표님, 이제는 준비하실 차례입니다.
+                </h1>
+                
+                <h1 className="text-white text-5xl lg:text-7xl font-bold leading-tight">
+                  정책자금 신청부터 승인까지
+                </h1>
+                <h1 className="text-white text-5xl lg:text-7xl font-bold leading-tight">
+                  <span className="inline-block bg-brand-highlight px-4 py-2 rounded-md">
+                    A부터 Z까지 직접 증명합니다.
+                  </span>
+                </h1>
+                <p className="text-white text-xl lg:text-2xl leading-relaxed mt-6 max-w-3xl">
+                  <strong>정책자금 컨설팅,</strong>혹시 고민 중이신가요?<br />
+                  그렇다면 딱 5분만 집중해주세요.
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <button className="px-10 py-4 bg-primary text-white text-lg font-semibold rounded-md hover:bg-primary-hover transition-all duration-300 shadow-lg">
+                  무료 상담 신청
+                </button>
+              </div>
             </div>
           </div>
         </div>
