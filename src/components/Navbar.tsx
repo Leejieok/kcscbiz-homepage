@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import type { NavItem } from '@/types/nav';
 import logoImg from '@/assets/images/logo.png';
+import ContactButton from '@/components/button/ContactButton';
 
 const Navbar = () => {
   const location = useLocation();
@@ -83,7 +84,7 @@ const Navbar = () => {
           href={item.path}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white duration-300 py-8 inline-block relative group"
+          className="text-white lg:text-lg font-semibold duration-300 py-8 inline-block relative group"
         >
           {item.label}
           <span className="absolute bottom-6 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
@@ -94,7 +95,7 @@ const Navbar = () => {
     return (
       <Link
         to={item.path}
-        className={`text-white hover:text-blue-400 transition-colors duration-300 py-8 inline-block relative group ${
+        className={`text-white lg:text-lg font-semibold hover:text-blue-400 transition-colors duration-300 py-8 inline-block relative group ${
           isActive(item.path) ? 'text-blue-400' : ''
         }`}
         onClick={closeMobileMenu}
@@ -115,8 +116,12 @@ const Navbar = () => {
           isSticky ? 'bg-[#1a1a2e] border-b border-white/10 shadow-2xl' : 'bg-transparent'
         }`}
       >
-      <div className='w-full px-4 lg:px-52'>
-        <div className="w-full px-4 lg:px-8">
+      <div
+        className='px-3 mx-auto'
+        style={{
+          width: 'calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))'
+        }}
+      >
           <div className="flex items-center justify-between gap-3">
             {/* 로고 */}
             <div className="w-auto py-4">
@@ -134,7 +139,7 @@ const Navbar = () => {
             <div className="flex-1 text-right lg:text-center">
               {/* 데스크톱 네비게이션 */}
               <nav className="hidden lg:inline-block">
-                <ul className="flex items-center gap-10 justify-center">
+                <ul className="flex items-center gap-14 justify-center">
                   {navItems.map((item) => (
                     <li key={item.path} className="relative group">
                       {renderNavLink(item)}
@@ -187,20 +192,9 @@ const Navbar = () => {
 
             {/* 문의하기 버튼 (데스크톱만) */}
             <div className="hidden lg:block">
-              <Link
-                to="/request"
-                className="inline-flex items-center gap-2 px-7 py-3 bg-white text-black font-semibold rounded-full hover:bg-blue-500 hover:text-white hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 group overflow-hidden relative"
-                onClick={closeMobileMenu}
-              >
-                문의하러가기
-                <span className="relative w-5 h-5 inline-block">
-                  <i className="fa-solid fa-arrow-right absolute left-0 transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-x-2"></i>
-                  <i className="fa-solid fa-arrow-right absolute left-0 transition-all duration-300 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"></i>
-                </span>
-              </Link>
+              <ContactButton onClick={closeMobileMenu} />
             </div>
           </div>
-        </div>
       </div>
     </header>
   )
