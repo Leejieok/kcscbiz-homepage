@@ -1,6 +1,5 @@
 import heroImg from '@/assets/images/hero.png';
 import circle from '@/assets/images/hero_circle_text.png';
-import kcsclogo from '../../../public/kcsclogo.svg';
 
 function HeroSection() {
   return (
@@ -46,7 +45,7 @@ function HeroSection() {
                 {/* Center icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src={kcsclogo}
+                    src="/kcsclogo.svg"
                     alt="circle-icon"
                     className="circle-icon w-24 h-24"
                   />

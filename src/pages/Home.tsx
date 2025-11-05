@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import HeroSection from '@/components/home/HeroSection';
 import HeroService from '@/components/home/HeroService';
+import HeroReview from '@/components/home/HeroReview';
 
 
 function Home() {
@@ -12,8 +13,9 @@ function Home() {
       </Helmet>
 
       <div className="w-full">
-        <HeroSection />
+        <HeroSection/>
         <HeroService/>
+        <HeroReview/>
       </div>
     </>
   )

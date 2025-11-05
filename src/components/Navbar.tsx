@@ -8,7 +8,7 @@ const Navbar = () => {
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  // const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const navItems: NavItem[] = [
     {
@@ -19,19 +19,27 @@ const Navbar = () => {
       path: '/service',
       label: '서비스 소개',
       subMenu: [
-        { path: '/service/policy-funds', label: '정책자금' },
-        { path: '/service/government-support', label: '정부지원금' },
-        { path: '/service/certification', label: '기업인증' },
+        { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+        { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+        { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+        { path: '/service/certification', label: '기업인증 컨설팅' },
       ],
     },
     {
-      path: 'https://blog.naver.com/kcsc0',
-      label: '승인사례',
-      isExternal: true,
+      path: '/cases',
+      label: '자주묻는 질문',
+    },
+    {
+      path: '/reviews',
+      label: '실제 고객 후기',
     },
     {
       path: '/contact',
-      label: '찾아오시는 길',
+      label: '상담신청',
+    },
+    {
+      path: '/careers',
+      label: '인재채용',
     },
   ];
 
@@ -70,12 +78,12 @@ const Navbar = () => {
 
   const closeMobileMenu = () => {
     setIsMobileOpen(false);
-    setOpenDropdown(null);
+    // setOpenDropdown(null);
   };
 
-  const handleDropdownClick = (path: string) => {
-    setOpenDropdown(openDropdown === path ? null : path);
-  };
+  // const handleDropdownClick = (path: string) => {
+  //   setOpenDropdown(openDropdown === path ? null : path);
+  // };
 
   const renderNavLink = (item: NavItem) => {
     if (item.isExternal) {
@@ -84,7 +92,7 @@ const Navbar = () => {
           href={item.path}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white lg:text-lg font-semibold duration-300 py-8 inline-block relative group"
+          className="lg:text-lg font-semibold duration-300 py-8 inline-block relative group"
         >
           {item.label}
           <span className="absolute bottom-6 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
@@ -95,7 +103,7 @@ const Navbar = () => {
     return (
       <Link
         to={item.path}
-        className={`text-white lg:text-lg font-semibold hover:text-blue-400 transition-colors duration-300 py-8 inline-block relative group ${
+        className={` lg:text-lg font-semibold hover:text-blue-400 transition-colors duration-300 py-8 inline-block relative group ${
           isActive(item.path) ? 'text-blue-400' : ''
         }`}
         onClick={closeMobileMenu}
@@ -112,7 +120,7 @@ const Navbar = () => {
 
   return (
     <header
-        className={`w-full z-[999] h-[96px] transition-all duration-300 fixed top-0 left-0 right-0 ${
+        className={`w-full z-[999] h-[84px] transition-all duration-300 fixed top-0 left-0 right-0 bg-white ${
           isSticky ? 'bg-[#1a1a2e] border-b border-white/10 shadow-2xl' : 'bg-transparent'
         }`}
       >
@@ -139,7 +147,7 @@ const Navbar = () => {
             <div className="flex-1 text-right lg:text-center">
               {/* 데스크톱 네비게이션 */}
               <nav className="hidden lg:inline-block">
-                <ul className="flex items-center gap-14 justify-center">
+                <ul className="flex items-center gap-8 justify-center">
                   {navItems.map((item) => (
                     <li key={item.path} className="relative group">
                       {renderNavLink(item)}
