@@ -7,8 +7,9 @@ function HeroReview() {
     { label: '누적 상담 기업 수', targetValue: 4000, suffix: '명+', currentValue: 0 }
   ]);
 
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const timersRef = useRef<number[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,19 +24,22 @@ function HeroReview() {
       { threshold: 0.3 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSection) {
+        observer.unobserve(currentSection);
       }
+      timersRef.current.forEach(timer => clearInterval(timer));
+      timersRef.current = [];
     };
   }, [hasAnimated]);
 
   const animateCounters = () => {
-    const duration = 2000; // 2 seconds
+    const duration = 2000;
     const steps = 60;
     const interval = duration / steps;
 
@@ -58,23 +62,34 @@ function HeroReview() {
 
         if (currentStep >= steps) {
           clearInterval(timer);
+          timersRef.current = timersRef.current.filter(t => t !== timer);
         }
       }, interval);
+
+      timersRef.current.push(timer);
     });
   };
 
   return (
-    <div ref={sectionRef} className="w-full py-[120px] px-10">
-      <main className="max-w-7xl mx-auto">
+    <section 
+      ref={sectionRef} 
+      className="w-full py-[120px] px-10"
+      aria-labelledby="hero-review-title"
+      itemScope 
+      itemType="https://schema.org/Organization"
+    >
+      <div className="max-w-7xl mx-auto">
         {/* 메인 제목 */}
-        <div className="text-center mb-10">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
-            한국중소기업지원센터는
-          </h2>
-          <h2 className="text-5xl md:text-6xl font-bold">
+        <header className="text-center mb-10">
+          <h1 
+            id="hero-review-title"
+            className="text-5xl md:text-6xl font-bold mb-4"
+            itemProp="name"
+          >
+            한국중소기업지원센터는{' '}
             <span className="text-blue-700">경험을 숫자로 증명</span>합니다.
-          </h2>
-        </div>
+          </h1>
+        </header>
 
         {/* 서브 텍스트 */}
         <div className="text-center mb-16 text-xl space-y-2">
@@ -86,24 +101,38 @@ function HeroReview() {
         </div>
 
         {/* 통계 카운터 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+          role="region"
+          aria-label="주요 실적 통계"
+        >
           {counters.map((counter, index) => (
-            <div
+            <article
               key={index}
               className="text-center p-8 rounded-lg hover:shadow-lg transition-shadow"
+              itemScope
+              itemType="https://schema.org/Statistic"
             >
-              <h6 className="text-lg md:text-xl font-semibold mb-4 text-gray-800">
+              <h2 
+                className="text-lg md:text-xl font-semibold mb-4 text-gray-800"
+                itemProp="name"
+              >
                 {counter.label}
-              </h6>
-              <div className="text-5xl md:text-6xl font-bold text-blue-600">
+              </h2>
+              <div 
+                className="text-5xl md:text-6xl font-bold text-blue-600"
+                itemProp="value"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 {counter.currentValue.toLocaleString()}
                 <span className="text-4xl md:text-5xl">{counter.suffix}</span>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
   );
 }
 

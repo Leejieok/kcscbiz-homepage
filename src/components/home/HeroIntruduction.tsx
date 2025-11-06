@@ -2,22 +2,22 @@ import ReviewCarousel from '@/components/card/ReviewCarousel';
 
 function HeroIntroduction() {
   return (
-    <div className="w-full py-20 px-10">
-      <main className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-5xl md:text-6xl font-bold">
-            <span className="text-blue-700">과장 하나도 없는 </span>
+    <section className="w-full pt-20 pb-2" aria-label="고객 후기 섹션">
+      <div className="max-w-full mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-blue-700 text-5xl md:text-6xl font-bold mb-3 tracking-tight">
+            과장 하나도 없는
+          </h1>
+          <h2 className="text-gray-900 text-5xl md:text-6xl font-bold tracking-tight">
+            대표님들 100% 실제 후기
           </h2>
-          <h2 className="text-5xl md:text-6xl font-bold">
-            대표님들 <span className="text-gray-900">100% 실제 후기</span>
-          </h2>
-        </div>
-
+        </header>
+        
         {/* 리뷰 캐러셀 */}
         <ReviewCarousel />
-      </main>
-    </div>
-  )
+      </div>
+    </section>
+  );
 }
 
 export default HeroIntroduction;

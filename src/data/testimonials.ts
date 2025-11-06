@@ -16,7 +16,7 @@ export const testimonialsData: TestimonialData[] = [
     id: 2,
     image: 'https://cdn.imweb.me/thumbnail/20250615/b9c67df6daa5f.png',
     description: '심사 담당자 판단 실수로 대출 제한',
-    result: '명확한 컨설팅으로 직접대출 5천만원 승인!'
+    result: '명확한 컨설팅으로 5천만원 승인!'
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ export const testimonialsData: TestimonialData[] = [
     id: 4,
     image: 'https://cdn.imweb.me/thumbnail/20250615/4565c2a1f324c.png',
     description: '가압류로 인한 대출 제한 사항',
-    result: '한비즈 가이드로 실사 확정!'
+    result: '가이드로 실사 확정!'
   },
   {
     id: 5,
