@@ -6,6 +6,11 @@ import HeroIntroduction from '@/components/home/HeroIntruduction';
 import HeroBrand from '@/components/home/HeroBrand';
 import HeroNecessity from '@/components/home/HeroNecessity';
 import HeroBeforeAfter from '@/components/home/HeroBeforeAfter';
+import HeroHmm from '@/components/home/HeroHmm';
+import HeroSecret from '@/components/home/HeroSecret';
+import HeroNecessity2 from '@/components/home/HeroNecessity2';
+import HeroNecessity3 from '@/components/home/HeroNecessity3';
+import HeroConsulting from '@/components/home/HeroConsulting';
 
 function Home() {
   const currentUrl = window.location.href;
@@ -71,6 +76,11 @@ function Home() {
         <HeroBrand/>
         <HeroNecessity/>
         <HeroBeforeAfter/>
+        <HeroHmm/>
+        <HeroSecret/>
+        <HeroNecessity2/>
+        <HeroNecessity3/>
+        <HeroConsulting/>
       </div>
     </>
   )

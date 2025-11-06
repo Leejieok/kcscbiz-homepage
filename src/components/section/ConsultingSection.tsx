@@ -16,6 +16,7 @@ interface ConsultingSectionProps {
   sections: ContentSection[];
   backgroundImages: string[];
   backgroundColor?: string;
+  showCheckIcon?: boolean;
 }
 
 function ConsultingSection({
@@ -23,7 +24,8 @@ function ConsultingSection({
   subHeading,
   sections,
   backgroundImages,
-  backgroundColor = '#f5f7fd'
+  backgroundColor = '#f5f7fd',
+  showCheckIcon = true
 }: ConsultingSectionProps) {
   return (
     <section className="w-full py-[80px] relative" style={{ backgroundColor }}>
@@ -83,19 +85,21 @@ function ConsultingSection({
                         className="text-[#544d4d] text-base md:text-lg flex items-start gap-3"
                         style={{ lineHeight: '2' }}
                       >
-                        <svg
-                          className="w-5 h-5 md:w-6 md:h-6 text-orange-500 flex-shrink-0 mt-1"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
+                        {showCheckIcon && (
+                          <svg
+                            className="w-5 h-5 md:w-6 md:h-6 text-orange-500 flex-shrink-0 mt-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
                         <span>{point}</span>
                       </li>
                     ))}
