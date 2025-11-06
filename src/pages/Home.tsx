@@ -11,6 +11,8 @@ import HeroSecret from '@/components/home/HeroSecret';
 import HeroNecessity2 from '@/components/home/HeroNecessity2';
 import HeroNecessity3 from '@/components/home/HeroNecessity3';
 import HeroConsulting from '@/components/home/HeroConsulting';
+import HeroPartner from '@/components/home/HeroPartner';
+import ApplicationForm from '@/components/form/ApplicationForm';
 
 function Home() {
   const currentUrl = window.location.href;
@@ -81,6 +83,8 @@ function Home() {
         <HeroNecessity2/>
         <HeroNecessity3/>
         <HeroConsulting/>
+        <HeroPartner/>
+        <ApplicationForm/>
       </div>
     </>
   )
