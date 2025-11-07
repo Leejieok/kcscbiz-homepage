@@ -1,3 +1,5 @@
+import CheckIcon from '@/components/common/icon/CheckIcon';
+
 interface MainHeading {
   highlight: string;
   text: string;
@@ -85,21 +87,7 @@ function ConsultingSection({
                         className="text-[#544d4d] text-base md:text-lg flex items-start gap-3"
                         style={{ lineHeight: '2' }}
                       >
-                        {showCheckIcon && (
-                          <svg
-                            className="w-5 h-5 md:w-6 md:h-6 text-orange-500 flex-shrink-0 mt-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
+                        {showCheckIcon && <CheckIcon />}
                         <span>{point}</span>
                       </li>
                     ))}

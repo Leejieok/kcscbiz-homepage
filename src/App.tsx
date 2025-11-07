@@ -8,6 +8,7 @@ import Service2 from './pages/services/Service2'
 import Service3 from './pages/services/Service3'
 import Cases from './pages/Cases'
 import Location from './pages/Location'
+import LocationWrite from './pages/LocationWrite'
 import Contact from './pages/Contact'
 import Reviews from './pages/Reviews'
 import Careers from './pages/Careers'
@@ -24,16 +25,17 @@ function App() {
           {/* 서비스소개 - 중첩 라우팅 */}
           <Route path="service">
             <Route index element={<ServiceMain />} />
-            <Route path="policy-funds" element={<Service1 />} />
-            <Route path="tax-refund" element={<Service2 />} />
-            <Route path="corporate-business" element={<Service3 />} />
-            <Route path="certification" element={<Service1 />} />
+            <Route path="policy-funds" element={<ServiceMain />} />
+            <Route path="tax-refund" element={<Service1 />} />
+            <Route path="corporate-business" element={<Service2 />} />
+            <Route path="certification" element={<Service3 />} />
           </Route>
           
           <Route path="cases" element={<Cases />} />
           <Route path="location" element={<Location />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="location/write" element={<LocationWrite />} />
           <Route path="reviews" element={<Reviews />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="careers" element={<Careers />} />
 
         </Route>

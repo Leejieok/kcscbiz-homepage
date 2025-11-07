@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import type { NavItem } from '@/types/nav';
 import logoImg from '@/assets/images/logo.png';
-import ContactButton from '@/components/button/ContactButton';
+import ContactButton from '@/components/common/button/ContactButton';
 
 const Navbar = () => {
   const location = useLocation();
@@ -28,6 +28,10 @@ const Navbar = () => {
     {
       path: '/cases',
       label: '자주묻는 질문',
+    },
+    {
+      path: '/location',
+      label: '고객 센터',
     },
     {
       path: '/reviews',
