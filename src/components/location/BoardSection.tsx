@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getBoardPosts, BoardPost } from '@/data/boardData';
+import { getBoardPosts } from '@/data/boardData';
+import type {  BoardPost } from '@/data/boardData';
 
 function BoardSection() {
   const navigate = useNavigate();
