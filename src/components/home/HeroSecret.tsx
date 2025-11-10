@@ -1,5 +1,5 @@
 import { heroSecretData } from '../../data/heroSecretData';
-import SecretCard from '../card/SecretCard';
+import SecretCard from '../common/card/SecretCard';
 
 function HeroSecret() {
   const { title, secrets } = heroSecretData;

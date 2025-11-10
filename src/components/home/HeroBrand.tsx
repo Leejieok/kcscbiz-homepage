@@ -1,4 +1,4 @@
-import ImageCarousel from '../card/ImageCarousel';
+import ImageCarousel from '../common/card/ImageCarousel';
 
 function HeroBrand() {
   const images = [

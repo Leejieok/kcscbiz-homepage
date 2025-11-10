@@ -1,4 +1,4 @@
-import ReviewCarousel from '@/components/card/ReviewCarousel';
+import ReviewCarousel from '@/components/common/card/ReviewCarousel';
 
 function HeroIntroduction() {
   return (

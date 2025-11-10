@@ -1,5 +1,5 @@
 import { beforeAfterData } from '@/data/beforeAfterData';
-import BeforeAfterSlider from '../card/BeforeAfterSlider';
+import BeforeAfterSlider from '../common/card/BeforeAfterSlider';
 
 function HeroBeforeAfter() {
   return (

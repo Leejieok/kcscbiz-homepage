@@ -65,7 +65,7 @@ function HeroConsulting() {
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center p-6">
                   {/* 아이콘 */}
                   <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <img src={card.icon} alt={card.title} className="w-16 h-16 md:w-20 md:h-20" />
+                    <img src={card.icon} alt={card.title} className="w-16 h-16 md:w-20 md:h-20" loading="lazy" />
                   </div>
                   <p className="text-sm md:text-base mb-3 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
                     {card.title}
