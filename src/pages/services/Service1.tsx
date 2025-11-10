@@ -36,16 +36,6 @@ function Service1() {
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
-        <meta name="twitter:title" content="세금환급 컨설팅 | 과납한 세금 5년치 환급 받기" />
-        <meta
-          name="twitter:description"
-          content="사업자 70%가 세금을 과납하고 있습니다. 지금 바로 환급 받으세요."
-        />
-        <meta name="twitter:image" content="/images/tax-refund-twitter-image.jpg" />
-
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
         <meta name="robots" content="index, follow" />

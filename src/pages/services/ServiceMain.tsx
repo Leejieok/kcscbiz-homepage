@@ -37,16 +37,6 @@ function ServiceMain() {
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
-        <meta name="twitter:title" content="정책자금 서비스 안내 | 업종별 맞춤 자금 지원" />
-        <meta
-          name="twitter:description"
-          content="업종별 지원 가능한 정책자금 한도 확인. 간이과세도 최대 1억 원 지원"
-        />
-        <meta name="twitter:image" content="/images/service-twitter-image.jpg" />
-
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
         <meta name="robots" content="index, follow" />

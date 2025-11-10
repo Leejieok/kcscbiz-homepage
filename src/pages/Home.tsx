@@ -36,23 +36,13 @@ function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />
         <meta property="og:title" content="정책자금 신청부터 승인까지 A to Z | 소상공인 정책자금 간편조회" />
-        <meta 
-          property="og:description" 
-          content="복잡한 정책자금 절차를 간편하게. 대표님들의 100% 실제 후기로 증명하는 전문 컨설팅 서비스" 
+        <meta
+          property="og:description"
+          content="복잡한 정책자금 절차를 간편하게. 대표님들의 100% 실제 후기로 증명하는 전문 컨설팅 서비스"
         />
-        <meta property="og:image" content="/images/og-image.png" /> {/* 실제 이미지 경로로 변경 */}
+        <meta property="og:image" content="/images/og-image.png" />
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
-        <meta name="twitter:title" content="정책자금 신청부터 승인까지 A to Z" />
-        <meta 
-          name="twitter:description" 
-          content="소상공인, 중소기업을 위한 정책자금 컨설팅. 신청부터 승인까지 완벽 지원" 
-        />
-        <meta name="twitter:image" content="/images/twitter-image.jpg" /> {/* 실제 이미지 경로로 변경 */}
         
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
