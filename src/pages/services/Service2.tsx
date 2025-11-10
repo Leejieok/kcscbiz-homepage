@@ -36,16 +36,6 @@ function Service2() {
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
-        <meta name="twitter:title" content="법인사업자 컨설팅 | 법인 설립부터 세무까지 원스톱 지원" />
-        <meta
-          name="twitter:description"
-          content="법인사업자를 위한 종합 컨설팅 서비스. 설립부터 세무관리까지"
-        />
-        <meta name="twitter:image" content="/images/corporate-twitter-image.jpg" />
-
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
         <meta name="robots" content="index, follow" />
