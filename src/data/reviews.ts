@@ -1,9 +1,9 @@
-import review01 from '@/assets/images/review01.png'
-import review02 from '@/assets/images/review02.png'
-import review03 from '@/assets/images/review03.png'
-import review04 from '@/assets/images/review04.png'
-import review05 from '@/assets/images/review05.png'
-import review06 from '@/assets/images/review06.png'
+import review01 from '@/assets/images/review01.webp'
+import review02 from '@/assets/images/review02.webp'
+import review03 from '@/assets/images/review03.webp'
+import review04 from '@/assets/images/review04.webp'
+import review05 from '@/assets/images/review05.webp'
+import review06 from '@/assets/images/review06.webp'
 
 export interface ReviewData {
   id: number;

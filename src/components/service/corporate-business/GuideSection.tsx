@@ -31,6 +31,7 @@ function GuideSection() {
                   src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/31d4e85ad386e.png"
                   alt="check"
                   className="w-[22px] h-[22px] mt-1 flex-shrink-0"
+                  loading="lazy"
                 />
                 {benefit.title}
               </h3>

@@ -61,6 +61,7 @@ function ProblemSection() {
                       src={cert.icon}
                       alt="icon"
                       className="w-5 h-5"
+                      loading="lazy"
                     />
                     {cert.title}
                   </h3>

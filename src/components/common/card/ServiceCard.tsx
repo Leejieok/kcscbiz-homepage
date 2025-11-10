@@ -19,6 +19,7 @@ function ServiceCard({ service }: ServiceCardProps) {
               src={service.icon}
               alt={`${service.title}-icon`}
               className="w-full h-full object-contain"
+              loading="lazy"
             />
           </div>
 

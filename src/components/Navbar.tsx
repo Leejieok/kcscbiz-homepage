@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import type { NavItem } from '@/types/nav';
-import logoImg from '@/assets/images/logo.png';
+import logoImg from '@/assets/images/logo.webp';
 import ContactButton from '@/components/common/button/ContactButton';
 
 const Navbar = () => {
@@ -143,6 +143,7 @@ const Navbar = () => {
                   width={190}
                   alt="한국중소기업지원센터"
                   className="h-auto max-w-full"
+                  loading="lazy"
                 />
               </Link>
             </div>

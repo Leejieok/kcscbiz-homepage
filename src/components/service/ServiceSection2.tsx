@@ -18,6 +18,7 @@ function ServiceSection2() {
           className="hidden"
           src="https://cdn.imweb.me/thumbnail/20250308/f915cd0101195.png"
           alt="mobile background"
+          loading="lazy"
         />
       </div>
 

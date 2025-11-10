@@ -38,6 +38,7 @@ function HeroPartner() {
           className="hidden"
           src="https://cdn.imweb.me/thumbnail/20250119/36ecbe95067b7.jpg"
           alt="mobile background"
+          loading="lazy"
         />
       </div>
 
@@ -89,6 +90,7 @@ function HeroPartner() {
                   src={link.icon}
                   alt={link.label}
                   className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  loading="lazy"
                 />
                 <span className="text-[#dddddd] text-lg md:text-xl whitespace-nowrap">
                   {link.label}

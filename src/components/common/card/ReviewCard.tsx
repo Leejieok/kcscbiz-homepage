@@ -17,6 +17,7 @@ function ReviewCard({ review }: ReviewCardProps) {
               opacity: 1,
               visibility: 'inherit'
             }}
+            loading="lazy"
           />
         </div>
       </a>

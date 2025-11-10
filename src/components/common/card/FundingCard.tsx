@@ -33,6 +33,7 @@ function FundingCard({ funding }: FundingCardProps) {
             alt=""
             className="w-5 h-5 mr-2"
             aria-hidden="true"
+            loading="lazy"
           />
           <h6 className="text-[15px] font-semibold text-gray-800">
             {funding.title}

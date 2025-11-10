@@ -57,6 +57,7 @@ function ProblemSection() {
                     src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/6b65eb6e8715e.png"
                     alt="check"
                     className="w-5 h-5"
+                    loading="lazy"
                   />
                   <h3 className="text-white text-lg md:text-xl font-semibold">2021년 세금 환급</h3>
                 </div>
@@ -75,6 +76,7 @@ function ProblemSection() {
                     src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/f04ed6efafb58.png"
                     alt="check"
                     className="w-5 h-5"
+                    loading="lazy"
                   />
                   <h3 className="text-gray-400 text-lg md:text-xl font-semibold">2022년 세금 환급</h3>
                 </div>
@@ -93,6 +95,7 @@ function ProblemSection() {
                     src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/6b65eb6e8715e.png"
                     alt="check"
                     className="w-5 h-5"
+                    loading="lazy"
                   />
                   <h3 className="text-white text-lg md:text-xl font-semibold">2023년 세금 환급</h3>
                 </div>
@@ -111,6 +114,7 @@ function ProblemSection() {
                     src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/c2ad259b28a0a.png"
                     alt="money"
                     className="w-5 h-5"
+                    loading="lazy"
                   />
                   <h3 className="text-white text-lg md:text-xl font-semibold">올해 돌려 받을 수 있는 예상 금액</h3>
                 </div>

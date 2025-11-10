@@ -22,6 +22,7 @@ function AboutIntroduce() {
                 imageRendering: '-webkit-optimize-contrast',
                 display: 'block'
               }}
+              loading="lazy"
             />
           </div>
         </div>

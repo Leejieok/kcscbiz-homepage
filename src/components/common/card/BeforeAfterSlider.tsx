@@ -68,6 +68,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, alt }: BeforeAfterSliderPr
           alt={`${alt} - After`}
           className="w-full h-full object-cover"
           draggable={false}
+          loading="lazy"
         />
         <div className="absolute top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-md font-bold">
           AFTER
@@ -86,6 +87,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, alt }: BeforeAfterSliderPr
           alt={`${alt} - Before`}
           className="w-full h-full object-cover"
           draggable={false}
+          loading="lazy"
         />
         <div className="absolute top-4 left-4 bg-gray-600 text-white px-4 py-2 rounded-md font-bold">
           BEFORE

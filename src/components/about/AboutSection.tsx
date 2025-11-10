@@ -39,6 +39,7 @@ function AboutSection() {
                 src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/b37be23b8a3fd.png"
                 alt="check icon"
                 className="w-9 h-9 mx-auto"
+                loading="lazy"
               />
             </div>
             <p className="text-lg md:text-xl lg:text-2xl text-gray-900">
@@ -53,6 +54,7 @@ function AboutSection() {
                 src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/b37be23b8a3fd.png"
                 alt="check icon"
                 className="w-9 h-9 mx-auto"
+                loading="lazy"
               />
             </div>
             <p className="text-lg md:text-xl lg:text-2xl text-gray-900">

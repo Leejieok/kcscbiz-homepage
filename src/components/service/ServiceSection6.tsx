@@ -75,6 +75,7 @@ function ServiceSection6() {
                   className="mr-2"
                   style={{ width: '22px' }}
                   aria-hidden="true"
+                  loading="lazy"
                 />
                 <h6 className="text-2xl font-semibold" style={{ color: '#214BAB' }}>
                   Fact Check {fact.number}

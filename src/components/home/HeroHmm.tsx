@@ -16,6 +16,7 @@ function HeroHmm() {
           className="hidden"
           src="https://cdn.imweb.me/thumbnail/20250307/c749ead3aeac9.png"
           alt="mobile background"
+          loading="lazy"
         />
       </div>
 

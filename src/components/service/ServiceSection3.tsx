@@ -45,6 +45,7 @@ function ServiceSection3() {
                     className="w-5 h-5 mr-2 mt-1"
                     style={{ padding: 0 }}
                     aria-hidden="true"
+                    loading="lazy"
                   />
                   <span>
                     {reason.id === 4 ? (
