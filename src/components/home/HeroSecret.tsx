@@ -26,8 +26,8 @@ function HeroSecret() {
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {secrets.map((secret, index) => (
-              <SecretCard key={secret.number} secret={secret} index={index} />
+            {secrets.map((secret) => (
+              <SecretCard key={secret.number} secret={secret} />
             ))}
           </div>
         </div>

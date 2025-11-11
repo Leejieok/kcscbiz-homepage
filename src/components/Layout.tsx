@@ -1,12 +1,15 @@
 // components/Layout.tsx
 import Navbar from './Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full h-screen overflow-hidden">
       <Navbar/>
-      <main className="flex-1 w-full pt-[84px]">
+      <main className={`flex-1 w-full h-full overflow-hidden ${isHomePage ? '' : 'pt-[84px]'}`}>
         <Outlet />
       </main>
     </div>

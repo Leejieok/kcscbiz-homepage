@@ -104,8 +104,8 @@ function ApplicationForm() {
         {/* 제목 */}
         <div className="animate-fadeInUp mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
           <h2 className="text-center">
-            <span className="block text-5xl text-[#214bab] mb-2">선착순 10명</span>
-            <span className="block text-5xl text-gray-900">무료 상담 신청하기</span>
+            <span className="block text-5xl font-bold text-[#214bab] mb-2">선착순 10명</span>
+            <span className="block text-5xl font-bold text-gray-900">무료 상담 신청하기</span>
           </h2>
         </div>
 
@@ -115,7 +115,7 @@ function ApplicationForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* 개인정보 수집 및 이용 동의 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
               개인정보 수집 및 이용 동의
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -149,7 +149,7 @@ function ApplicationForm() {
 
           {/* 회사명 */}
           <div className="form-group">
-            <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="companyName" className="block text-xl font-medium text-gray-700 mb-2">
               회사명
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -165,7 +165,7 @@ function ApplicationForm() {
 
           {/* 연락처 */}
           <div className="form-group">
-            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="contact" className="block text-xl font-medium text-gray-700 mb-2">
               연락처
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -181,7 +181,7 @@ function ApplicationForm() {
 
           {/* 업종 선택 */}
           <div className="form-group">
-            <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="industry" className="block text-xl font-medium text-gray-700 mb-2">
               업종을 선택해주세요.
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -201,7 +201,7 @@ function ApplicationForm() {
 
           {/* 사업장 소재지 */}
           <div className="form-group">
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="location" className="block text-xl font-medium text-gray-700 mb-2">
               사업장 소재지
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -217,7 +217,7 @@ function ApplicationForm() {
 
           {/* 필요한 컨설팅 서비스 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xl font-medium text-gray-700 mb-2">
               필요한 컨설팅 서비스
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -260,7 +260,7 @@ function ApplicationForm() {
 
           {/* 문의 경로 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xl font-medium text-gray-700 mb-2">
               어떤 경로로 문의를 하게 되었나요?
               <span className="text-red-500 ml-1">*</span>
               <span className="text-gray-500 text-xs ml-2">(최대 2개)</span>
@@ -283,7 +283,7 @@ function ApplicationForm() {
 
           {/* 상담 시 요청사항 */}
           <div className="form-group">
-            <label htmlFor="requests" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="requests" className="block text-xl font-medium text-gray-700 mb-2">
               상담 시 요청사항
               <span className="text-red-500 ml-1">*</span>
             </label>
