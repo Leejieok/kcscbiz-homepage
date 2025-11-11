@@ -193,7 +193,7 @@ const Navbar = () => {
     <header
         className={`w-full z-[999] h-[92px] transition-all duration-300 fixed top-0 left-0 right-0 ${
           isSticky 
-            ? 'bg-[rgba(26,26,46,0.85)] backdrop-blur-md border-b border-white/10 shadow-2xl' 
+            ? 'bg-[rgba(26,26,46,0.55)] backdrop-blur-md border-b shadow-2xl' 
             : 'bg-transparent'
         }`}
       >
