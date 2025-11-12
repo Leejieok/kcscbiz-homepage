@@ -13,14 +13,14 @@ function SecretCard({ secret }: SecretCardProps) {
         animationDelay: '0.5s',
       }}
     >
-      <div className="bg-[#214bab] p-8 rounded-xl w-[396px] h-[250px]">
+      <div className="bg-blue-500 p-8 rounded-xl w-[396px] h-[250px]">
         {/* Circle Number */}
         <div className="mb-4 flex justify-between pb-4">
           {/* Title */}
           <h6 className="text-white text-[26px] font-semibold mb-4 leading-tight whitespace-pre-line">
             {secret.title}
           </h6>
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-[#214bab] font-bold text-lg">
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-500 font-bold text-lg">
             {secret.number}
           </span>
         </div>

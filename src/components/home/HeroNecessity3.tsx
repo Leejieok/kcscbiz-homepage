@@ -15,7 +15,7 @@ function HeroNecessity3() {
         </div>
 
         {/* 약속 카드들 */}
-        <div className="space-y-6">
+        <div className="space-y-6 tracking-tight">
           {promiseData.promises.map((promise, index) => (
             <div
               key={index}
@@ -48,7 +48,7 @@ function HeroNecessity3() {
                     </h4>
                   </div>
 
-                  <div className="text-[#544d4d] text-base md:text-lg" style={{ lineHeight: '2' }}>
+                  <div className="text-[#544d4d] text-base md:text-lg whitespace-pre-line" style={{ lineHeight: '2' }}>
                     {promise.description}
                     {promise.descriptionHighlight && (
                       <strong className="text-[#ff7800]">{promise.descriptionHighlight}</strong>

@@ -16,10 +16,10 @@ function HeroSecret() {
         <div className="container mx-auto px-4">
           {/* Title Section */}
           <div className="text-left mb-8 animate-fadeInUp" style={{ animationDuration: '1s', animationDelay: '0.5s' }}>
-            <h6 className="text-[48px] font-extrabold">
-              <span className="text-[#214bab]">{title.highlight}</span>
+            <h6 className="text-[48px] font-bold">
+              <span className="text-blue-500 tracking-tight">{title.highlight}</span>
             </h6>
-            <h6 className="text-[48px] font-black text-black">
+            <h6 className="text-[48px] text-black tracking-tight">
               {title.normal}
             </h6>
           </div>
