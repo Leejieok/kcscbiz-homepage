@@ -112,7 +112,7 @@ function HeroSection() {
             swiperRef.current = swiper;
             // 약간의 지연을 두고 pagination 초기화
             setTimeout(() => {
-              if (paginationRef.current) {
+              if (paginationRef.current && swiper.pagination) {
                 swiper.pagination.el = paginationRef.current;
                 swiper.pagination.init();
                 swiper.pagination.render();

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { collection, addDoc, getFirestore, serverTimestamp } from 'firebase/firestore';
-
-const db = getFirestore();
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 interface FormData {
   companyName: string;
   phone: string;

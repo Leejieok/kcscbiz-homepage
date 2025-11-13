@@ -1,18 +1,19 @@
-rules_version='2'
+rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    // consultations 컬렉션 - 누구나 생성 가능, 읽기는 제한
+    match /consultations/{consultationId} {
+      // 누구나 상담 신청 생성 가능 (create)
+      allow create: if true;
+
+      // 읽기/수정/삭제는 관리자만 가능 (추후 인증 추가 시 수정)
+      allow read, update, delete: if false;
+    }
+
+    // 다른 모든 문서는 기본적으로 거부
     match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2025, 12, 10);
+      allow read, write: if false;
     }
   }
 }
