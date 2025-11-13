@@ -55,8 +55,8 @@ function ServiceMain() {
 
       <div>
         <ServiceSection/>
-        <ServiceSection2/>
         <ServiceSection3/>
+        <ServiceSection2/>
         <ServiceSection4/>
         <ServiceSection5/>
         <ServiceSection6/>

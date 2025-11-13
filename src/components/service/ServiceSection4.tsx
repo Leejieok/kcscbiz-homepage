@@ -1,5 +1,6 @@
 import FundingCard from '@/components/common/card/FundingCard';
 import { fundingData } from '@/data/funding';
+import foodCEO from '../../assets/images/foodCEO.webp';
 
 function ServiceSection4() {
 
@@ -24,18 +25,23 @@ function ServiceSection4() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Side - Info Card */}
             <div
-              className="animate-fadeInUp p-8 rounded-3xl bg-cover bg-center h-[600px] flex flex-col justify-end"
+              className="animate-fadeInUp p-8 rounded-3xl bg-cover bg-center h-[600px] flex flex-col justify-end relative overflow-hidden"
               style={{
-                backgroundImage: "url('https://cdn.imweb.me/thumbnail/20250308/8ee44263f2961.png')",
+                backgroundImage: `url(${foodCEO})`,
                 animationDelay: '0.5s',
               }}
             >
-              <p className="text-2xl text-white mb-2">
-                연매출 2억 음식점을 운영하는 <strong>박대표님</strong>
-              </p>
-              <h3 className="text-3xl font-semibold text-white">
-                1년만에 받을 수 있는 정책자금
-              </h3>
+              {/* Bottom Gradient Overlay */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+              <div className="relative z-10">
+                <p className="text-2xl text-white mb-2">
+                  연매출 2억 음식점을 운영하는 <strong>박대표님</strong>
+                </p>
+                <h3 className="text-3xl font-semibold text-white">
+                  컨설팅 후, 가게는 그대로인데 <br />매출만 수직 상승 중 입니다.
+                </h3>
+              </div>
             </div>
 
             {/* Right Side - Funding Cards Grid */}

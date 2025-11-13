@@ -1,38 +1,44 @@
-import FundingCard, { type FundingCardData } from '../common/card/FundingCard';
+import { useState, useEffect } from 'react';
+import mockupImage from '../../assets/images/mockup.webp';
+import serviceBG from '../../assets/images/serviceBG.webp';
+
+interface FundingCardData {
+  id: number;
+  month: number;
+  amount: string;
+}
 
 function ServiceSection() {
   const fundingData: FundingCardData[] = [
-    {
-      id: 1,
-      title: '1월 정책자금 신청',
-      amount: '1,000,000,000원',
-      delay: '0.5s'
-    },
-    {
-      id: 2,
-      title: '2월 정책자금 신청',
-      amount: '70,000,000원',
-      delay: '0.7s'
-    },
-    {
-      id: 3,
-      title: '3월 정책자금 신청',
-      amount: '50,000,000원',
-      delay: '0.9s'
-    },
-    {
-      id: 4,
-      title: '4월 정책자금 신청',
-      amount: '30,000,000원',
-      delay: '1.1s'
-    },
+    { id: 1, month: 1, amount: '1,000,000,000 원' },
+    { id: 2, month: 2, amount: '70,000,000 원' },
+    { id: 3, month: 3, amount: '50,000,000 원' },
   ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % fundingData.length);
+    }, 3000); // 3초마다 변경
+
+    return () => clearInterval(interval);
+  }, [fundingData.length]);
 
   return (
     <section
-      className="w-full px-4 py-28 relative flex items-center bg-[#2b2d4e]"
+      className="w-full min-h-screen px-4 py-28 relative flex items-center bg-[#2b2d4e]"
       aria-labelledby="policy-funding-heading"
+      style={{
+        backgroundImage: `url(${serviceBG})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
       <div className="px-3 mx-auto w-full relative z-10" style={{ maxWidth: '1280px' }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Side - 7 columns */}
@@ -46,19 +52,19 @@ function ServiceSection() {
               <div className="space-y-2 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
                 <h2
                   id="policy-funding-heading"
-                  className="text-5xl tracking-tight text-white"
+                  className="text-5xl tracking-tight text-white pb-4"
                   style={{ fontFamily: 'InkLiquid, sans-serif' }}
                 >
-                  아직도 대표님 돈으로 사업하시나요?
+                  대표님 자금으로 버티는 순간, <br /> 경쟁사는 정책자금으로 확장합니다.
                 </h2>
-                <h3 className="text-6xl font-bold text-blue-300 tracking-tight">
-                  업종별 지원 가능한
+                <h3 className="text-6xl font-bold text-white tracking-tight">
+                  몰라서 못 받은 정책자금,
                 </h3>
-                <h3 className="text-6xl font-bold text-blue-300 tracking-tight">
-                  정책자금 한도,
+                <h3 className="text-6xl font-bold text-white tracking-tight">
+                  대표님 업종엔
                 </h3>
-                <h3 className="text-6xl font-bold tracking-tight text-white">
-                  궁금하시지 않으신가요?
+                <h3 className="text-6xl font-bold tracking-tight text-blue-300">
+                  얼마까지 가능할까요?
                 </h3>
               </div>
 
@@ -86,10 +92,37 @@ function ServiceSection() {
           </div>
 
           {/* Right Side - 5 columns */}
-          <div className="lg:col-span-5 space-y-8 flex flex-col justify-center">
-            {fundingData.map((item) => (
-              <FundingCard key={item.id} funding={item} />
-            ))}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            {/* Mockup Image with slide-up animation */}
+            <div className="animate-fadeInUp relative pt-16" style={{ animationDelay: '0.3s' }}>
+              <img
+                src={mockupImage}
+                alt="정책자금 신청 모바일 화면"
+                className="w-full mx-auto transform scale-150"
+              />
+
+              {/* Overlay Data - Month Number */}
+              <div className="absolute" style={{ top: '43%', left: '35%' }}>
+                <span
+                  key={`month-${currentIndex}`}
+                  className="text-4xl font-bold text-blue-600 animate-fadeIn"
+                  style={{ animationDelay: '0.6s' }}
+                >
+                  {fundingData[currentIndex].month}
+                </span>
+              </div>
+
+              {/* Overlay Data - Amount in White Box */}
+              <div className="absolute" style={{ top: '53%', left: '30%', width: '40%' }}>
+                <p
+                  key={`amount-${currentIndex}`}
+                  className="text-center text-2xl font-bold text-blue-500 animate-fadeIn whitespace-nowrap"
+                  style={{ animationDelay: '0.6s' }}
+                >
+                  {fundingData[currentIndex].amount}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

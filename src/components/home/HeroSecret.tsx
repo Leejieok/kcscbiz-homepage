@@ -7,13 +7,12 @@ function HeroSecret() {
   return (
     <section
       className="relative py-[60px] bg-[#f6f6f6] hidden md:block"
-      id="s2025030791452e093e3a1"
     >
       {/* Background layers */}
       <div className="absolute inset-0 bg-[#f6f6f6]" />
 
       <main className="relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="px-3 mx-auto w-full" style={{ maxWidth: '1280px' }}>
           {/* Title Section */}
           <div className="text-left mb-8 animate-fadeInUp" style={{ animationDuration: '1s', animationDelay: '0.5s' }}>
             <h6 className="text-[48px] font-bold">
