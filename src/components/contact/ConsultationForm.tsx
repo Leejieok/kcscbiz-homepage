@@ -24,7 +24,6 @@ function ConsultationForm() {
     privacyAgreed: false,
   });
 
-  const [showPrivacy, setShowPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCheckboxChange = (field: 'services' | 'referralSource', value: string) => {
@@ -154,7 +153,7 @@ function ConsultationForm() {
                 </h6>
 
                 <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  한국중소기업비즈니스센터는
+                  한국중소기업지원센터는
                 </p>
                 <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
                   대표님의 사업의 성공을 진심으로 기원합니다.
@@ -175,20 +174,29 @@ function ConsultationForm() {
                     <span className="text-red-500 ml-1">*</span>
                   </label>
                   <div className="border border-gray-300 rounded-lg p-4 max-h-40 overflow-y-auto bg-gray-50 text-sm text-gray-700 mb-3">
-                    <p className="mb-2">
-                      한국중소기업 비즈니스센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
+                    <p className="mb-3">
+                      한국중소기업지원센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
                     </p>
-                    <p className="font-semibold mb-1">제1조 (개인정보의 처리목적)</p>
-                    <p className="mb-2">
-                      회원 가입 및 관리, 서비스 제공, 고충 처리 등을 목적으로 개인정보를 처리합니다.
+
+                    <p className="font-semibold mb-1">1. 수집 목적</p>
+                    <p className="mb-3">
+                      상담 신청 접수 및 처리, 컨설팅 서비스 제공, 고객 문의 응대 및 상담 내용 관리
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setShowPrivacy(!showPrivacy)}
-                      className="text-blue-600 hover:underline text-sm"
-                    >
-                      {showPrivacy ? '간략히 보기' : '전체 내용 보기'}
-                    </button>
+
+                    <p className="font-semibold mb-1">2. 수집 항목</p>
+                    <p className="mb-3">
+                      회사명, 연락처, 업종, 사업장 소재지, 필요한 컨설팅 서비스, 문의 경로, 상담 요청사항
+                    </p>
+
+                    <p className="font-semibold mb-1">3. 보유 및 이용 기간</p>
+                    <p className="mb-3">
+                      상담 완료 후 3년간 보관하며, 보유 기간이 경과하면 지체 없이 파기합니다.
+                    </p>
+
+                    <p className="font-semibold mb-1">4. 동의 거부 시 불이익</p>
+                    <p className="mb-2">
+                      개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부 시 상담 신청 서비스 이용이 제한됩니다.
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <input
