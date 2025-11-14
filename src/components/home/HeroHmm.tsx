@@ -32,13 +32,13 @@ function HeroHmm() {
           <div className="animate-fadeInUp" style={{ animationDuration: '1s', animationDelay: '0.5s' }}>
             <div className="text-center space-y-2">
               <h6 className="text-[48px] font-semibold text-[#FF7800]">
-                성공을 돕는 정책자금 컨설팅,
+                정책자금, 혼자 고민하지 마세요.
               </h6>
               <h6 className="text-[48px] font-semibold text-white">
                 한국중소기업지원센터와
               </h6>
               <h6 className="text-[48px] font-semibold text-white">
-                함께라면 가능합니다!
+                함께라면 길이 보입니다.
               </h6>
             </div>
           </div>

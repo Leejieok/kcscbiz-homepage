@@ -1,3 +1,10 @@
+import before01 from '@/assets/images/before01.webp';
+import before02 from '@/assets/images/before02.webp';
+import before03 from '@/assets/images/before03.webp';
+import after01 from '@/assets/images/after01.webp';
+import after02 from '@/assets/images/after02.webp';
+import after03 from '@/assets/images/after03.webp';
+
 export interface BeforeAfterImage {
   id: number;
   beforeImage: string;
@@ -20,20 +27,20 @@ export const beforeAfterData = {
   images: [
     {
       id: 1,
-      beforeImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/0da97bb0760d3.png',
-      afterImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/91b74a7888e49.png',
+      beforeImage: before01,
+      afterImage: after01,
       alt: '기업 변화 사례 1'
     },
     {
       id: 2,
-      beforeImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/cc62da58bdd25.png',
-      afterImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/051d9f42347f0.png',
+      beforeImage: before02,
+      afterImage: after02,
       alt: '기업 변화 사례 2'
     },
     {
       id: 3,
-      beforeImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/d41d5b7644cef.png',
-      afterImage: 'https://cdn.imweb.me/upload/S20231213aa2eeb2497234/ada3e3044c8c0.png',
+      beforeImage: before03,
+      afterImage: after03,
       alt: '기업 변화 사례 3'
     }
   ] as BeforeAfterImage[]

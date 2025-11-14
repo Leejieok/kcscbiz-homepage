@@ -15,22 +15,22 @@ const slides = [
   {
     id: 1,
     bgClass: 'img01',
-    title: '계약금을 줬는데\n돈만 받고 사라질까봐 너무 걱정 돼요',
-    description: '한국중소기업지원센터는 성공 시에만 수수료를 받는\n성과 기반 수수료 시스템으로 고객님의 걱정을 해소합니다.',
+    title: '계약금 드린 뒤, 혹시나 사라질까…\n자꾸만 마음이 조마조마해요',
+    description: '한국중소기업지원센터는 ‘성공 시 수수료’ 원칙으로\n고객님의 걱정을 끝까지 함께 안아드립니다.',
     image: slide01,
   },
   {
     id: 2,
     bgClass: 'img02',
-    title: '돈과 시간만 낭비하게\n되는 건 아닐지 너무 불안해요',
-    description: '10년 이상의 노하우와 98.9%의 승인률로\n고객님의 시간과 비용을 최대한 효율적으로 활용합니다.',
+    title: '괜히 돈과 시간만 흘려보내게 될까…\n그게 가장 불안해요',
+    description: '10년 넘는 경험과 98.9% 승인률로,\n고객님의 시간과 비용을 소중하게 지켜드립니다.',
     image: slide02,
   },
   {
     id: 3,
     bgClass: 'img03',
-    title: '이런 컨설팅 회사가 많아서\n어디가 정답인지 모르겠어요',
-    description: '3,000건 이상의 성공 사례와 4,000개 이상의 기업 상담 경험으로\n신뢰할 수 있는 정책자금 컨설팅을 제공합니다.',
+    title: '비슷한 회사가 너무 많아서…\n어느 곳을 믿어야 할지 모르겠어요',
+    description: '3,486건 이상의 성공과 5,623개 기업 상담 경험으로,\n흔들리지 않는 신뢰를 전해드립니다.',
     image: slide03,
   },
 ];
@@ -41,7 +41,7 @@ const iconBanners = [
     id: 1,
     title: '정책자금 승인 건수',
     data: '3,000+',
-    targetValue: 3000,
+    targetValue: 3486,
     suffix: '+',
     delay: 0,
   },
@@ -56,8 +56,8 @@ const iconBanners = [
   {
     id: 3,
     title: '누적 상담 기업 수',
-    data: '4,000+ 명',
-    targetValue: 4000,
+    data: '5,351+ 명',
+    targetValue: 5623,
     suffix: '+ 명',
     delay: 600,
   },
@@ -153,26 +153,26 @@ function HeroService() {
         <div className="txt_area relative z-20 px-3 mx-auto" style={{ maxWidth: '1280px', paddingTop: '40px', paddingBottom: '40px' }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* 왼쪽 박스 */}
-            <div className="l_box lg:col-span-5">
+            <div className="l_box lg:col-span-6">
               <p 
                 className="txt01 text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
                 data-aos="fade-right"
               >
                 <span className="block mb-4">정책자금 컨설팅,</span>
-                <span className="block mb-4">정말 믿을 수 있을까요?</span>
+                <span className="block mb-4">정말 믿어도 될지 걱정되시죠?</span>
               </p>
               <p 
                 className="txt02 text-lg lg:text-xl text-gray-700 leading-relaxed"
                 data-aos="fade-left"
               >
-                아직 금리 1~2% SNS 광고에 현혹되고 계신가요? <br />
-                정부 정책자금, 어디서부터 시작해야 할지 막막했다면 <br />
-                한국중소기업지원센터에서 모든 과정을 확인하세요.
+                쉽게 속일 듯한 낮은 금리 광고에 지치셨다면, <br />
+                이제는 올바른 길에서 시작해보세요. <br />
+                <strong>한국중소기업지원센터가</strong> 고객님 곁에서 함께 챙겨드립니다.
               </p>
             </div>
 
             {/* 오른쪽 박스 */}
-            <div className="r_box lg:col-span-7 flex flex-col items-end justify-end space-y-6">
+            <div className="r_box lg:col-span-6 flex flex-col items-end justify-end space-y-6">
               {/* 페이지네이션 */}
               <div 
                 ref={paginationRef}
@@ -180,8 +180,8 @@ function HeroService() {
               ></div>
               
               {/* 더보기 링크 */}
-              <Link 
-                to="/service" 
+              <Link
+                to="/service"
                 className="flex items-center gap-3 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors group"
               >
                 <svg 

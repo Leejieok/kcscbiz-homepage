@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import ScrollToTop from './components/common/ScrollToTop'
 import './App.css'
 
 // Lazy load pages for code splitting
@@ -30,6 +31,7 @@ function PageLoader() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home />} />

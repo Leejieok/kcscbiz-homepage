@@ -1,3 +1,5 @@
+import page1 from '@/assets/images/page1.webp';
+
 export interface PromiseItem {
   number: string;
   title: string;
@@ -23,26 +25,26 @@ export const promiseData: PromiseData = {
   promises: [
     {
       number: '약속 1',
-      title: '안되는 건 ',
-      titleHighlight: ['절대 안된다고 말하겠습니다.'],
-      description: '많은 컨설팅 회사들은 연체, 체납이 있더라도 당장의 수익을 위해, 계약을 체결하곤 합니다.\n 한국중소기업지원센터는 대표님들의 시간과 신뢰를 중요시 여기며, ',
-      descriptionHighlight: '안되는 건 절대 안된다고 말씀드리겠습니다.',
-      backgroundImage: 'https://cdn.imweb.me/thumbnail/20250307/5ffbb256aa732.png'
+      title: '안되는 일은 ',
+      titleHighlight: ['솔직하게 안된다고 말씀드립니다.'],
+      description: '수익을 위해 무리하게 계약하지 않습니다.\n 한국중소기업지원센터는 ',
+      descriptionHighlight: '대표님의 시간과 신뢰를 지키는 것이 우리의 원칙입니다.',
+      backgroundImage: page1
     },
     {
       number: '약속 2',
-      title: '소통 실력은 ',
-      titleHighlight: ['한국중소기업지원센터가 최고입니다.'],
-      description: '한국중소기업지원센터는 전문 컨설턴트를 20명 이상 고용하고 있습니다. \n',
-      descriptionHighlight: '정책자금 컨설팅에서 가장 중요한 것은 소통입니다. 전문가 20:1 소통을 통해 빠른 피드백을 약속합니다.',
+      title: '소통의 진심은 ',
+      titleHighlight: ['누구보다 강합니다.'],
+      description: '20명 이상의 전문 컨설턴트가 함께하며, \n',
+      descriptionHighlight: '빠른 회신과 정확한 소통으로 언제든 든든하게 연결되어 있습니다.',
       backgroundImage: 'https://cdn.imweb.me/thumbnail/20250307/9ff1060f296bf.png'
     },
     {
       number: '약속 3',
-      title: '대표님들의 시간을 ',
-      titleHighlight: ['금처럼 여기겠습니다.'],
-      description: '한중지는 3,000건 이상 성공 사례를 보유하고 있습니다. \n',
-      descriptionHighlight: '모든 기업들이 원하는 결과를 빨리 실현할 수 있도록 맞춤 컨설팅 플랜으로 최고의 결과를 선물하겠습니다.',
+      title: '대표님의 시간을 ',
+      titleHighlight: ['가장 귀한 자원으로 생각합니다.'],
+      description: '수천 건의 경험을 토대로, \n',
+      descriptionHighlight: '가장 빠른 성공을 위한 맞춤 전략을 정성스럽게 준비하겠습니다.',
       backgroundImage: 'https://cdn.imweb.me/thumbnail/20250307/f0d1833d57765.png'
     }
   ]

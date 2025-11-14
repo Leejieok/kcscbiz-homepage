@@ -1,11 +1,14 @@
 import { consultingData } from '@/data/consultingContent';
 import ConsultingSection from '../section/ConsultingSection';
+import need01 from '@/assets/images/need01.webp';
+import need02 from '@/assets/images/need02.webp';
+import need03 from '@/assets/images/need03.webp';
 
 function HeroNecessity() {
   const backgroundImages = [
-    'https://cdn.imweb.me/thumbnail/20250307/c7608c7b6d7e2.png',
-    'https://cdn.imweb.me/thumbnail/20250307/dddf4ad7955d7.png',
-    'https://cdn.imweb.me/thumbnail/20250307/19736215ba905.png'
+    need01,
+    need02,
+    need03
   ];
 
   return (
@@ -13,7 +16,7 @@ function HeroNecessity() {
       mainHeading={consultingData.mainHeading}
       subHeading={consultingData.subHeading}
       sections={consultingData.sections}
-      backgroundImages={backgroundImages}
+      images={backgroundImages}
       backgroundColor="#f5f7fd"
     />
   );

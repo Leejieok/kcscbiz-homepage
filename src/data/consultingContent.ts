@@ -9,11 +9,11 @@ export interface ContentSection {
 
 export const consultingData = {
   mainHeading: {
-    highlight: "꼭 비용까지 지불하면서",
-    text: "컨설팅을 받아야 할까 고민인가요?"
+    highlight: "돈을 쓰면서까지",
+    text: "컨설팅이 맞는 선택인지 걱정되나요?"
   },
   
-  subHeading: "아직 정책자금 컨설팅의 필요성을 못 느끼셨다면 그냥 넘어가지 마세요.",
+  subHeading: "정책자금이 먼 이야기처럼 느껴지셨다면 잠시만 멈춰서 이유부터 함께 살펴보세요.",
   
   sections: [
     {

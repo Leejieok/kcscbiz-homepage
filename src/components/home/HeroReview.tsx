@@ -2,11 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, Navigation } from 'swiper/modules';
-import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'swiper/swiper-bundle.css';
-import bgImg from '../../assets/images/bg_img.jpg';
+import bgImg from '../../assets/images/brandBG.webp';
+import crape01 from '../../assets/images/crape01.webp';
+import crape02 from '../../assets/images/crape02.webp';
+import crape03 from '../../assets/images/crape03.webp';
+import crape04 from '../../assets/images/crape04.webp';
 
 // 기술 슬라이드 데이터
 const techSlides = [
@@ -15,7 +18,7 @@ const techSlides = [
     number: '01',
     title: '대한민국 우수기업인증',
     description: '질병의 원인을 이해하고 그에 따른 효과적인 치료법을 개발해\n바이오마커, 유전자 치료 등 의료 분야에서 혁신을 가져오고 있습니다.',
-    image: 'https://cdn.imweb.me/thumbnail/20250119/ee7e5c3eca9f7.jpg',
+    image: crape01,
     link: '/service/medical',
   },
   {
@@ -23,7 +26,7 @@ const techSlides = [
     number: '02',
     title: '대한민국 우수브랜드인증',
     description: '유전공학 기술을 활용하여 작물의 생산성과 내구성을 향상시키고,\n새로운 식품 생산 및 가공 기술을 개발해 식량 및 영양 문제에 대응합니다.',
-    image: 'https://cdn.imweb.me/thumbnail/20250119/4a8698dc382b7.jpg',
+    image: crape02,
     link: '/service/agriculture',
   },
   {
@@ -31,7 +34,7 @@ const techSlides = [
     number: '03',
     title: '고객선호 브랜드 대상',
     description: '바이오 에너지, 바이오 다양성 보전, 환경 오염 제어 등을 통해\n지속 가능한 개발과 환경 보호를 동시에 추구합니다.',
-    image: 'https://cdn.imweb.me/thumbnail/20250119/9617acc6120e3.jpg',
+    image: crape03,
     link: '/service/environment',
   },
   {
@@ -39,7 +42,7 @@ const techSlides = [
     number: '04',
     title: '경영 컨설팅 부문 우수기업',
     description: '세포공학, 효소 공학 등으로 새로운 원료 및 생산 방법을 개발해\n산업 생산의 효율성을 높이고 친환경적인 생산을 실현하고 있습니다.',
-    image: 'https://cdn.imweb.me/thumbnail/20250119/437f8c0f8528d.jpg',
+    image: crape04,
     link: '/service/industrial',
   },
 ];
@@ -64,11 +67,11 @@ function HeroReview() {
 
   return (
     <section id="atc02" className="w-full bg-white">
-      <div className="l_inner w-full mx-auto px-0">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative">
+      <div className="l_inner w-full mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative ">
           {/* 왼쪽 패널 - 배경 이미지 */}
-          <div 
-            className="lg:col-span-6 p-6 lg:p-8 relative overflow-visible h-full"
+          <div
+            className="lg:col-span-6 p-6 lg:p-8 py-16 lg:py-20 relative overflow-visible h-full "
             style={{
               backgroundImage: `url(${bgImg})`,
               backgroundSize: 'cover',
@@ -78,10 +81,10 @@ function HeroReview() {
           >
             {/* 배경 오버레이 */}
 
-            <div className="relative z-10 h-full flex flex-col">
+            <div className="relative z-10 h-full flex flex-col pl-[200px]">
               {/* 영문 타이틀 */}
               <p 
-                className="eng_tit text-xs uppercase tracking-widest text-white/70 mb-4"
+                className="eng_tit text-xs uppercase tracking-widest text-white/70 mb-12"
                 data-aos="fade-right"
               >
                 OUR CONSULTING 
@@ -159,7 +162,7 @@ function HeroReview() {
 
           {/* 오른쪽 패널 - 흰색 배경 */}
           <div className="lg:col-span-6 relative">
-            <div className="w-full h-full flex items-center justify-center p-6 lg:p-8">
+            <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 py-16 lg:py-20">
               <Swiper
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
@@ -185,13 +188,13 @@ function HeroReview() {
                   <SwiperSlide key={slide.id}>
                     <div className="w-full flex flex-col items-center">
                       {/* 이미지 */}
-                      <div className="img mb-4 rounded-lg overflow-hidden aspect-square w-full max-w-md shadow-xl">
+                      <div className="img mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
                         <img 
                           src={slide.image} 
                           alt={slide.title}
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x800?text=' + encodeURIComponent(slide.title);
+                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/1200x800?text=' + encodeURIComponent(slide.title);
                           }}
                         />
                       </div>
@@ -201,13 +204,10 @@ function HeroReview() {
                         {slide.title}
                       </p>
 
-                      {/* 설명 */}
-                      <p className="txt text-sm lg:text-base text-gray-700 leading-relaxed mb-4 whitespace-pre-line text-center">
-                        {slide.description}
-                      </p>
+
 
                       {/* 자세히 보기 버튼 */}
-                      <Link 
+                      {/* <Link 
                         to={slide.link}
                         className="inline-flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors group text-sm"
                       >
@@ -227,7 +227,7 @@ function HeroReview() {
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
-                      </Link>
+                      </Link> */}
                     </div>
                   </SwiperSlide>
                 ))}
