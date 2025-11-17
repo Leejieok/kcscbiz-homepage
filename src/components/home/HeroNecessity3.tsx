@@ -37,9 +37,7 @@ function HeroNecessity3() {
                 style={{
                   backgroundImage: `url(${currentPromise.backgroundImage})`
                 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20"></div>
-              </div>
+              ></div>
 
               {/* 오른쪽: 텍스트 */}
               <div className="p-8 md:p-12 flex flex-col justify-center">
@@ -48,7 +46,7 @@ function HeroNecessity3() {
                     {currentPromise.number}
                   </h3>
                   <h4 className="text-2xl md:text-3xl font-bold mb-6">
-                    {currentPromise.title}
+                    {currentPromise.title} <br />
                     {currentPromise.titleHighlight.length > 0 && (
                       <span className="text-[#214bab]">{currentPromise.titleHighlight[0]}</span>
                     )}

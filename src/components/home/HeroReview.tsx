@@ -189,10 +189,10 @@ function HeroReview() {
                     <div className="w-full flex flex-col items-center">
                       {/* 이미지 */}
                       <div className="img mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
-                        <img 
-                          src={slide.image} 
+                        <img
+                          src={slide.image}
                           alt={slide.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-top"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = 'https://via.placeholder.com/1200x800?text=' + encodeURIComponent(slide.title);
                           }}

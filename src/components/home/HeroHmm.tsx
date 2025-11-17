@@ -1,3 +1,5 @@
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
+
 function HeroHmm() {
   return (
     <section
@@ -8,13 +10,13 @@ function HeroHmm() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('https://cdn.imweb.me/thumbnail/20250307/c749ead3aeac9.png')",
+          backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.forestWay})`,
           backgroundPosition: '50% 50%'
         }}
       >
         <img
           className="hidden"
-          src="https://cdn.imweb.me/thumbnail/20250307/c749ead3aeac9.png"
+          src={FIREBASE_IMAGES.backgrounds.forestWay}
           alt="mobile background"
           loading="lazy"
         />

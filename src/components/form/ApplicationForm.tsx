@@ -1,6 +1,22 @@
 import { useState } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 
-function ApplicationForm() {
+interface ApplicationFormProps {
+  title?: {
+    highlight: string;
+    main: string;
+  };
+}
+
+function ApplicationForm({ title }: ApplicationFormProps) {
+  const defaultTitle = {
+    highlight: '단 10명만 받는',
+    main: '[소수정예] 컨설팅'
+  };
+
+  const displayTitle = title || defaultTitle;
+
   const [formData, setFormData] = useState({
     companyName: '',
     contact: '',
@@ -12,6 +28,8 @@ function ApplicationForm() {
     requests: '',
     privacyAgreed: false
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const industries = [
     '제조업',
@@ -41,6 +59,30 @@ function ApplicationForm() {
     '기타'
   ];
 
+  // 전화번호 포맷팅 함수
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, '');
+
+    // 길이에 따라 포맷팅
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+    } else {
+      // 최대 11자리까지만 허용
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+    }
+  };
+
+  // 전화번호 유효성 검증 함수
+  const validatePhoneNumber = (phone: string) => {
+    const numbers = phone.replace(/[^\d]/g, '');
+    return numbers.length === 10 || numbers.length === 11;
+  };
+
   const handleCheckboxChange = (field: 'consultingServices' | 'referralSource', value: string) => {
     setFormData(prev => {
       const currentValues = prev[field];
@@ -57,45 +99,97 @@ function ApplicationForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isSubmitting) return; // 중복 제출 방지
+    setIsSubmitting(true);
 
     // 필수 항목 검증
     if (!formData.privacyAgreed) {
       alert('개인정보 수집 및 이용에 동의해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.companyName) {
       alert('회사명을 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.contact) {
       alert('연락처를 입력해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
+    if (!validatePhoneNumber(formData.contact)) {
+      alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.industry) {
       alert('업종을 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.location) {
       alert('사업장 소재지를 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (formData.consultingServices.length === 0) {
       alert('필요한 컨설팅 서비스를 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (formData.referralSource.length === 0) {
       alert('문의 경로를 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.requests) {
       alert('상담 시 요청사항을 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
 
-    console.log('Form submitted:', formData);
-    alert('상담 신청이 완료되었습니다!');
+    try {
+      // Firestore의 consultations 컬렉션에 저장
+      // ConsultationForm과 필드명을 맞추기 위해 매핑
+      const docRef = await addDoc(collection(db, 'consultations'), {
+        companyName: formData.companyName,
+        phone: formData.contact, // contact -> phone으로 매핑
+        industry: formData.industry,
+        location: formData.location,
+        services: formData.consultingServices, // consultingServices -> services로 매핑
+        referralSource: formData.referralSource,
+        requests: formData.requests,
+        privacyAgreed: formData.privacyAgreed,
+        createdAt: serverTimestamp(),
+        status: 'pending'
+      });
+
+      console.log('✅ Firestore 저장 완료! Document ID: ', docRef.id);
+      alert('상담 신청이 완료되었습니다!');
+
+      // 폼 초기화
+      setFormData({
+        companyName: '',
+        contact: '',
+        industry: '',
+        location: '',
+        consultingServices: [],
+        consultingServicesEtc: '',
+        referralSource: [],
+        requests: '',
+        privacyAgreed: false
+      });
+
+    } catch (error) {
+      console.error('❌ Form submission error:', error);
+      alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -104,8 +198,8 @@ function ApplicationForm() {
         {/* 제목 */}
         <div className="animate-fadeInUp mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
           <h2 className="text-center">
-            <span className="block text-5xl font-bold text-[#214bab] mb-2">선착순 10명</span>
-            <span className="block text-5xl font-bold text-gray-900">무료 상담 신청하기</span>
+            <span className="block text-5xl font-bold text-[#214bab] mb-2">{displayTitle.highlight}</span>
+            <span className="block text-5xl font-bold text-gray-900">{displayTitle.main}</span>
           </h2>
         </div>
 
@@ -180,10 +274,11 @@ function ApplicationForm() {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <input
-              type="text"
+              type="tel"
               id="contact"
               value={formData.contact}
-              onChange={(e) => setFormData(prev => ({ ...prev, contact: e.target.value }))}
+              onChange={(e) => setFormData(prev => ({ ...prev, contact: formatPhoneNumber(e.target.value) }))}
+              placeholder="010-1234-5678"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               autoComplete="off"
             />

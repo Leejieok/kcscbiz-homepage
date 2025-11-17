@@ -59,7 +59,12 @@ function Service1() {
         <ChechlistSection/>
         <HookSection/>
         <SolutionSection/>
-        <ApplicationForm/>
+        <ApplicationForm 
+          title={{
+            highlight: '대표님 상황에 꼭 맞춘',
+            main: '세금환급 솔루션 신청하기'
+          }}
+        />
       </div>
     </>
   )

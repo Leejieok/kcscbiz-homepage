@@ -1,4 +1,4 @@
-import page1 from '@/assets/images/page1.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 export interface PromiseItem {
   number: string;
@@ -29,7 +29,7 @@ export const promiseData: PromiseData = {
       titleHighlight: ['솔직하게 안된다고 말씀드립니다.'],
       description: '수익을 위해 무리하게 계약하지 않습니다.\n 한국중소기업지원센터는 ',
       descriptionHighlight: '대표님의 시간과 신뢰를 지키는 것이 우리의 원칙입니다.',
-      backgroundImage: page1
+      backgroundImage: FIREBASE_IMAGES.images.hero
     },
     {
       number: '약속 2',
@@ -37,7 +37,7 @@ export const promiseData: PromiseData = {
       titleHighlight: ['누구보다 강합니다.'],
       description: '20명 이상의 전문 컨설턴트가 함께하며, \n',
       descriptionHighlight: '빠른 회신과 정확한 소통으로 언제든 든든하게 연결되어 있습니다.',
-      backgroundImage: 'https://cdn.imweb.me/thumbnail/20250307/9ff1060f296bf.png'
+      backgroundImage: FIREBASE_IMAGES.images.hero2
     },
     {
       number: '약속 3',
@@ -45,7 +45,7 @@ export const promiseData: PromiseData = {
       titleHighlight: ['가장 귀한 자원으로 생각합니다.'],
       description: '수천 건의 경험을 토대로, \n',
       descriptionHighlight: '가장 빠른 성공을 위한 맞춤 전략을 정성스럽게 준비하겠습니다.',
-      backgroundImage: 'https://cdn.imweb.me/thumbnail/20250307/f0d1833d57765.png'
+      backgroundImage: FIREBASE_IMAGES.images.hero3
     }
   ]
 };

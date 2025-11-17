@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import type { NavItem } from '@/types/nav';
-import logoImg from '@/assets/images/logo.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 import ContactButton from '@/components/common/button/ContactButton';
 
 const NavbarDark = () => {
@@ -201,7 +201,7 @@ const NavbarDark = () => {
             <div className="w-auto py-4 absolute left-0">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
-                  src={logoImg}
+                  src={FIREBASE_IMAGES.assets.logoBlack}
                   width={240}
                   alt="한국중소기업지원센터"
                   className="h-auto max-w-full"

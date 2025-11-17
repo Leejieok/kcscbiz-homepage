@@ -26,6 +26,30 @@ function ConsultationForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // 전화번호 포맷팅 함수
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, '');
+
+    // 길이에 따라 포맷팅
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+    } else {
+      // 최대 11자리까지만 허용
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+    }
+  };
+
+  // 전화번호 유효성 검증 함수
+  const validatePhoneNumber = (phone: string) => {
+    const numbers = phone.replace(/[^\d]/g, '');
+    return numbers.length === 10 || numbers.length === 11;
+  };
+
   const handleCheckboxChange = (field: 'services' | 'referralSource', value: string) => {
     setFormData((prev) => {
       const currentValues = prev[field];
@@ -56,12 +80,19 @@ function ConsultationForm() {
       }
 
       // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
-      if (!formData.companyName || !formData.phone || !formData.industry || 
-          !formData.location || formData.services.length === 0 || 
+      if (!formData.companyName || !formData.phone || !formData.industry ||
+          !formData.location || formData.services.length === 0 ||
           formData.referralSource.length === 0 || !formData.requests) {
             alert('모든 필수 항목을 입력해주세요.');
             setIsSubmitting(false);
             return;
+      }
+
+      // 전화번호 형식 검증
+      if (!validatePhoneNumber(formData.phone)) {
+        alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+        setIsSubmitting(false);
+        return;
       }
 
 
@@ -145,11 +176,10 @@ function ConsultationForm() {
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
                 <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
-                  <span className="text-[#214bab]">어떤 도움</span>
-                  <span className="text-[#110d0d]">이</span>
+                  <span className="text-[#214bab]">대표님의 한 걸음</span>
                 </h6>
                 <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] mb-8">
-                  필요하신가요?
+                  우리가 함께 엽니다.
                 </h6>
 
                 <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
@@ -159,7 +189,7 @@ function ConsultationForm() {
                   대표님의 사업의 성공을 진심으로 기원합니다.
                 </p>
                 <p className="text-lg md:text-xl text-[#ff7800] font-bold leading-[2.2]">
-                  좋은 인연이 되기를 바랍니다.
+                  작은 고민부터 큰 도약까지, 함께하겠습니다
                 </p>
               </div>
             </div>
@@ -240,7 +270,8 @@ function ConsultationForm() {
                     type="tel"
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, phone: formatPhoneNumber(e.target.value) })}
+                    placeholder="010-1234-5678"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />

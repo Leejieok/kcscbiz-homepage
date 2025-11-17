@@ -63,7 +63,12 @@ function Service3() {
         <CertHelpSection/>
         <CertNecessity/>
         <GallerySection/>
-        <ApplicationForm/>
+        <ApplicationForm 
+          title={{
+            highlight: '대표님 상황에 꼭 맞춘',
+            main: '기업인증 솔루션 신청하기'
+          }}
+        />
       </div>
     </>
   )

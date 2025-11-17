@@ -59,7 +59,12 @@ function Service2() {
         <GuideSection/>
         <ProcessSection/>
         <HookSection/>
-        <ApplicationForm/>
+        <ApplicationForm 
+          title={{
+            highlight: '대표님 상황에 꼭 맞춘',
+            main: '법인사업자 솔루션 신청하기'
+          }}
+        />
       </div>
     </>
   )

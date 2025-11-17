@@ -1,9 +1,4 @@
-import before01 from '@/assets/images/before01.webp';
-import before02 from '@/assets/images/before02.webp';
-import before03 from '@/assets/images/before03.webp';
-import after01 from '@/assets/images/after01.webp';
-import after02 from '@/assets/images/after02.webp';
-import after03 from '@/assets/images/after03.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 export interface BeforeAfterImage {
   id: number;
@@ -27,20 +22,20 @@ export const beforeAfterData = {
   images: [
     {
       id: 1,
-      beforeImage: before01,
-      afterImage: after01,
+      beforeImage: FIREBASE_IMAGES.images.before01,
+      afterImage: FIREBASE_IMAGES.images.after01,
       alt: '기업 변화 사례 1'
     },
     {
       id: 2,
-      beforeImage: before02,
-      afterImage: after02,
+      beforeImage: FIREBASE_IMAGES.images.before02,
+      afterImage: FIREBASE_IMAGES.images.after02,
       alt: '기업 변화 사례 2'
     },
     {
       id: 3,
-      beforeImage: before03,
-      afterImage: after03,
+      beforeImage: FIREBASE_IMAGES.images.before03,
+      afterImage: FIREBASE_IMAGES.images.after03,
       alt: '기업 변화 사례 3'
     }
   ] as BeforeAfterImage[]

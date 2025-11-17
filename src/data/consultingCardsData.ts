@@ -22,8 +22,8 @@ export interface ConsultingCardsData {
 
 export const consultingCardsData: ConsultingCardsData = {
   mainTitle: {
-    highlight: '어떤 고민',
-    normal: '여기까지 보고 계신걸까요?'
+    highlight: '여기까지 온 이유,',
+    normal: '이미 마음이 답을 알고 있습니다. \n 지금, 대표님의 고민을 가볍게 만들 차례입니다.'
   },
   subTexts: [
     {
