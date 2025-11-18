@@ -1,6 +1,6 @@
 import FundingCard from '@/components/common/card/FundingCard';
 import { fundingData } from '@/data/funding';
-import foodCEO from '../../assets/images/foodCEO.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function ServiceSection4() {
 
@@ -27,7 +27,7 @@ function ServiceSection4() {
             <div
               className="animate-fadeInUp p-8 rounded-3xl bg-cover bg-center h-[600px] flex flex-col justify-end relative overflow-hidden"
               style={{
-                backgroundImage: `url(${foodCEO})`,
+                backgroundImage: `url(${FIREBASE_IMAGES.images.foodCEO})`,
                 animationDelay: '0.5s',
               }}
             >

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import reviewBG from '../../assets/images/reviewBG.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function ReviewSection() {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -71,7 +71,7 @@ function ReviewSection() {
       id="wb-hanbizstats-wrapper"
       ref={sectionRef}
       style={{
-        backgroundImage: `url(${reviewBG})`,
+        backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.reviewBG})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

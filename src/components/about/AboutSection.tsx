@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import aboutImage from '../../assets/images/about.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function AboutSection() {
   useEffect(() => {
@@ -21,7 +21,7 @@ function AboutSection() {
   return (
     <div className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
          style={{
-           backgroundImage: `url(${aboutImage})`,
+           backgroundImage: `url(${FIREBASE_IMAGES.images.about})`,
            backgroundColor: '#dddddd'
          }}>
       {/* Overlay */}

@@ -7,7 +7,7 @@ function CertNecessity() {
       mainHeading={certNecessityData.mainHeading}
       subHeading={certNecessityData.subHeading}
       sections={certNecessityData.sections}
-      backgroundImages={certNecessityData.backgroundImages}
+      images={certNecessityData.backgroundImages}
       backgroundColor={certNecessityData.backgroundColor}
       showCheckIcon={certNecessityData.showCheckIcon}
     />

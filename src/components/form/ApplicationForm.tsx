@@ -193,27 +193,27 @@ function ApplicationForm({ title }: ApplicationFormProps) {
   };
 
   return (
-    <section className="py-16 bg-white hidden md:block">
-      <main className="container mx-auto px-4 max-w-4xl">
+    <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
+      <main className="container mx-auto px-2 sm:px-4 max-w-4xl">
         {/* 제목 */}
-        <div className="animate-fadeInUp mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
+        <div className="animate-fadeInUp mb-6 sm:mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
           <h2 className="text-center">
-            <span className="block text-5xl font-bold text-[#214bab] mb-2">{displayTitle.highlight}</span>
-            <span className="block text-5xl font-bold text-gray-900">{displayTitle.main}</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#214bab] mb-1 sm:mb-2">{displayTitle.highlight}</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">{displayTitle.main}</span>
           </h2>
         </div>
 
-        <div className="h-3"></div>
+        <div className="h-2 sm:h-3"></div>
 
         {/* 폼 */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {/* 개인정보 수집 및 이용 동의 */}
           <div className="form-group">
-            <label className="block text-lg font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg font-medium text-gray-700 mb-2">
               개인정보 수집 및 이용 동의
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <div className="border border-gray-300 rounded-lg p-4 max-h-64 overflow-y-auto bg-gray-50 text-sm leading-relaxed">
+            <div className="border border-gray-300 rounded-lg p-3 sm:p-4 max-h-48 sm:max-h-64 overflow-y-auto bg-gray-50 text-xs sm:text-sm leading-relaxed">
               <p className="mb-3">
                 한국중소기업지원센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
               </p>
@@ -253,7 +253,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
 
           {/* 회사명 */}
           <div className="form-group">
-            <label htmlFor="companyName" className="block text-xl font-medium text-gray-700 mb-2">
+            <label htmlFor="companyName" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               회사명
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -262,14 +262,14 @@ function ApplicationForm({ title }: ApplicationFormProps) {
               id="companyName"
               value={formData.companyName}
               onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 연락처 */}
           <div className="form-group">
-            <label htmlFor="contact" className="block text-xl font-medium text-gray-700 mb-2">
+            <label htmlFor="contact" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               연락처
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -279,14 +279,14 @@ function ApplicationForm({ title }: ApplicationFormProps) {
               value={formData.contact}
               onChange={(e) => setFormData(prev => ({ ...prev, contact: formatPhoneNumber(e.target.value) }))}
               placeholder="010-1234-5678"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 업종 선택 */}
           <div className="form-group">
-            <label htmlFor="industry" className="block text-xl font-medium text-gray-700 mb-2">
+            <label htmlFor="industry" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               업종을 선택해주세요.
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -294,7 +294,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
               id="industry"
               value={formData.industry}
               onChange={(e) => setFormData(prev => ({ ...prev, industry: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-sm sm:text-base"
               autoComplete="off"
             >
               <option value="">(선택)</option>
@@ -306,7 +306,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
 
           {/* 사업장 소재지 */}
           <div className="form-group">
-            <label htmlFor="location" className="block text-xl font-medium text-gray-700 mb-2">
+            <label htmlFor="location" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               사업장 소재지
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -315,14 +315,14 @@ function ApplicationForm({ title }: ApplicationFormProps) {
               id="location"
               value={formData.location}
               onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 필요한 컨설팅 서비스 */}
           <div className="form-group">
-            <label className="block text-xl font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               필요한 컨설팅 서비스
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -365,7 +365,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
 
           {/* 문의 경로 */}
           <div className="form-group">
-            <label className="block text-xl font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               어떤 경로로 문의를 하게 되었나요?
               <span className="text-red-500 ml-1">*</span>
               <span className="text-gray-500 text-xs ml-2">(최대 2개)</span>
@@ -388,7 +388,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
 
           {/* 상담 시 요청사항 */}
           <div className="form-group">
-            <label htmlFor="requests" className="block text-xl font-medium text-gray-700 mb-2">
+            <label htmlFor="requests" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               상담 시 요청사항
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -397,7 +397,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
               value={formData.requests}
               onChange={(e) => setFormData(prev => ({ ...prev, requests: e.target.value }))}
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
@@ -406,7 +406,7 @@ function ApplicationForm({ title }: ApplicationFormProps) {
           <div className="text-center pt-4">
             <button
               type="submit"
-              className="px-12 py-3 bg-blue-600 text-white text-lg font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 bg-blue-600 text-white text-base sm:text-lg font-medium rounded-lg hover:bg-blue-700 transition-colors"
             >
               작성
             </button>

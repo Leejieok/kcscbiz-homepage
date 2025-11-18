@@ -5,11 +5,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'swiper/swiper-bundle.css';
-import bgImg from '../../assets/images/brandBG.webp';
-import crape01 from '../../assets/images/crape01.webp';
-import crape02 from '../../assets/images/crape02.webp';
-import crape03 from '../../assets/images/crape03.webp';
-import crape04 from '../../assets/images/crape04.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 // 기술 슬라이드 데이터
 const techSlides = [
@@ -18,7 +14,7 @@ const techSlides = [
     number: '01',
     title: '대한민국 우수기업인증',
     description: '질병의 원인을 이해하고 그에 따른 효과적인 치료법을 개발해\n바이오마커, 유전자 치료 등 의료 분야에서 혁신을 가져오고 있습니다.',
-    image: crape01,
+    image: FIREBASE_IMAGES.images.crape01,
     link: '/service/medical',
   },
   {
@@ -26,7 +22,7 @@ const techSlides = [
     number: '02',
     title: '대한민국 우수브랜드인증',
     description: '유전공학 기술을 활용하여 작물의 생산성과 내구성을 향상시키고,\n새로운 식품 생산 및 가공 기술을 개발해 식량 및 영양 문제에 대응합니다.',
-    image: crape02,
+    image: FIREBASE_IMAGES.images.crape02,
     link: '/service/agriculture',
   },
   {
@@ -34,7 +30,7 @@ const techSlides = [
     number: '03',
     title: '고객선호 브랜드 대상',
     description: '바이오 에너지, 바이오 다양성 보전, 환경 오염 제어 등을 통해\n지속 가능한 개발과 환경 보호를 동시에 추구합니다.',
-    image: crape03,
+    image: FIREBASE_IMAGES.images.crape03,
     link: '/service/environment',
   },
   {
@@ -42,7 +38,7 @@ const techSlides = [
     number: '04',
     title: '경영 컨설팅 부문 우수기업',
     description: '세포공학, 효소 공학 등으로 새로운 원료 및 생산 방법을 개발해\n산업 생산의 효율성을 높이고 친환경적인 생산을 실현하고 있습니다.',
-    image: crape04,
+    image: FIREBASE_IMAGES.images.crape04,
     link: '/service/industrial',
   },
 ];
@@ -68,12 +64,12 @@ function HeroReview() {
   return (
     <section id="atc02" className="w-full bg-white">
       <div className="l_inner w-full mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative">
           {/* 왼쪽 패널 - 배경 이미지 */}
           <div
-            className="lg:col-span-6 p-6 lg:p-8 py-16 lg:py-20 relative overflow-visible h-full "
+            className="lg:col-span-6 p-4 sm:p-6 lg:p-8 py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-visible h-full"
             style={{
-              backgroundImage: `url(${bgImg})`,
+              backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.brandBG})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -81,18 +77,18 @@ function HeroReview() {
           >
             {/* 배경 오버레이 */}
 
-            <div className="relative z-10 h-full flex flex-col pl-[200px]">
+            <div className="relative z-10 h-full flex flex-col pl-0 sm:pl-4 md:pl-8 lg:pl-12 xl:pl-[200px]">
               {/* 영문 타이틀 */}
-              <p 
-                className="eng_tit text-xs uppercase tracking-widest text-white/70 mb-12"
+              <p
+                className="eng_tit text-[10px] sm:text-xs uppercase tracking-widest text-white/70 mb-6 sm:mb-8 md:mb-12"
                 data-aos="fade-right"
               >
-                OUR CONSULTING 
+                OUR CONSULTING
               </p>
 
               {/* 큰 제목 */}
-              <p 
-                className="big_txt text-2xl lg:text-4xl font-bold text-white leading-tight mb-8"
+              <p
+                className="big_txt text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight mb-4 sm:mb-6 md:mb-8"
                 data-aos="fade-left"
               >
                 인증 완료된<br />
@@ -101,19 +97,20 @@ function HeroReview() {
               </p>
 
               {/* 커스텀 페이지네이션 */}
-              <div 
+              <div
                 ref={paginationRef}
-                className="pager_txt flex flex-col gap-3 mt-auto"
+                className="pager_txt flex flex-col gap-2 sm:gap-3 mt-auto"
               >
                 {techSlides.map((slide, index) => (
                   <button
                     key={slide.id}
+                    type="button"
                     onClick={() => {
                       if (swiperRef.current) {
                         swiperRef.current.slideToLoop(index);
                       }
                     }}
-                    className={`pager_bullet flex items-center gap-3 text-left transition-all duration-300 relative pl-3 py-2 ${
+                    className={`pager_bullet flex items-center gap-2 sm:gap-3 text-left transition-all duration-300 relative pl-2 sm:pl-3 py-1.5 sm:py-2 ${
                       activeIndex === index
                         ? 'text-white'
                         : 'text-white/60 hover:text-white/80'
@@ -122,10 +119,10 @@ function HeroReview() {
                   >
                     {/* 활성 상태 세로선 */}
                     {activeIndex === index && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-white"></div>
+                      <div className="absolute left-0 top-0 bottom-0 w-0.5 sm:w-1 bg-white"></div>
                     )}
-                    <span className="font-bold text-base min-w-[35px]">{slide.number}</span>
-                    <span className="text-sm lg:text-base">{slide.title}</span>
+                    <span className="font-bold text-xs sm:text-sm md:text-base min-w-[25px] sm:min-w-[35px]">{slide.number}</span>
+                    <span className="text-xs sm:text-sm lg:text-base">{slide.title}</span>
                   </button>
                 ))}
               </div>
@@ -134,7 +131,8 @@ function HeroReview() {
             {/* 가운데 네비게이션 버튼 */}
             <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20">
               <button
-                className="w-12 h-12 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all flex items-center justify-center"
+                type="button"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all flex items-center justify-center"
                 aria-label="다음 슬라이드"
                 onClick={() => {
                   if (swiperRef.current) {
@@ -142,15 +140,15 @@ function HeroReview() {
                   }
                 }}
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   className="text-gray-800"
                 >
@@ -162,7 +160,7 @@ function HeroReview() {
 
           {/* 오른쪽 패널 - 흰색 배경 */}
           <div className="lg:col-span-6 relative">
-            <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 py-16 lg:py-20">
+            <div className="w-full h-full flex items-center justify-center p-4 sm:p-6 lg:p-8 py-8 sm:py-12 md:py-16 lg:py-20">
               <Swiper
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
@@ -188,7 +186,7 @@ function HeroReview() {
                   <SwiperSlide key={slide.id}>
                     <div className="w-full flex flex-col items-center">
                       {/* 이미지 */}
-                      <div className="img mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
+                      <div className="img mb-3 sm:mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
                         <img
                           src={slide.image}
                           alt={slide.title}
@@ -200,27 +198,27 @@ function HeroReview() {
                       </div>
 
                       {/* 제목 */}
-                      <p className="tit text-xl lg:text-2xl font-bold text-gray-900 mb-3 text-center">
+                      <p className="tit text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 text-center">
                         {slide.title}
                       </p>
 
 
 
                       {/* 자세히 보기 버튼 */}
-                      {/* <Link 
+                      {/* <Link
                         to={slide.link}
                         className="inline-flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors group text-sm"
                       >
                         자세히 보기
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          width="20" 
-                          height="20" 
-                          viewBox="0 0 24 24" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          strokeWidth="2" 
-                          strokeLinecap="round" 
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
                           strokeLinejoin="round"
                           className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                         >

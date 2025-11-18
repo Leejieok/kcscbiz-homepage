@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import mockupImage from '../../assets/images/mockup.webp';
-import serviceBG from '../../assets/images/serviceBG.webp';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 interface FundingCardData {
   id: number;
@@ -30,7 +29,7 @@ function ServiceSection() {
       className="w-full min-h-screen px-4 py-28 relative flex items-center bg-[#2b2d4e]"
       aria-labelledby="policy-funding-heading"
       style={{
-        backgroundImage: `url(${serviceBG})`,
+        backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.serviceBG})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -96,7 +95,7 @@ function ServiceSection() {
             {/* Mockup Image with slide-up animation */}
             <div className="animate-fadeInUp relative pt-16" style={{ animationDelay: '0.3s' }}>
               <img
-                src={mockupImage}
+                src={FIREBASE_IMAGES.images.mockup}
                 alt="정책자금 신청 모바일 화면"
                 className="w-full mx-auto transform scale-150"
               />
