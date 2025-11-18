@@ -6,32 +6,7 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'swiper/swiper-bundle.css';
-import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
-
-// 슬라이드 데이터
-const slides = [
-  {
-    id: 1,
-    bgClass: 'img01',
-    title: '계약금 드린 뒤, 혹시나 사라질까…\n자꾸만 마음이 조마조마해요',
-    description: "한국중소기업지원센터는 '성공 시 수수료' 원칙으로\n고객님의 걱정을 끝까지 함께 안아드립니다.",
-    image: FIREBASE_IMAGES.images.slide01,
-  },
-  {
-    id: 2,
-    bgClass: 'img02',
-    title: '괜히 돈과 시간만 흘려보내게 될까…\n그게 가장 불안해요',
-    description: '10년 넘는 경험과 98.9% 승인률로,\n고객님의 시간과 비용을 소중하게 지켜드립니다.',
-    image: FIREBASE_IMAGES.images.slide02,
-  },
-  {
-    id: 3,
-    bgClass: 'img03',
-    title: '비슷한 회사가 너무 많아서…\n어느 곳을 믿어야 할지 모르겠어요',
-    description: '3,486건 이상의 성공과 5,623개 기업 상담 경험으로,\n흔들리지 않는 신뢰를 전해드립니다.',
-    image: FIREBASE_IMAGES.images.slide03,
-  },
-];
+import { slides, slides_mb } from '@/data/slidesData';
 
 // 아이콘 배너 데이터
 const iconBanners = [
@@ -192,33 +167,26 @@ function HeroService() {
           </div>
 
           {/* 배경 이미지 슬라이더 - 가로 스크롤 */}
-          <div className="relative">
-            <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-4" style={{ scrollBehavior: 'smooth' }}>
-              <div className="flex gap-3 pb-4">
-                {slides.map((slide, index) => (
+          <div className="relative -mx-4">
+            <div
+              className="overflow-x-auto scrollbar-hide snap-x snap-mandatory pl-4"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              <div className="flex gap-3 pb-4 pr-4">
+                {slides_mb.map((slide) => (
                   <div
                     key={slide.id}
-                    className={`flex-shrink-0 w-[85vw] relative min-h-[280px] rounded-lg overflow-hidden snap-center ${
-                      index === 0 ? 'ml-4' : ''
-                    } ${
-                      index === slides.length - 1 ? 'mr-4' : ''
-                    }`}
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-[400px] relative min-h-[280px] rounded-lg overflow-hidden snap-center"
                   >
-                    {/* 배경 이미지 */}
                     <div
                       className="absolute inset-0 bg-cover bg-center"
-                      style={{
-                        backgroundImage: `url(${slide.image})`,
-                      }}
+                      style={{ backgroundImage: `url(${slide.image})` }}
                     ></div>
-
-                    {/* 오버레이 */}
                     <div className="absolute inset-0 bg-black/65"></div>
 
-                    {/* 슬라이드 텍스트 */}
-                    <div className="absolute inset-0 flex items-center justify-center px-4 z-10">
-                      <div className="text-center text-white max-w-md">
-                        <p className="text-lg font-bold mb-3 leading-tight whitespace-pre-line">
+                    <div className="absolute inset-0 flex items-center justify-center px-6 z-10">
+                      <div className="text-center text-white w-full">
+                        <p className="text-sm font-bold mb-3 leading-tight whitespace-pre-line">
                           {slide.title}
                         </p>
                         <p className="text-sm text-white/90 leading-relaxed whitespace-pre-line">
@@ -231,6 +199,7 @@ function HeroService() {
               </div>
             </div>
           </div>
+
 
           {/* 아이콘 배너 */}
           <div ref={bannerRefMobile} className="icon_banner relative z-20 px-4 py-8">

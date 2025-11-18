@@ -9,7 +9,7 @@ export interface ContentSection {
 
 export const consultingData = {
   mainHeading: {
-    highlight: "돈을 쓰면서까지",
+    highlight: "비용을 들여서까지",
     text: "컨설팅이 맞는 선택인지 걱정되나요?"
   },
   

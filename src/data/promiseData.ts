@@ -25,11 +25,11 @@ export const promiseData: PromiseData = {
   promises: [
     {
       number: '약속 1',
-      title: '안되는 일은 ',
-      titleHighlight: ['솔직하게 안된다고 말씀드립니다.'],
-      description: '수익을 위해 무리하게 계약하지 않습니다.\n 한국중소기업지원센터는 ',
-      descriptionHighlight: '대표님의 시간과 신뢰를 지키는 것이 우리의 원칙입니다.',
-      backgroundImage: FIREBASE_IMAGES.images.hero
+      title: '대표님의 시간을 ',
+      titleHighlight: ['가장 귀한 자원으로 생각합니다.'],
+      description: '수천 건의 경험을 토대로, \n',
+      descriptionHighlight: '가장 빠른 성공을 위한 맞춤 전략을 정성스럽게 준비하겠습니다.',
+      backgroundImage: FIREBASE_IMAGES.images.hero3
     },
     {
       number: '약속 2',
@@ -41,11 +41,11 @@ export const promiseData: PromiseData = {
     },
     {
       number: '약속 3',
-      title: '대표님의 시간을 ',
-      titleHighlight: ['가장 귀한 자원으로 생각합니다.'],
-      description: '수천 건의 경험을 토대로, \n',
-      descriptionHighlight: '가장 빠른 성공을 위한 맞춤 전략을 정성스럽게 준비하겠습니다.',
-      backgroundImage: FIREBASE_IMAGES.images.hero3
+      title: '안되는 일은 ',
+      titleHighlight: ['솔직하게 안된다고 말씀드립니다.'],
+      description: '수익을 위해 무리하게 계약하지 않습니다.\n 한국중소기업지원센터는 ',
+      descriptionHighlight: '대표님의 시간과 신뢰를 지키는 것이 우리의 원칙입니다.',
+      backgroundImage: FIREBASE_IMAGES.images.hero
     }
   ]
 };

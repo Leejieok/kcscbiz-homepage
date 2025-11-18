@@ -9,7 +9,7 @@ function HeroConsulting() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold pb-2 sm:pb-4">
             <span className="text-blue-500">{consultingCardsData.mainTitle.highlight}</span>
           </h2>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl mt-1 sm:mt-2 whitespace-pre-line leading-relaxed">
+          <h2 className="sm:text-3xl md:text-4xl mt-1 sm:mt-2 whitespace-pre-line leading-relaxed">
             {consultingCardsData.mainTitle.normal}
           </h2>
         </div>

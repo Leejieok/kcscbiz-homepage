@@ -16,7 +16,7 @@ export interface HeroSecretData {
 export const heroSecretData: HeroSecretData = {
   title: {
     highlight: '한국중소기업지원센터의',
-    normal: '재계약률 98% 비법 공개합니다.'
+    normal: '성과를 만드는 \n우리의 철학을 말씀드립니다.'
   },
   secrets: [
     {

@@ -33,11 +33,11 @@ function ConsultingSection({
     <section id="consulting" className="w-full py-10 sm:py-12 md:py-16 lg:py-20 relative" style={{ backgroundColor }}>
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
         {/* 메인 제목 */}
-        <div className="mb-4 sm:mb-6 animate-fadeInUp">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+        <div className="lg:mb-4 animate-fadeInUp">
+          <h2 className="text-2xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
             <span className="text-blue-700">{mainHeading.highlight}</span>
           </h2>
-          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#0d0f11] mt-1 sm:mt-2">
+          <p className=" sm:text-xl md:text-4xl lg:text-5xl font-bold text-[#0d0f11] lg:mt-1">
             {mainHeading.text}
           </p>
         </div>
@@ -102,9 +102,9 @@ function ConsultingSection({
                   </ul>
                 </div>
 
-                {/* 오른쪽 이미지 영역 */}
+                {/* 오른쪽 이미지 영역 - 모바일에서 숨김 */}
                 {images && images[index] && (
-                  <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                  <div className="hidden md:block md:w-48 lg:w-64 flex-shrink-0">
                     <img
                       src={images[index]}
                       alt={section.necessity}

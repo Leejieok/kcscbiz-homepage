@@ -6,25 +6,39 @@ import ContactButton from '@/components/common/button/ContactButton';
 
 const navItems: NavItem[] = [
   {
-    path: '/',
-    label: '홈'
-  },
-  {
     path: '/about',
-    label: '소개'
+    label: '회사소개',
   },
   {
     path: '/service',
-    label: '서비스',
+    label: '서비스 소개',
     subMenu: [
-      { path: '/service/certification', label: '인증 컨설팅' },
-      { path: '/service/consulting', label: '경영 컨설팅' }
-    ]
+      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+      { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      { path: '/service/certification', label: '기업인증 컨설팅' },
+    ],
   },
   {
-    path: '/review',
-    label: '고객후기'
-  }
+    path: '/cases',
+    label: '자주묻는 질문',
+  },
+  {
+    path: '/location',
+    label: '고객 센터',
+  },
+  {
+    path: '/reviews',
+    label: '실제 고객 후기',
+  },
+  {
+    path: '/contact',
+    label: '상담신청',
+  },
+  {
+    path: '/careers',
+    label: '인재채용',
+  },
 ];
 
 const Navbar = () => {
@@ -83,14 +97,6 @@ const Navbar = () => {
     };
   }, [isMobileOpen]);
 
-  // (선택) 로고와 햄버거 겹침 최소화 — 현재는 고정 오른쪽 오프셋 사용.
-  // 필요하면 logoRef로 너비를 측정해 동적으로 조정할 수 있음.
-  useEffect(() => {
-    if (!toggleBtnRef.current) return;
-    // 기본 오른쪽 여백: 24px. 요구에 따라 283px 기준으로 조정하려면 아래 변수 변경.
-    const reservedRight = 24; // px
-    toggleBtnRef.current.style.right = `${reservedRight}px`;
-  }, []);
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -155,20 +161,17 @@ const Navbar = () => {
         }`}
       >
       <div
-        className='px-2 sm:px-3 mx-auto'
-        style={{
-          width: 'calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))'
-        }}
+        className='px-4 md:px-2 lg:px-3 mx-auto w-full h-full'
       >
-          <div className="flex items-center justify-center gap-2 sm:gap-3 relative h-full">
+          <div className="relative h-full">
             {/* 로고 */}
-            <div className="w-auto absolute left-0 flex items-center h-full">
+            <div className="absolute left-0 lg:left-5 flex items-center h-full">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
                   src={FIREBASE_IMAGES.assets.logo}
                   width={240}
                   alt="한국중소기업지원센터"
-                  className="h-auto max-w-full w-[120px] md:w-[240px]"
+                  className="h-auto w-[100px] md:w-[240px] max-h-[40px] md:max-h-none object-contain"
                   loading="lazy"
                 />
               </Link>
@@ -221,7 +224,7 @@ const Navbar = () => {
                   id="menuLine"
                   className="absolute bottom-0 h-0.5 bg-blue-400 transition-all duration-300 ease-out"
                   style={{
-                    left: `${menuLineStyle.left}px`,
+                    transform: `translateX(${menuLineStyle.left}px)`,
                     width: `${menuLineStyle.width}px`,
                     opacity: menuLineStyle.width > 0 ? 1 : 0,
                   }}
@@ -232,10 +235,9 @@ const Navbar = () => {
               <button
                 type="button"
                 ref={toggleBtnRef}
-                className="absolute top-1/2 -translate-y-1/2 lg:hidden p-2 text-white hover:scale-110 transition-transform duration-300"
+                className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden text-white hover:scale-110 transition-transform duration-300"
                 onClick={toggleMobileMenu}
                 aria-label={isMobileOpen ? '메뉴 닫기' : '메뉴 열기'}
-                // inline style은 useEffect에서 조정함(기본 right 24px)
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -265,12 +267,12 @@ const Navbar = () => {
         <div
           className={`fixed inset-0 z-[998] bg-black/40 transition-opacity duration-300 ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           onClick={closeMobileMenu}
-          aria-hidden={!isMobileOpen ? 'true' : 'false'}
+          aria-hidden={!isMobileOpen}
         />
 
         {/* 오른쪽 패널 */}
         <aside
-          className={`fixed top-0 right-0 z-[999] h-full w-[86%] max-w-[360px] bg-white shadow-2xl transform transition-transform duration-300 ${
+          className={`fixed top-0 right-0 z-[999] h-full w-11/12 sm:w-3/4 md:w-1/2 bg-white shadow-2xl transform transition-transform duration-300 ${
             isMobileOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           role="dialog"
@@ -334,7 +336,7 @@ const Navbar = () => {
                           onClick={() => setOpenedSubMenuIndex(index)}
                           className="w-full text-left px-4 py-4 flex items-center justify-between"
                           aria-haspopup="true"
-                          aria-expanded={openedSubMenuIndex === index ? 'true' : 'false'}
+                          aria-expanded={openedSubMenuIndex === index}
                         >
                           <span className="text-base font-medium">{item.label}</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">

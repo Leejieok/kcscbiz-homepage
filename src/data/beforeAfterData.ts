@@ -9,15 +9,14 @@ export interface BeforeAfterImage {
 
 export const beforeAfterData = {
   mainTitle: {
-    text: '한국중소기업지원센터를 만난 기업들의',
-    highlight: 'Before&After',
-    subText: '이렇게 달라졌습니다.'
+    text: '컨설팅 이후,',
+    highlight: '이렇게 달라졌습니다',
+    subText: 'Before & After'
   },
   description: [
-    `"정책자금은 그냥 힘들 때 받는 돈 아니야?"\n→ 아니요, 똑똑한 대표님은 그걸 '성장 자금'이라 부릅니다.`,
-    `"나는 빚지기 싫어서 내 돈으로 버틸래."\n→ 버티는 게 아니라, 늦추고 있는 겁니다.`,
-    `"지원금이 너무 복잡해서 포기했어요."\n→ 그 '복잡함'을 푸는 게, 저희의 일입니다.`,
-    '다른 대표님들의 레전드 변화 과정을 확인해보세요.'
+    `"정책자금은 어렵다?"\n→ 알고 보면 성장의 지름길입니다.`,
+    `"내 자본으로만 버틴다?"\n→ 그 사이 기회는 멀어집니다.`,
+    `"서류가 복잡하다?"\n→ 그래서 저희가 있습니다.`,
   ],
   images: [
     {
