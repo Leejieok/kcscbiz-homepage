@@ -12,7 +12,7 @@ function HeroBeforeAfter() {
           </h2>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold whitespace-pre-line md:whitespace-normal">
             <span className="text-blue-700">{beforeAfterData.mainTitle.highlight}</span>{' '}
-            {beforeAfterData.mainTitle.subText}
+            {/* {beforeAfterData.mainTitle.subText} */}
           </h2>
         </div>
 

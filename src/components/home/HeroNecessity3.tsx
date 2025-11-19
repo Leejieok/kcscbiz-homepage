@@ -1,29 +1,45 @@
-import { promiseData } from '@/data/promiseData';
-import { useState } from 'react';
+import { promiseData, promiseMobileData } from '@/data/promiseData';
+import { useState, useEffect } from 'react';
 
 function HeroNecessity3() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 모바일 여부 확인
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // 사용할 데이터 선택
+  const activeData = isMobile ? promiseMobileData : promiseData;
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? promiseData.promises.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? activeData.promises.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === promiseData.promises.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === activeData.promises.length - 1 ? 0 : prev + 1));
   };
 
-  const currentPromise = promiseData.promises[currentIndex];
+  const currentPromise = activeData.promises[currentIndex];
 
   return (
     <section className="w-full py-10 sm:py-12 md:py-16 lg:py-20 relative bg-gray-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
         {/* 메인 제목 */}
         <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center animate-fadeInUp">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-1 sm:mb-2">
-            {promiseData.title.normal}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-1 sm:mb-2 whitespace-pre-line">
+            {activeData.title.normal}
           </h2>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-500">
-            {promiseData.title.highlight}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-500 whitespace-pre-line">
+            {activeData.title.highlight}
           </h2>
         </div>
 
@@ -87,7 +103,7 @@ function HeroNecessity3() {
 
           {/* 페이지네이션 */}
           <div className="flex justify-center gap-1.5 sm:gap-2 mt-6 sm:mt-8">
-            {promiseData.promises.map((_, index) => (
+            {activeData.promises.map((_, index) => (
               <button
                 key={index}
                 type="button"

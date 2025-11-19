@@ -41,6 +41,40 @@ const navItems: NavItem[] = [
   },
 ];
 
+// 모바일 전용 메뉴
+const mobileNavItems: NavItem[] = [
+  {
+    path: '/about',
+    label: '회사소개',
+  },
+  {
+    path: '/service',
+    label: '서비스 소개',
+    subMenu: [
+      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+      // { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      // { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      // { path: '/service/certification', label: '기업인증 컨설팅' },
+    ],
+  },
+  {
+    path: '/reviews',
+    label: '고객 후기',
+  },
+  // {
+  //   path: '/cases',
+  //   label: '자주묻는 질문',
+  // },
+  // {
+  //   path: '/location',
+  //   label: '고객 센터',
+  // },
+  {
+    path: '/contact',
+    label: '상담신청',
+  },
+];
+
 const Navbar = () => {
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -98,7 +132,7 @@ const Navbar = () => {
     };
   }, [isMobileOpen]);
 
-  // 데스크톱일 때 반응형 width 계산
+  // 반응형 width 계산
   useEffect(() => {
     const updateWidth = () => {
       if (typeof window !== 'undefined') {
@@ -106,7 +140,7 @@ const Navbar = () => {
           // 데스크톱: 계산식 적용
           setContainerWidth('calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))');
         } else {
-          // 모바일/태블릿: 100%
+          // 모바일/태블릿: 100%로 부모 컨테이너에 맞게
           setContainerWidth('100%');
         }
       }
@@ -176,19 +210,20 @@ const Navbar = () => {
 
   return (
     <header
-        className={`w-full z-[999] h-[60px] md:h-[92px] transition-all duration-300 fixed top-0 left-0 right-0 ${
+        className={`w-full z-[9999] h-[60px] md:h-[92px] transition-all duration-300 fixed top-0 left-0 right-0 ${
           isSticky
             ? 'bg-[rgba(26,26,46,0.55)] backdrop-blur-md border-b shadow-2xl'
             : 'bg-transparent'
         }`}
+        style={{ willChange: 'transform' }}
       >
       <div
-        className='px-4 md:px-2 lg:px-3 mx-auto w-full h-full'
+        className='md:px-2 lg:px-3 mx-auto w-full h-full'
         style={{ width: containerWidth }}
       >
           <div className="relative h-full flex items-center justify-between">
             {/* 로고 */}
-            <div className="flex items-center h-full flex-shrink-0">
+            <div className="flex items-center h-full flex-shrink-0 pl-4 md:pl-0">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
                   src={FIREBASE_IMAGES.assets.logo}
@@ -287,20 +322,20 @@ const Navbar = () => {
       <div className="block md:hidden">
         {/* 오버레이 */}
         <div
-          className={`fixed inset-0 z-[998] bg-black/40 transition-opacity duration-300 ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          className={`fixed inset-0 z-[1000] bg-black/40 transition-opacity duration-300 ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           onClick={closeMobileMenu}
           aria-hidden={!isMobileOpen}
         />
 
         {/* 오른쪽 패널 */}
         <aside
-          className={`fixed top-0 right-0 z-[999] h-full w-11/12 sm:w-3/4 md:w-1/2 bg-white shadow-2xl transform transition-transform duration-300 ${
+          className={`fixed top-0 right-0 z-[1001] h-screen w-11/12 sm:w-3/4 md:w-1/2 bg-white shadow-2xl transform transition-transform duration-300 flex flex-col ${
             isMobileOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           role="dialog"
           aria-modal="true"
         >
-          <div className="flex items-center justify-between px-4 py-4 border-b">
+          <div className="flex items-center justify-between px-4 py-4 border-b flex-shrink-0">
             <div className="text-lg font-semibold">메뉴</div>
             <div className="flex items-center gap-2">
               {/* 데스크톱용 ContactButton은 숨겨져 있으므로 모바일 패널 아래쪽으로 이동 */}
@@ -313,7 +348,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="p-4 overflow-auto h-[calc(100%-120px)]">
+          <div className="p-4 overflow-auto flex-1">
             {/* 서브메뉴가 열려있으면 서브 메뉴 뷰, 아니면 기본 메뉴 리스트 */}
             {openedSubMenuIndex !== null ? (
               <div>
@@ -329,12 +364,12 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <div className="text-base font-medium">
-                    {navItems[openedSubMenuIndex]?.label}
+                    {mobileNavItems[openedSubMenuIndex]?.label}
                   </div>
                 </div>
 
                 <ul className="flex flex-col gap-2">
-                  {navItems[openedSubMenuIndex!].subMenu?.map((sub) => (
+                  {mobileNavItems[openedSubMenuIndex!].subMenu?.map((sub) => (
                     <li key={sub.path}>
                       <Link
                         to={sub.path}
@@ -350,7 +385,7 @@ const Navbar = () => {
             ) : (
               <nav>
                 <ul className="flex flex-col gap-2">
-                  {navItems.map((item, index) => (
+                  {mobileNavItems.map((item, index) => (
                     <li key={item.path} className="border-b last:border-b-0">
                       {item.subMenu ? (
                         <button
