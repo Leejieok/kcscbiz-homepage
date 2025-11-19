@@ -5,10 +5,7 @@ import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 import ContactButton from '@/components/common/button/ContactButton';
 
 const navItems: NavItem[] = [
-  {
-    path: '/about',
-    label: '회사소개',
-  },
+  { path: '/about', label: '회사소개' },
   {
     path: '/service',
     label: '서비스 소개',
@@ -19,60 +16,22 @@ const navItems: NavItem[] = [
       { path: '/service/certification', label: '기업인증 컨설팅' },
     ],
   },
-  {
-    path: '/cases',
-    label: '자주묻는 질문',
-  },
-  {
-    path: '/location',
-    label: '고객 센터',
-  },
-  {
-    path: '/reviews',
-    label: '실제 고객 후기',
-  },
-  {
-    path: '/contact',
-    label: '상담신청',
-  },
-  {
-    path: '/careers',
-    label: '인재채용',
-  },
+  { path: '/cases', label: '자주묻는 질문' },
+  { path: '/location', label: '고객 센터' },
+  { path: '/reviews', label: '실제 고객 후기' },
+  { path: '/contact', label: '상담신청' },
+  { path: '/careers', label: '인재채용' },
 ];
 
-// 모바일 전용 메뉴
 const mobileNavItems: NavItem[] = [
-  {
-    path: '/about',
-    label: '회사소개',
-  },
+  { path: '/about', label: '회사소개' },
   {
     path: '/service',
     label: '서비스 소개',
-    subMenu: [
-      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
-      // { path: '/service/tax-refund', label: '세금환급 컨설팅' },
-      // { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
-      // { path: '/service/certification', label: '기업인증 컨설팅' },
-    ],
+    subMenu: [{ path: '/service/policy-funds', label: '정책자금 컨설팅' }],
   },
-  {
-    path: '/reviews',
-    label: '고객 후기',
-  },
-  // {
-  //   path: '/cases',
-  //   label: '자주묻는 질문',
-  // },
-  // {
-  //   path: '/location',
-  //   label: '고객 센터',
-  // },
-  {
-    path: '/contact',
-    label: '상담신청',
-  },
+  { path: '/reviews', label: '고객 후기' },
+  { path: '/contact', label: '상담신청' },
 ];
 
 const Navbar = () => {
@@ -82,28 +41,19 @@ const Navbar = () => {
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
   const [menuLineStyle, setMenuLineStyle] = useState({ left: 0, width: 0 });
   const [openedSubMenuIndex, setOpenedSubMenuIndex] = useState<number | null>(null);
-  const [containerWidth, setContainerWidth] = useState<string>('100%');
   const menuItemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
-  const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // 스크롤 이벤트로 sticky 상태 업데이트
+  // ---------- Sticky ----------
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      setIsSticky(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 호버된 메뉴 아이템에 따라 밑줄 위치 업데이트
+  // ---------- Underline animation ----------
   useEffect(() => {
     if (hoveredMenuIndex !== null && menuItemsRef.current[hoveredMenuIndex]) {
       const element = menuItemsRef.current[hoveredMenuIndex];
@@ -120,50 +70,18 @@ const Navbar = () => {
     }
   }, [hoveredMenuIndex]);
 
-  // 모바일 메뉴 열렸을 때 스크롤 방지
+  // ---------- Prevent body scroll when menu open ----------
   useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isMobileOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileOpen]);
 
-  // 반응형 width 계산
-  useEffect(() => {
-    const updateWidth = () => {
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 1024) {
-          // 데스크톱: 계산식 적용
-          setContainerWidth('calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))');
-        } else {
-          // 모바일/태블릿: 100%로 부모 컨테이너에 맞게
-          setContainerWidth('100%');
-        }
-      }
-    };
-
-    updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => {
-      window.removeEventListener('resize', updateWidth);
-    };
-  }, []);
-
-
+  // ---------- Active route ----------
   const isActive = (path: string) => {
-    if (path === '/') {
-      return location.pathname === '/';
-    }
+    if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileOpen(!isMobileOpen);
-    if (isMobileOpen) setOpenedSubMenuIndex(null);
   };
 
   const closeMobileMenu = () => {
@@ -171,257 +89,228 @@ const Navbar = () => {
     setOpenedSubMenuIndex(null);
   };
 
-  const renderNavLink = (item: NavItem) => {
-    const isActivePath = isActive(item.path);
-    
-    if (item.isExternal) {
-      return (
-        <a
-          href={item.path}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`lg:text-lg font-semibold duration-300 py-8 inline-block relative ${
-            isSticky ? 'text-white hover:text-blue-300' : 'text-white hover:text-blue-500'
-          }`}
-        >
-          {item.label}
-        </a>
-      );
-    }
+  // -------------------------------------------------------
+  // 🤍 SAFE AREA + NAVBAR HEIGHT 문제 완벽 해결
+  // -------------------------------------------------------
+ const baseHeight = 60; // mobile nav height
+  const desktopHeight = 80;
 
-    return (
-      <Link
-        to={item.path}
-        className={`lg:text-lg font-semibold transition-colors duration-300 py-8 inline-block relative ${
-          isSticky 
-            ? isActivePath 
-              ? 'text-blue-300' 
-              : 'text-white hover:text-blue-300'
-            : isActivePath
-              ? 'text-blue-300'
-              : 'text-white hover:text-blue-300'
-        }`}
-        onClick={closeMobileMenu}
-      >
-        {item.label}
-      </Link>
-    );
-  };
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+
+  const safeTop = "env(safe-area-inset-top)";
+  const headerHeight = isDesktop
+    ? `${desktopHeight}px`
+    : `calc(${baseHeight}px + env(safe-area-inset-top))`;
+
+  const headerPaddingTop = isDesktop ? "0px" : safeTop;
+
+  // -------------------------------------------------------
 
   return (
-    <header
-        className={`w-full z-[9999] h-[60px] md:h-[92px] transition-all duration-300 fixed top-0 left-0 right-0 ${
-          isSticky
-            ? 'bg-[rgba(26,26,46,0.55)] backdrop-blur-md border-b shadow-2xl'
-            : 'bg-transparent'
-        }`}
-        style={{ willChange: 'transform' }}
-      >
-      <div
-        className='md:px-2 lg:px-3 mx-auto w-full h-full'
-        style={{ width: containerWidth }}
-      >
-          <div className="relative h-full flex items-center justify-between">
-            {/* 로고 */}
-            <div className="flex items-center h-full flex-shrink-0 pl-4 md:pl-0">
-              <Link to="/" onClick={closeMobileMenu}>
-                <img
-                  src={FIREBASE_IMAGES.assets.logo}
-                  width={240}
-                  alt="한국중소기업지원센터"
-                  className="h-auto w-[100px] md:w-[240px] max-h-[40px] md:max-h-none object-contain"
-                  loading="lazy"
-                />
-              </Link>
-            </div>
+<header
+  className={`
+    fixed left-0 right-0 z-[9999] transition-all duration-300 
+    ${isSticky
+      ? "bg-[rgba(26,26,46,0.55)] backdrop-blur-md shadow-2xl"
+      : (window.innerWidth < 1024
+          ? "bg-[rgba(26,26,46,0.35)] backdrop-blur-md"
+          : "bg-transparent"
+        )
+    }
+  `}
+  style={{
+  top: 0,
+  height: headerHeight,
+  paddingTop: headerPaddingTop,
+}}
+>
 
-            {/* 데스크톱 메뉴 & 모바일 토글 */}
-            <div className="flex-1 flex items-center justify-center">
-              {/* 데스크톱 네비게이션 */}
-              <nav
-                ref={navRef}
-                className="hidden lg:flex items-center relative"
+
+      {/* Navbar container */}
+      <div className="mx-auto w-full h-full flex items-center justify-between px-4 md:px-8">
+
+        {/* Logo */}
+        <Link to="/" onClick={closeMobileMenu}>
+          <img
+            src={FIREBASE_IMAGES.assets.logo}
+            className="h-auto w-[100px] md:w-[240px] max-h-[40px] object-contain"
+            alt="한국중소기업지원센터"
+          />
+        </Link>
+
+        {/* Center Menu (Desktop) */}
+        <nav ref={navRef} className="hidden lg:flex items-center relative">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item, index) => (
+              <li
+                key={item.path}
+                ref={(el) => {
+                  menuItemsRef.current[index] = el;
+                }}
+                className="relative group"
+                onMouseEnter={() => setHoveredMenuIndex(index)}
+                onMouseLeave={() => setHoveredMenuIndex(null)}
               >
-                <ul className="flex items-center gap-4 xl:gap-8">
-                  {navItems.map((item, index) => (
-                    <li 
-                      key={item.path} 
-                      className="relative group"
-                      ref={(el) => {
-                        menuItemsRef.current[index] = el;
-                      }}
-                      onMouseEnter={() => setHoveredMenuIndex(index)}
-                      onMouseLeave={() => setHoveredMenuIndex(null)}
-                    >
-                      {renderNavLink(item)}
-                      {item.subMenu && (
-                        <ul className="absolute top-full left-0 bg-white/95 backdrop-blur-sm min-w-[220px] py-4 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
-                          {item.subMenu.map((subItem) => (
-                            <li key={subItem.path}>
-                              <Link
-                                to={subItem.path}
-                                className={`block px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-blue-500 hover:pl-8 transition-all duration-300 ${
-                                  location.pathname === subItem.path
-                                    ? 'bg-gray-50 text-blue-500'
-                                    : ''
-                                }`}
-                                onClick={closeMobileMenu}
-                              >
-                                {subItem.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-
-                <div
-                  id="menuLine"
-                  className="absolute bottom-0 h-0.5 bg-blue-400 transition-all duration-300 ease-out"
-                  style={{
-                    transform: `translateX(${menuLineStyle.left}px)`,
-                    width: `${menuLineStyle.width}px`,
-                    opacity: menuLineStyle.width > 0 ? 1 : 0,
-                  }}
-                />
-              </nav>
-
-              {/* 모바일 메뉴 토글 버튼 - 오른쪽 고정 위치로 조정 */}
-              <button
-                type="button"
-                ref={toggleBtnRef}
-                className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden text-white hover:scale-110 transition-transform duration-300"
-                onClick={toggleMobileMenu}
-                aria-label={isMobileOpen ? '메뉴 닫기' : '메뉴 열기'}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                  fill="none"
+                <Link
+                  to={item.path}
+                  onClick={closeMobileMenu}
+                  className={`
+                    lg:text-lg font-semibold duration-300 py-8 inline-block
+                    ${isSticky
+                      ? isActive(item.path)
+                        ? "text-blue-300"
+                        : "text-white hover:text-blue-300"
+                      : isActive(item.path)
+                        ? "text-blue-300"
+                        : "text-white hover:text-blue-300"
+                    }
+                  `}
                 >
-                  <path
-                    d="M24.4444 26V28H0V26H24.4444ZM40 19V21H0V19H40ZM40 12V14H15.5556V12H40Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                  {item.label}
+                </Link>
 
-            {/* 문의하기 버튼 (데스크톱만) - 우측 정렬 */}
-            <div className="hidden lg:flex items-center flex-shrink-0">
-              <ContactButton onClick={closeMobileMenu} />
-            </div>
-          </div>
-      </div>
-
-      {/* 모바일 전용: 오른쪽 슬라이드 패널 */}
-      <div className="block md:hidden">
-        {/* 오버레이 */}
-        <div
-          className={`fixed inset-0 z-[1000] bg-black/40 transition-opacity duration-300 ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-          onClick={closeMobileMenu}
-          aria-hidden={!isMobileOpen}
-        />
-
-        {/* 오른쪽 패널 */}
-        <aside
-          className={`fixed top-0 right-0 z-[1001] h-screen w-11/12 sm:w-3/4 md:w-1/2 bg-white shadow-2xl transform transition-transform duration-300 flex flex-col ${
-            isMobileOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex items-center justify-between px-4 py-4 border-b flex-shrink-0">
-            <div className="text-lg font-semibold">메뉴</div>
-            <div className="flex items-center gap-2">
-              {/* 데스크톱용 ContactButton은 숨겨져 있으므로 모바일 패널 아래쪽으로 이동 */}
-              <button type="button" onClick={closeMobileMenu} aria-label="닫기" className="p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div className="p-4 overflow-auto flex-1">
-            {/* 서브메뉴가 열려있으면 서브 메뉴 뷰, 아니면 기본 메뉴 리스트 */}
-            {openedSubMenuIndex !== null ? (
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <button
-                    type="button"
-                    onClick={() => setOpenedSubMenuIndex(null)}
-                    className="p-2"
-                    aria-label="뒤로"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                      <polyline points="15 18 9 12 15 6" />
-                    </svg>
-                  </button>
-                  <div className="text-base font-medium">
-                    {mobileNavItems[openedSubMenuIndex]?.label}
-                  </div>
-                </div>
-
-                <ul className="flex flex-col gap-2">
-                  {mobileNavItems[openedSubMenuIndex!].subMenu?.map((sub) => (
-                    <li key={sub.path}>
-                      <Link
-                        to={sub.path}
-                        onClick={closeMobileMenu}
-                        className="block px-4 py-3 rounded hover:bg-gray-100"
-                      >
-                        {sub.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <nav>
-                <ul className="flex flex-col gap-2">
-                  {mobileNavItems.map((item, index) => (
-                    <li key={item.path} className="border-b last:border-b-0">
-                      {item.subMenu ? (
-                        <button
-                          type="button"
-                          onClick={() => setOpenedSubMenuIndex(index)}
-                          className="w-full text-left px-4 py-4 flex items-center justify-between"
-                          aria-haspopup="true"
-                          aria-expanded={openedSubMenuIndex === index}
-                        >
-                          <span className="text-base font-medium">{item.label}</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                            <polyline points="6 9 12 15 18 9" />
-                          </svg>
-                        </button>
-                      ) : (
+                {/* Sub menu */}
+                {item.subMenu && (
+                  <ul className="
+                    absolute top-full left-0 bg-white/95 backdrop-blur-sm
+                    min-w-[220px] py-4 rounded-lg shadow-xl
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    translate-y-2 group-hover:translate-y-0
+                    transition-all duration-300 z-50
+                  ">
+                    {item.subMenu.map((sub) => (
+                      <li key={sub.path}>
                         <Link
-                          to={item.path}
+                          to={sub.path}
                           onClick={closeMobileMenu}
-                          className="block px-4 py-4"
+                          className={`block px-6 py-3 
+                            text-gray-800 hover:bg-gray-50 hover:text-blue-500
+                            transition-all duration-300`}
                         >
-                          {item.label}
+                          {sub.label}
                         </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            )}
-          </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
 
-          {/* 모바일 전용: 문의하기 버튼을 패널 하단에 고정 */}
-          <div className="absolute bottom-4 left-4 right-4">
-            <ContactButton onClick={closeMobileMenu} />
-          </div>
-        </aside>
+          {/* Underline */}
+          <div
+            className="absolute bottom-0 h-0.5 bg-blue-400 transition-all duration-300 ease-out"
+            style={{
+              transform: `translateX(${menuLineStyle.left}px)`,
+              width: `${menuLineStyle.width}px`,
+              opacity: menuLineStyle.width > 0 ? 1 : 0,
+            }}
+          />
+        </nav>
+
+        {/* Hamburger */}
+        <button
+          className="lg:hidden text-white text-3xl pr-1"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+        >
+          ☰
+        </button>
+
+        {/* Desktop contact button */}
+        <div className="hidden lg:flex">
+          <ContactButton onClick={closeMobileMenu} />
+        </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`
+          fixed inset-0 bg-black/40 z-[1000] transition-opacity duration-300 
+          ${isMobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+        `}
+        onClick={closeMobileMenu}
+      />
+
+      {/* Mobile Menu Panel */}
+      <aside
+        className={`
+          fixed top-0 right-0 h-screen w-11/12 sm:w-3/4 bg-white shadow-2xl
+          z-[1002] transition-transform duration-300
+          ${isMobileOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+        style={{ paddingTop: headerPaddingTop }}
+      >
+        {/* Close button (mobile menu) */}
+<button
+  onClick={closeMobileMenu}
+  className="absolute top-4 right-4 p-2 rounded-fulltransition"
+  aria-label="메뉴 닫기"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    className="w-6 h-6 text-gray-700"
+  >
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+</button>
+
+        <div className="p-4">
+          <ul className="flex flex-col gap-1">
+            {mobileNavItems.map((item, index) => (
+              <li key={item.path} className="border-b last:border-0">
+                {item.subMenu ? (
+                  <button
+                    onClick={() =>
+                      setOpenedSubMenuIndex(
+                        openedSubMenuIndex === index ? null : index
+                      )
+                    }
+                    className="w-full px-4 py-4 flex items-center justify-between"
+                  >
+                    <span className="text-base font-medium">{item.label}</span>
+                    <span>▾</span>
+                  </button>
+                ) : (
+                  <Link
+                    to={item.path}
+                    onClick={closeMobileMenu}
+                    className="block px-4 py-4 text-base"
+                  >
+                    {item.label}
+                  </Link>
+                )}
+
+                {/* Sub menu mobile */}
+                {openedSubMenuIndex === index && item.subMenu && (
+                  <ul className="bg-gray-50 px-4 py-2">
+                    {item.subMenu.map((sub) => (
+                      <li key={sub.path}>
+                        <Link
+                          to={sub.path}
+                          onClick={closeMobileMenu}
+                          className="block px-4 py-3 text-sm"
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="absolute bottom-4 left-4 right-4">
+          <ContactButton onClick={closeMobileMenu} />
+        </div>
+      </aside>
     </header>
   );
 };
