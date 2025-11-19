@@ -6,7 +6,7 @@ function HeroBeforeAfter() {
     <section className="w-full py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
         {/* 메인 제목 */}
-        <div className="mb-4 sm:mb-6 animate-fadeInUp">
+        <div className="mb-4 sm:mb-6 animate-fadeInUp text-center md:text-left">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold whitespace-pre-line md:whitespace-normal">
             {beforeAfterData.mainTitle.text}
           </h2>
@@ -17,7 +17,7 @@ function HeroBeforeAfter() {
         </div>
 
         {/* 설명 텍스트 */}
-        <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 animate-fadeInUp">
+        <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 animate-fadeInUp text-center md:text-left">
           <div className="space-y-1.5 sm:space-y-1 leading-relaxed">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-orange-500 font-bold whitespace-pre-line md:whitespace-normal">
               {beforeAfterData.description[0]}

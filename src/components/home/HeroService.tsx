@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'swiper/swiper-bundle.css';
 import { slides, slides_mb } from '@/data/slidesData';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 // 아이콘 배너 데이터
 const iconBanners = [
@@ -17,8 +18,8 @@ const iconBanners = [
     targetValue: 3486,
     suffix: '+',
     delay: 0,
-    icon: '📊',
-    color: 'from-blue-400 to-blue-200',
+    icon: FIREBASE_IMAGES.images.icon1,
+    color: '#160067',
   },
   {
     id: 2,
@@ -27,8 +28,8 @@ const iconBanners = [
     targetValue: 98.9,
     suffix: '%',
     delay: 300,
-    icon: '🎯',
-    color: 'from-green-400 to-green-200',
+    icon: FIREBASE_IMAGES.images.icon2,
+    color: '#272060',
   },
   {
     id: 3,
@@ -37,8 +38,8 @@ const iconBanners = [
     targetValue: 5623,
     suffix: '+ 명',
     delay: 600,
-    icon: '👥',
-    color: 'from-orange-400 to-orange-200',
+    icon: FIREBASE_IMAGES.images.icon3,
+    color: '#2F283B',
   },
 ];
 
@@ -229,16 +230,17 @@ function HeroService() {
                   className="relative"
                 >
                   <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                    {/* 상단 그라데이션 영역 */}
-                    <div className={`bg-gradient-to-b ${banner.color} h-16 relative`}>
-                      {/* 3D 구체 아이콘 */}
-                      <div className="absolute z-50 -bottom-0 left-1/2 transform -translate-x-1/2 text-4xl">
-                          {banner.icon}
+                    {/* 상단 영역 */}
+                    <div className="h-16 relative" style={{ backgroundColor: banner.color }}>
+                      {/* 아이콘 이미지 */}
+                      <div className="absolute z-50 -bottom-4 left-1/2 transform -translate-x-1/2">
+                          <img src={banner.icon} alt={banner.title} className="w-16 h-16 object-contain" />
                       </div>
+                      
                     </div>
 
                     {/* 하단 콘텐츠 영역 */}
-                    <div className="-mt-4  relative z-10 pt-10 pb-5 px-4 text-center bg-white rounded-3xl">
+                    <div className="-mt-4 relative z-10 pt-7 pb-5 px-4 text-center bg-white rounded-3xl">
                       <p className="font-bold text-2xl text-gray-900 mb-1">
                         {counters[banner.id] !== undefined
                           ? formatNumber(counters[banner.id], banner.suffix)
@@ -394,6 +396,9 @@ function HeroService() {
                 data-aos-delay={banner.delay || 0}
               >
                 <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg transition-all duration-300 flex flex-col items-center text-center h-full shadow-sm hover:shadow-md">
+                  <div className="mb-4">
+                    <img src={banner.icon} alt={banner.title} className="w-16 h-16 sm:w-20 sm:h-20 object-contain" />
+                  </div>
                   <div className="txt">
                     <p className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-600 mb-1 sm:mb-2">
                       {counters[banner.id] !== undefined

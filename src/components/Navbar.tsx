@@ -48,6 +48,7 @@ const Navbar = () => {
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
   const [menuLineStyle, setMenuLineStyle] = useState({ left: 0, width: 0 });
   const [openedSubMenuIndex, setOpenedSubMenuIndex] = useState<number | null>(null);
+  const [containerWidth, setContainerWidth] = useState<string>('100%');
   const menuItemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -96,6 +97,27 @@ const Navbar = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileOpen]);
+
+  // 데스크톱일 때 반응형 width 계산
+  useEffect(() => {
+    const updateWidth = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth >= 1024) {
+          // 데스크톱: 계산식 적용
+          setContainerWidth('calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))');
+        } else {
+          // 모바일/태블릿: 100%
+          setContainerWidth('100%');
+        }
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, []);
 
 
   const isActive = (path: string) => {
@@ -162,10 +184,11 @@ const Navbar = () => {
       >
       <div
         className='px-4 md:px-2 lg:px-3 mx-auto w-full h-full'
+        style={{ width: containerWidth }}
       >
-          <div className="relative h-full">
+          <div className="relative h-full flex items-center justify-between">
             {/* 로고 */}
-            <div className="absolute left-0 lg:left-5 flex items-center h-full">
+            <div className="flex items-center h-full flex-shrink-0">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
                   src={FIREBASE_IMAGES.assets.logo}
@@ -178,14 +201,13 @@ const Navbar = () => {
             </div>
 
             {/* 데스크톱 메뉴 & 모바일 토글 */}
-            <div className="text-right lg:text-center w-full">
+            <div className="flex-1 flex items-center justify-center">
               {/* 데스크톱 네비게이션 */}
               <nav
                 ref={navRef}
-                className="hidden lg:inline-block relative"
+                className="hidden lg:flex items-center relative"
               >
-                {/* ...existing desktop nav code... */}
-                <ul className="flex items-center gap-4 xl:gap-8 justify-center">
+                <ul className="flex items-center gap-4 xl:gap-8">
                   {navItems.map((item, index) => (
                     <li 
                       key={item.path} 
@@ -254,8 +276,8 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* 문의하기 버튼 (데스크톱만) */}
-            <div className="hidden lg:block absolute right-0">
+            {/* 문의하기 버튼 (데스크톱만) - 우측 정렬 */}
+            <div className="hidden lg:flex items-center flex-shrink-0">
               <ContactButton onClick={closeMobileMenu} />
             </div>
           </div>

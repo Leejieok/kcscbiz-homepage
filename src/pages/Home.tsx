@@ -64,6 +64,8 @@ function Home() {
         <HeroSection/>
         <HeroService/>
         <HeroReview/>
+        {/* 모바일 전용 구분선 */}
+        <div className="md:hidden border-t border-gray-500 mx-4"></div>
         <HeroIntroduction/>
         {/* <HeroBrand/> */}
         <HeroNecessity/>
@@ -73,8 +75,8 @@ function Home() {
         {/* <HeroNecessity2/> */}
         <HeroNecessity3/>
         <HeroConsulting/>
-        <HeroPartner/>
         <ApplicationForm/>
+        <HeroPartner/>
       </div>
     </>
   )

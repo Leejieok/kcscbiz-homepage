@@ -13,6 +13,10 @@ export interface ConsultingCardsData {
     highlight: string;
     normal: string;
   };
+  mobileTitle: {
+    highlight: string;
+    normal: string;
+  };
   subTexts: {
     text: string;
     highlight?: boolean;
@@ -26,6 +30,10 @@ export const consultingCardsData: ConsultingCardsData = {
   mainTitle: {
     highlight: '여기까지 온 이유,',
     normal: '이미 마음이 답을 알고 있습니다. \n 지금, 대표님의 고민을 가볍게 만들 차례입니다.'
+  },
+  mobileTitle: {
+    highlight: '여기까지 온 이유,',
+    normal: '이미 마음이 답을 알고 있습니다. \n 지금, 대표님의 고민을 \n가볍게 만들 차례입니다.'
   },
   subTexts: [
     {

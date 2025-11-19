@@ -41,24 +41,35 @@ export const FIREBASE_IMAGES = {
     slide03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fslide03.webp?alt=media&token=b6c6ebe7-c3c5-47a0-9b30-3b35b9bea17d', // images/slide03.webp
 
     // Review 이미지
-    review01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview01.webp?alt=media&token=37999622-67e1-40e4-9a83-aaaf9c10c700', // images/review01.webp
-    review02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview02.webp?alt=media&token=1fb1458e-e749-4cfd-822b-cca1b0fc8894', // images/review02.webp
-    review03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview03.webp?alt=media&token=40e05737-863b-43b9-9ee1-5dc0c052280b', // images/review03.webp
-    review04: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview04.webp?alt=media&token=cf4358a3-862f-4f0c-a915-4060a48f0388', // images/review04.webp
-    review05: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview05.webp?alt=media&token=226bc823-9ccc-44f1-b615-fbf90a1a2f77', // images/review05.webp
-    review06: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview06.webp?alt=media&token=350e0b85-e2fd-457a-90b7-29a0b142c587', // images/review06.webp
-    review07: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview07.webp?alt=media&token=9d2816d5-a1ee-45c8-a4d6-a4133be4eb65', // images/review07.webp
+    review01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview01.webp?alt=media&token=693c53e9-ba34-442b-b62c-f882c1a33c55', // images/review01.webp
+    review02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview02.webp?alt=media&token=0858f2ce-5af9-4ca7-8e81-6ce468c53278', // images/review02.webp
+    review03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview03.webp?alt=media&token=00542d41-4942-4f27-9c9b-181f29eeb784', // images/review03.webp
+    review04: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview04.webp?alt=media&token=83410382-338a-42f7-9c03-cb5891c77977', // images/review04.webp
+    review05: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview05.webp?alt=media&token=4b6d4793-f850-4847-b92d-80b9647ca328', // images/review05.webp
+    review06: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview06.webp?alt=media&token=4aea2022-1260-4468-9f2a-7f5e3cbebf5b', // images/review06.webp
+    review07: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview07.webp?alt=media&token=552e604f-e678-4696-aa5c-a185f8555ce1', // images/review07.webp
+    review08: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview08.webp?alt=media&token=23187ff1-c638-437a-94fe-d68366d2984a', // images/review08.webp
+    review09: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview09.webp?alt=media&token=4b503c35-23a7-4ff8-b40d-3063d2e9b55b', // images/review09.webp
+    review10: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview10.webp?alt=media&token=e3c3b126-64fe-4db6-9a2c-6c59794cb7d9', // images/review10.webp
+    reviews11: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview11.webp?alt=media&token=b2395a4d-f526-400a-ae57-07f3b266a152', // images/reviews11.webp
+    reviews12: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview12.webp?alt=media&token=c731fc1e-29a5-4ff8-b4c9-c3c26dde68ae', // images/reviews12.webp
+    reviews13: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Freview13.webp?alt=media&token=b0cc8624-3f64-46c7-9f3a-e392f4eb6f19', // images/reviews13.webp
 
     // Crape 시리즈
-    crape01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape01.webp?alt=media&token=352ec25f-ae95-4fe8-882d-71303b9c34ad', // images/crape01.webp
-    crape02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape02.webp?alt=media&token=cb87e0f0-2517-46fe-8174-875efb0791d0', // images/crape02.webp
-    crape03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape03.webp?alt=media&token=9b77cc63-5547-4e64-9868-3a2bf7a16b87', // images/crape03.webp
+    crape01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape01.webp?alt=media&token=ef17cc56-5bbf-4a3c-a3a7-fad4e3e20f8c', // images/crape01.webp
+    crape02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape02.webp?alt=media&token=fc07806e-0856-43d9-b84e-578c5d9fb635', // images/crape02.webp
+    crape03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape03.webp?alt=media&token=b7acb2d1-5660-4b3c-b7b3-97ef79d8d4a3', // images/crape03.webp
     crape04: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fcrape04.webp?alt=media&token=1535ac57-afda-4af1-b674-233f455eae96', // images/crape04.webp
 
     // 기타 이미지
     about: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fabout.webp?alt=media&token=a7f5ce90-3909-4c8e-82f8-34d5508504fc', // images/about.webp
     mockup: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fmockup.webp?alt=media&token=3e8b7206-9012-44a5-81be-e6663d705bab', // images/mockup.webp
     foodCEO: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2FfoodCEO.webp?alt=media&token=537fb0f5-9978-4414-a249-0527a77d6eda', // images/foodCEO.webp
+
+    // 아이콘 이미지
+    icon1: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon1.webp?alt=media&token=55bc8b70-8812-405e-a17d-ae25c61e0fa8', // images/icon1.webp
+    icon2: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon2.webp?alt=media&token=d70acf85-3dc5-43ad-90bf-d9111809761e', // images/icon2.webp
+    icon3: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon3.webp?alt=media&token=a89e4cbb-5041-4874-8dd3-811a540beae1', // images/icon3.webp
   },
 
   // 📁 backgrounds/ - 배경 이미지

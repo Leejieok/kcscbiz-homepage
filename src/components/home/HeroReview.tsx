@@ -33,14 +33,6 @@ const techSlides = [
     image: FIREBASE_IMAGES.images.crape03,
     link: '/service/environment',
   },
-  {
-    id: 4,
-    number: '04',
-    title: '경영 컨설팅 부문 우수기업',
-    description: '세포공학, 효소 공학 등으로 새로운 원료 및 생산 방법을 개발해\n산업 생산의 효율성을 높이고 친환경적인 생산을 실현하고 있습니다.',
-    image: FIREBASE_IMAGES.images.crape04,
-    link: '/service/industrial',
-  },
 ];
 
 function HeroReview() {
@@ -186,13 +178,18 @@ function HeroReview() {
                   <SwiperSlide key={slide.id}>
                     <div className="w-full flex flex-col items-center">
                       {/* 이미지 */}
-                      <div className="img mb-3 sm:mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
+                      <div className="img mb-3 sm:mb-4 rounded-lg overflow-hidden aspect-[3/4] w-full max-w-xl shadow-xl">
                         <img
                           src={slide.image}
                           alt={slide.title}
                           className="w-full h-full object-cover object-top"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/1200x800?text=' + encodeURIComponent(slide.title);
+                            console.error(`이미지 로드 실패: ${slide.title}`, slide.image);
+                            // 이미지 로드 실패 시 빈 이미지로 처리 (무한 루프 방지)
+                            const target = e.target as HTMLImageElement;
+                            if (!target.src.includes('data:image')) {
+                              target.style.display = 'none';
+                            }
                           }}
                         />
                       </div>
