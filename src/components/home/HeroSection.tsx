@@ -49,7 +49,7 @@ function HeroSection() {
         />
         <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[75px]">
+        <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[120px]">
           <div className="w-full max-w-[720px] text-left">
             <p className="text-white text-sm leading-tight font-thin mb-2">
               대표님, 이제는 준비하실 차례입니다.
@@ -61,19 +61,21 @@ function HeroSection() {
             <p className="text-white text-xs leading-relaxed mb-4 max-w-xs">
               정책자금 컨설팅, 혹시 고민 중이신가요? <br />딱 3분만 집중해주세요.
             </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm px-3 py-2 rounded transition"
-              aria-label="무료 상담 신청하기"
-            >
-              무료 상담 신청하기
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-            </a>
           </div>
         </div>
+
+        {/* 하단 버튼 */}
+        <a
+          href="#contact"
+          className="absolute bottom-20 left-4 z-30 inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm px-3 py-2 rounded transition"
+          aria-label="무료 상담 신청하기"
+        >
+          무료 상담 신청하기
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
       </div>
 
       {/* 웹: 기존 데스크탑용 (hidden md:block) */}
@@ -96,7 +98,7 @@ function HeroSection() {
                     <p className="text-white text-xs sm:text-base md:text-xl lg:text-2xl leading-relaxed mt-3 sm:mt-6 max-w-3xl" data-aos="fade-left">
                       <strong>정책자금 컨설팅,</strong> 혹시 고민 중이신가요?<br />그렇다면 딱 3분만 집중해주세요.<br />
                     </p>
-                    <a href="#contact" className="flex items-center gap-1 sm:gap-2 text-white text-sm sm:text-base md:text-lg font-semibold mt-4 sm:mt-8 w-fit pointer-events-auto hover:opacity-80 transition-opacity" data-aos="fade-in" data-aos-delay="500" aria-label="무료 상담 신청하기">
+                    <a href="#contact" className="flex flex-col items-end sm:gap-2 text-white text-sm sm:text-base md:text-lg font-semibold mt-4 sm:mt-8 w-fit pointer-events-auto hover:opacity-80 transition-opacity" data-aos="fade-in" data-aos-delay="500" aria-label="무료 상담 신청하기">
                       <p className="go_txt">무료 상담 신청하기</p>
                       <p className="arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
