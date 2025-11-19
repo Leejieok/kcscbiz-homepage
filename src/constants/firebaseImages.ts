@@ -11,6 +11,11 @@ export const FIREBASE_IMAGES = {
     con02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcon02.webp?alt=media&token=505092b1-4b28-41cf-a20c-7490996a6119', // assets/con02.webp
     con03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcon03.webp?alt=media&token=4ad99498-b40a-4c12-bc79-4b748cbbe359', // assets/con03.webp
     con04: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcon04.webp?alt=media&token=71b962be-9095-4ebb-bba7-8920c9d9c017', // assets/con04.webp
+    kakao: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fkakao.webp?alt=media&token=a89af999-c994-40ca-a186-c5098aa11902', // assets/kakao.webp
+    blog: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fblog.webp?alt=media&token=89c8bc98-21db-4917-a60b-12d4966243a5', // assets/blog.webp
+    call: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcall.webp?alt=media&token=cef2c229-21fc-4a86-83eb-e8e289136860', // assets/call.webp
+    youtube: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fyoutube.webp?alt=media&token=569622fb-0935-45d7-8acd-02b817849e57', // assets/youtube.webp
+    insta: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Finsta.webp?alt=media&token=6a5631eb-0c45-4e92-b4f0-86ee7fa379f7', // assets/insta.webp
   },
 
   // 📁 images/ - 콘텐츠 이미지

@@ -42,12 +42,28 @@ function HeroSection() {
     <>
       {/* 모바일: block md:hidden */}
       <div className="block md:hidden w-full h-screen max-h-[440px] relative pt-[60px]">
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${slideImages[0]})` }}
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
+        {/* 모바일 Swiper */}
+        <Swiper
+          modules={[Autoplay, EffectFade]}
+          loop={true}
+          effect="fade"
+          speed={1400}
+          spaceBetween={0}
+          slidesPerView={1}
+          autoplay={{ delay: 3200, disableOnInteraction: false }}
+          className="w-full h-full"
+        >
+          {slideImages.map((image, index) => (
+            <SwiperSlide key={index} className="w-full h-full">
+              <div
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${image})` }}
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-black/60"></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
         <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[120px]">
           <div className="w-full max-w-[720px] text-left">

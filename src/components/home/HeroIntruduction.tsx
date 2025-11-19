@@ -2,20 +2,21 @@ import { useState, useMemo, useEffect } from 'react';
 import { reviews } from '@/data/reviewData';
 import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
-// 리뷰 이미지 매핑
+// 리뷰 이미지 매핑 (금액 높은 순)
 const reviewImages = [
-  FIREBASE_IMAGES.images.review01,
-  FIREBASE_IMAGES.images.review02,
-  FIREBASE_IMAGES.images.review03,
-  FIREBASE_IMAGES.images.review04,
-  FIREBASE_IMAGES.images.review05,
-  FIREBASE_IMAGES.images.review06,
-  FIREBASE_IMAGES.images.review07,
-  FIREBASE_IMAGES.images.review08,
-  FIREBASE_IMAGES.images.review09,
-  FIREBASE_IMAGES.images.review10,
-  FIREBASE_IMAGES.images.reviews11,
-  FIREBASE_IMAGES.images.reviews12,
+  FIREBASE_IMAGES.images.review02,    // 1억
+  FIREBASE_IMAGES.images.review10,    // 8천
+  FIREBASE_IMAGES.images.review05,    // 8천
+  FIREBASE_IMAGES.images.reviews13,   // 4천
+  FIREBASE_IMAGES.images.reviews12,   // 3천
+  FIREBASE_IMAGES.images.review06,    // 3천
+  FIREBASE_IMAGES.images.review03,    // 3천
+  FIREBASE_IMAGES.images.review08,    // 2천
+  FIREBASE_IMAGES.images.review04,    // 2천
+  FIREBASE_IMAGES.images.reviews11,   // 1천500
+  FIREBASE_IMAGES.images.review09,    // 1천500
+  FIREBASE_IMAGES.images.review07,    // 1천500
+  FIREBASE_IMAGES.images.review01,    // 5백
 ];
 
 function HeroIntroduction() {
@@ -155,7 +156,7 @@ function HeroIntroduction() {
       {/* 전체 리뷰 모달 */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-[1000] overflow-y-auto"
+          className="fixed inset-0 z-[10000] overflow-y-auto"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               setIsModalOpen(false);

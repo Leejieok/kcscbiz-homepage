@@ -1,24 +1,31 @@
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
+
 function HeroPartner() {
   const socialLinks = [
     {
-      icon: 'https://cdn.imweb.me/upload/S20241225c40935505f030/e4fb8ef33a3ad.png',
+      icon: FIREBASE_IMAGES.assets.call,
       label: '전화문의',
       href: '/contact'
     },
     {
-      icon: 'https://cdn.imweb.me/upload/S20241225c40935505f030/2b844ef2166cb.png',
+      icon: FIREBASE_IMAGES.assets.insta,
       label: '인스타그램',
       href: 'https://www.instagram.com/0kcsc0?igsh=MWtjeTBpNG52enRvMg=='
     },
     {
-      icon: 'https://cdn.imweb.me/upload/S20241225c40935505f030/732af2b876132.png',
+      icon: FIREBASE_IMAGES.assets.blog,
       label: '블로그',
       href: 'https://blog.naver.com/kcsc0'
     },
     {
-      icon: 'https://cdn.imweb.me/upload/S20241225c40935505f030/90e3946a3e31a.png',
+      icon: FIREBASE_IMAGES.assets.youtube,
       label: '유튜브',
       href: 'https://www.youtube.com/channel/UCknU7UgElU6KrCR2EOYMUyQ'
+    },
+    {
+      icon: FIREBASE_IMAGES.assets.kakao,
+      label: '카카오톡',
+      href: 'http://pf.kakao.com/_brxbTn'
     }
   ];
 
