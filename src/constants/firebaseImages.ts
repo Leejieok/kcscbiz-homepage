@@ -16,6 +16,7 @@ export const FIREBASE_IMAGES = {
     call: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcall.webp?alt=media&token=cef2c229-21fc-4a86-83eb-e8e289136860', // assets/call.webp
     youtube: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fyoutube.webp?alt=media&token=569622fb-0935-45d7-8acd-02b817849e57', // assets/youtube.webp
     insta: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Finsta.webp?alt=media&token=6a5631eb-0c45-4e92-b4f0-86ee7fa379f7', // assets/insta.webp
+    people: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fpeople.png?alt=media&token=dea84fb7-631f-4ca1-87d1-4f812c060da7'
   },
 
   // 📁 images/ - 콘텐츠 이미지

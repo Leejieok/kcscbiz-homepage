@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/main/', // 서버 배포 경로 설정 (루트 경로면 '/' 사용)
+  base: '/', // 서버 배포 경로 설정 (루트 경로면 '/' 사용)
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

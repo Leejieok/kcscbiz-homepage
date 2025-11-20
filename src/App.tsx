@@ -30,7 +30,7 @@ function PageLoader() {
 
 function App() {
   return (
-    <BrowserRouter basename="/main">
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path='/' element={<Layout/>}>

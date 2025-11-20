@@ -1,10 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { heroSecretData } from '../../data/heroSecretData';
+import { heroSecretData, heroSecretMobileData } from '../../data/heroSecretData';
 
 function HeroSecret() {
-  const { title, secrets } = heroSecretData;
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 화면 크기 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // 모바일이면 heroSecretMobileData, 데스크톱이면 heroSecretData 사용
+  const currentData = isMobile ? heroSecretMobileData : heroSecretData;
+  const { title, secrets } = currentData;
 
   useEffect(() => {
     // AOS 초기화
@@ -72,7 +88,14 @@ function HeroSecret() {
                   </dt>
                   <dd>
                     <h3 className="text-xl md:text-2xl font-bold mb-3 text-gray-900 whitespace-pre-line">
-                      {secret.title}
+                      {secret.highlight ? (
+                        <>
+                          <span className="text-blue-500">{secret.highlight}</span>
+                          {secret.title}
+                        </>
+                      ) : (
+                        secret.title
+                      )}
                     </h3>
                     <p className="text-gray-600 text-base md:text-lg leading-relaxed whitespace-pre-line">
                       {secret.description}

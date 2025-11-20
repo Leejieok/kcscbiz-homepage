@@ -47,10 +47,10 @@ function ServiceSection6() {
         {/* Header */}
         <div className="mb-12">
           <div className="animate-fadeInUp font-extrabold" style={{ animationDelay: '0.5s' }}>
-            <h2 className="text-5xl mb-2">
+            <h2 className="lg:text-5xl text-xl mb-2">
               지금 바로 5분만 비교해보세요!
             </h2>
-            <h2 className="text-5xl">
+            <h2 className="lg:text-5xl text-xl">
               왜 <span className="text-blue-700">우리가 최고인지</span> 알게 될겁니다.
             </h2>
           </div>
@@ -77,7 +77,7 @@ function ServiceSection6() {
                   aria-hidden="true"
                   loading="lazy"
                 />
-                <h6 className="text-2xl font-semibold" style={{ color: '#214BAB' }}>
+                <h6 className="lg:text-2xl text-xl font-semibold" style={{ color: '#214BAB' }}>
                   Fact Check {fact.number}
                 </h6>
               </div>

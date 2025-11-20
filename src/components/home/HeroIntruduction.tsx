@@ -51,7 +51,7 @@ function HeroIntroduction() {
     const rating5 = rating / 2;
     const fullStars = Math.floor(rating5);
     const hasHalfStar = rating5 % 1 >= 0.5;
-    
+
     return (
       <div className="flex items-center gap-0.5">
         {[...Array(5)].map((_, i) => {
@@ -90,25 +90,41 @@ function HeroIntroduction() {
       <section className="w-full pt-8 md:pt-20 pb-12 bg-white" aria-label="고객 후기 섹션">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           {/* 리뷰 요약 섹션 */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-            <div className="flex flex-col gap-4 mb-4 md:mb-0">
-              <div className="flex items-center gap-4">
-                <span className="text-lg md:text-xl font-semibold text-gray-700">
-                  리뷰 {reviews.length.toLocaleString()}
+          {/* 리뷰 요약 섹션 */}
+          {/* 리뷰 요약 섹션 */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-1">
+                <span className="text-base font-semibold text-gray-600">리뷰</span>
+                <span className="text-base font-bold text-gray-900">
+                  {reviews.length.toLocaleString()}
                 </span>
-                <div className="flex items-center gap-2">
-                  <svg className="w-6 h-6 text-orange-400 fill-current" viewBox="0 0 20 20">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(4)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-orange-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                  <svg className="w-5 h-5 text-orange-400 fill-current" viewBox="0 0 20 20">
+                    <defs>
+                      <linearGradient id="hero-star-90-header">
+                        <stop offset="90%" stopColor="currentColor" />
+                        <stop offset="90%" stopColor="#d1d5db" />
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#hero-star-90-header)" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
-                  <span className="text-lg md:text-xl font-bold text-gray-900">
-                    {averageRating} / 5
-                  </span>
                 </div>
+                <span className="text-xl font-bold text-gray-900">
+                  {averageRating} <span className="text-gray-400 font-normal text-base">/ 5</span>
+                </span>
               </div>
             </div>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 self-start md:self-auto"
+              className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 self-start md:self-auto mt-4 md:mt-0"
             >
               전체보기
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +150,7 @@ function HeroIntroduction() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
+
                     {/* 리뷰 내용 */}
                     <div className="p-4">
                       <p className="text-sm text-gray-700 line-clamp-3 mb-2">
@@ -165,7 +181,7 @@ function HeroIntroduction() {
         >
           {/* 오버레이 */}
           <div className="fixed inset-0 bg-black bg-opacity-50" />
-          
+
           {/* 모달 컨텐츠 */}
           <div
             className="relative min-h-screen bg-white"

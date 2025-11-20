@@ -1,6 +1,7 @@
 export interface SecretItem {
   number: number;
   title: string;
+  highlight?: string; // 강조할 텍스트 (선택적)
   description: string;
 }
 
@@ -32,6 +33,33 @@ export const heroSecretData: HeroSecretData = {
     {
       number: 3,
       title: '성공을 높이는\n 다각도의 전략 제시',
+      description: '예상치 못한 변수까지 대비한 맞춤형 전략과 상담으로 든든하게 함께합니다.'
+    }
+  ]
+};
+
+export const heroSecretMobileData: HeroSecretData = {
+  title: {
+    highlight: '한국중소기업지원센터의',
+    normal: '성과를 만드는 \n우리의 철학을 말씀드립니다.'
+  },
+  secrets: [
+    {
+      number: 1,
+      highlight: '건수를 위한 계약이 아닌,\n',
+      title: '정책자금 승인에 \n집중합니다',
+      description: '빠른 상담이 필요하시면, 대표번호를 통한 추가적인 문의가 필요 합니다.'
+    },
+    {
+      number: 2,
+      highlight: '시간과 비용을 아껴주는 \n',
+      title: '꼼꼼한 서류 안내',
+      description: '사업계획서부터 필수 서류까지, 복잡함을 줄여 기회비용을 지켜드립니다.'
+    },
+    {
+      number: 3,
+      highlight: '성공을 높이는\n',
+      title: ' 다각도의 전략 제시',
       description: '예상치 못한 변수까지 대비한 맞춤형 전략과 상담으로 든든하게 함께합니다.'
     }
   ]

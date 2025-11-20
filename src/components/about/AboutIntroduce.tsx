@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function AboutIntroduce() {
   useEffect(() => {
@@ -18,16 +19,16 @@ function AboutIntroduce() {
   }, []);
 
   return (
-    <section className="w-full py-16 px-4 bg-white mb-28">
+    <section className="w-full pt-8 md:pt-16 px-4 bg-white mb-8 md:mb-28 -mt-20 relative z-20 rounded-t-3xl">
       <div className="max-w-6xl mx-auto">
         {/* 메인 타이틀 */}
         <div className="mb-8 text-center">
           <p className="" data-aos="fade-up">Introduction</p>
           <div className="flex justify-center my-2" data-aos="fade-up" data-aos-delay="100">
-            <div className="w-px h-9 bg-slate-900 my-4"></div>
+            <div className="w-px h-9 bg-slate-900 my-2 md:my-4"></div>
           </div>
           <h2
-            className="text-gray-400 font-extralight text-3xl md:text-4xl leading-tight pb-3"
+            className="text-gray-400 font-extralight text-md md:text-4xl leading-tight pb-1 md:pb-3"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -35,7 +36,7 @@ function AboutIntroduce() {
           </h2>
 
           <h3
-            className="text-3xl md:text-4xl"
+            className="text-lg md:text-4xl"
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -45,28 +46,25 @@ function AboutIntroduce() {
 
         {/* 이미지 */}
         <div
-          className="mb-12 max-w-5xl mx-auto"
+          className="mb-12 md:max-w-5xl mx-auto"
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <div className="relative w-full overflow-hidden bg-slate-600" style={{ height: '320px' }}>
-            {/* <img
-              src="https://cdn.imweb.me/thumbnail/20250307/6c08502dcceb2.png"
-              alt="한국중소기업지원센터"
+          <div className="relative w-full overflow-hidden rounded-lg">
+            <img
+              src={FIREBASE_IMAGES.assets.people}
+              alt="한국중소기업지원센터 임직원"
               className="w-full h-auto object-cover"
-              style={{
-                imageRendering: '-webkit-optimize-contrast',
-                display: 'block'
-              }}
+              style={{ aspectRatio: '900/320' }}
               loading="lazy"
-            /> */}
+            />
           </div>
         </div>
 
-        {/* 미션 텍스트 */}
-        <div className="mb-6 text-center">
+        {/* 미션 텍스트 - 데스크톱 버전 (md 이상) */}
+        <div className="mb-6 text-center hidden md:block">
           <p
-            className="text-xl md:text-2xl leading-relaxed mb-8"
+            className="text-2xl leading-relaxed mb-8"
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -99,7 +97,44 @@ function AboutIntroduce() {
           >
             감사합니다.
           </p>
+        </div>
 
+        {/* 미션 텍스트 - 모바일 버전 (md 미만) */}
+        <div className="mb-6 text-center md:hidden">
+          <p
+            className="text-sm leading-relaxed mb-2"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <strong className="text-blue-800">
+              먼저 고객 여러분의 변함없는 <br />관심과 사랑에 깊이 감사드립니다.
+            </strong>
+          </p>
+          <p
+            className="text-xs text-gray-700 leading-relaxed pb-2"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            우리는 중소기업과 소상공인의 성장을 지원하는 파트너로,
+            전문 컨설턴트들이 맞춤형 자금 전략부터 절차·서류 준비까지
+            원스톱으로 안정적인 자금 확보와 기업 도약을 돕습니다.
+          </p>
+          <p
+            className="text-xs text-gray-700 leading-relaxed pb-2"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
+            한국중소기업지원센터는 최고의 실력, 그리고 믿을 수 있는
+            서비스로 전문 컨설턴트와 함께 여러분과 성장하는 혁신적인
+            파트너가 되겠습니다.
+          </p>
+          <p
+            className="text-xs text-gray-700 leading-relaxed"
+            data-aos="fade-up"
+            data-aos-delay="800"
+          >
+            감사합니다.
+          </p>
         </div>
 
 
