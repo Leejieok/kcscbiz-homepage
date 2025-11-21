@@ -72,3 +72,10 @@
   overflow-x: hidden;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+}

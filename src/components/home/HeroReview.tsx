@@ -59,7 +59,7 @@ function HeroReview() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative">
           {/* 왼쪽 패널 - 배경 이미지 */}
           <div
-            className="lg:col-span-6 p-4 sm:p-6 lg:p-8 py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-visible h-full"
+            className="lg:col-span-6 p-4 sm:p-6 lg:p-8 py-6 sm:py-8 md:py-10 lg:py-8 relative overflow-visible h-full"
             style={{
               backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.brandBG})`,
               backgroundSize: 'cover',
@@ -102,11 +102,10 @@ function HeroReview() {
                         swiperRef.current.slideToLoop(index);
                       }
                     }}
-                    className={`pager_bullet flex items-center gap-2 sm:gap-3 text-left transition-all duration-300 relative pl-2 sm:pl-3 py-1.5 sm:py-2 ${
-                      activeIndex === index
-                        ? 'text-white'
-                        : 'text-white/60 hover:text-white/80'
-                    }`}
+                    className={`pager_bullet flex items-center gap-2 sm:gap-3 text-left transition-all duration-300 relative pl-2 sm:pl-3 py-1.5 sm:py-2 ${activeIndex === index
+                      ? 'text-white'
+                      : 'text-white/60 hover:text-white/80'
+                      }`}
                     aria-label={`${slide.title} 보기`}
                   >
                     {/* 활성 상태 세로선 */}
@@ -152,7 +151,7 @@ function HeroReview() {
 
           {/* 오른쪽 패널 - 흰색 배경 */}
           <div className="lg:col-span-6 relative">
-            <div className="w-full h-full flex items-center justify-center p-4 sm:p-6 lg:p-8 py-8 sm:py-12 md:py-16 lg:py-20">
+            <div className="w-full h-full flex items-center justify-center p-4 sm:p-6 lg:p-8 py-6 sm:py-8 md:py-10 lg:py-8">
               <Swiper
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
@@ -178,7 +177,7 @@ function HeroReview() {
                   <SwiperSlide key={slide.id}>
                     <div className="w-full flex flex-col items-center">
                       {/* 이미지 */}
-                      <div className="img mb-3 sm:mb-4 rounded-lg overflow-hidden aspect-[3/4] w-full max-w-xl shadow-xl">
+                      <div className="img mb-3 sm:mb-4 rounded-lg overflow-hidden aspect-[4/3] w-full max-w-xl shadow-xl">
                         <img
                           src={slide.image}
                           alt={slide.title}

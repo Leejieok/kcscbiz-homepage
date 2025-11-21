@@ -4,7 +4,7 @@ import GuideSection from '../../components/service/corporate-business/GuideSecti
 import ProcessSection from '../../components/service/corporate-business/ProcessSection';
 import HookSection from '../../components/service/corporate-business/HookSection';
 import ApplicationForm from '@/components/form/ApplicationForm';
-import NavbarDark from "@/components/NavbarDark";
+
 
 // 법인사업자 컨설팅 페이지
 function Service2() {
@@ -13,7 +13,7 @@ function Service2() {
 
   return (
     <>
-      <NavbarDark />
+
       <Helmet>
         {/* 기본 메타 태그 */}
         <title>법인사업자 컨설팅 | 법인 설립부터 세무까지 원스톱 지원</title>
@@ -55,11 +55,11 @@ function Service2() {
       </Helmet>
 
       <div>
-        <ProblemSection/>
-        <GuideSection/>
-        <ProcessSection/>
-        <HookSection/>
-        <ApplicationForm 
+        <ProblemSection />
+        <GuideSection />
+        <ProcessSection />
+        <HookSection />
+        <ApplicationForm
           title={{
             highlight: '대표님 상황에 꼭 맞춘',
             main: '법인사업자 솔루션 신청하기'

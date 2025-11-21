@@ -3,6 +3,7 @@ import AboutIntroduce from "@/components/about/AboutIntroduce";
 import AboutSection from "@/components/about/AboutSection";
 // import AboutPromises from "@/components/about/AboutPromises";
 import HeroNecessity3 from '@/components/home/HeroNecessity3';
+import AboutMap from '@/components/about/AboutMap';
 
 function About() {
   const currentUrl = window.location.href;
@@ -52,9 +53,10 @@ function About() {
       </Helmet>
 
       <div className="w-full">
-        <AboutSection/>
-        <AboutIntroduce/>
-        <HeroNecessity3/>
+        <AboutSection />
+        <AboutIntroduce />
+        <AboutMap />
+        <HeroNecessity3 />
         {/* <AboutPromises/> */}
       </div>
     </>

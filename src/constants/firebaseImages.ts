@@ -16,7 +16,11 @@ export const FIREBASE_IMAGES = {
     call: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fcall.webp?alt=media&token=cef2c229-21fc-4a86-83eb-e8e289136860', // assets/call.webp
     youtube: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fyoutube.webp?alt=media&token=569622fb-0935-45d7-8acd-02b817849e57', // assets/youtube.webp
     insta: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Finsta.webp?alt=media&token=6a5631eb-0c45-4e92-b4f0-86ee7fa379f7', // assets/insta.webp
-    people: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fpeople.png?alt=media&token=dea84fb7-631f-4ca1-87d1-4f812c060da7'
+    people: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fpeople.webp?alt=media&token=6738d575-86dd-4f98-b55a-2e2435337db1', // assets/people.webp
+    icon01: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F01.webp?alt=media&token=9defe5d9-6089-4053-9ca7-20e32d1813b2",
+    icon02: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F02.webp?alt=media&token=82b7c8bd-d8d9-4c8c-b4c1-b7ead6ca2610",
+    icon03: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F03.webp?alt=media&token=e432bea8-e343-4967-86b4-283e9479b7e9",
+    icon04: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F04.webp?alt=media&token=31955b4b-88d9-45f9-aea2-a12f63de68fe",
   },
 
   // 📁 images/ - 콘텐츠 이미지
@@ -76,6 +80,11 @@ export const FIREBASE_IMAGES = {
     icon1: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon1.webp?alt=media&token=55bc8b70-8812-405e-a17d-ae25c61e0fa8', // images/icon1.webp
     icon2: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon2.webp?alt=media&token=d70acf85-3dc5-43ad-90bf-d9111809761e', // images/icon2.webp
     icon3: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ficon3.webp?alt=media&token=a89e4cbb-5041-4874-8dd3-811a540beae1', // images/icon3.webp
+
+    // 추가 이미지
+    onebyone: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fonebyone.webp?alt=media&token=781c2910-c852-4aa8-a692-5343955d1c39', // images/onebyone.webp
+    seconds: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fseconds.webp?alt=media&token=264260d1-7147-403a-9866-0350c5dfc79d', // images/seconds.webp
+    tree: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ftree.webp?alt=media&token=ee58fc50-6e24-41ae-9a0f-d5058d75446f', // images/tree.webp
   },
 
   // 📁 backgrounds/ - 배경 이미지
