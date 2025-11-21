@@ -41,7 +41,7 @@ function HeroSection() {
   return (
     <>
       {/* 모바일: block md:hidden */}
-      <div className="block md:hidden w-full h-screen max-h-[440px] relative pt-[60px]">
+      <div className="block md:hidden w-full h-screen max-h-[440px] relative pt-[60px] bg-slate-900">
         {/* 모바일 Swiper */}
         <Swiper
           modules={[Autoplay, EffectFade]}
@@ -97,7 +97,7 @@ function HeroSection() {
       {/* 웹: 기존 데스크탑용 (hidden md:block) */}
       <div className="hidden md:block">
         {/* ...existing desktop code... */}
-        <div id="mainVisual" className="w-full h-screen min-h-screen overflow-hidden relative">
+        <div id="mainVisual" className="w-full h-screen min-h-screen overflow-hidden relative bg-slate-900">
           {/* Text Content */}
           <div className="main_txt absolute inset-0 flex items-center z-20 pointer-events-none">
             <div className="px-2 sm:px-3 mx-auto w-full max-w-[1280px]">
