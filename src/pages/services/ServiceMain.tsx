@@ -55,12 +55,17 @@ function ServiceMain() {
 
       <div>
         <ServiceSection/>
-        <ServiceSection2/>
         <ServiceSection3/>
+        <ServiceSection2/>
         <ServiceSection4/>
         <ServiceSection5/>
         <ServiceSection6/>
-        <ApplicationForm/>
+        <ApplicationForm 
+          title={{
+            highlight: '대표님 상황에 꼭 맞춘',
+            main: '정책자금 솔루션 신청하기'
+          }}
+        />
       </div>
     </>
   )

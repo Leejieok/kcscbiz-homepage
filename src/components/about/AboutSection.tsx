@@ -1,65 +1,170 @@
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
+
 function AboutSection() {
+  useEffect(() => {
+    // AOS 초기화
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100,
+        disable: false,
+      });
+      AOS.refresh();
+    }
+  }, []);
+
   return (
-    <div className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-         style={{
-           backgroundImage: 'url(https://cdn.imweb.me/thumbnail/20250307/48c451b392c64.png)',
-           backgroundColor: '#dddddd'
-         }}>
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+    <div className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center z-10"
+      style={{
+        backgroundImage: `url(${FIREBASE_IMAGES.images.about})`,
+        backgroundColor: '#dddddd'
+      }}>
+      {/* 배경 오버레이 */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      {/* Content */}
+      {/* 메인 컨텐츠 */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-20">
-        {/* Main Title */}
-        <div className="text-center mb-8">
-          <span 
-            className="block text-3xl text-white md:text-4xl lg:text-5xl mb-6"
-            style={{ fontFamily: 'InkLiquid, sans-serif' }}
-          >
-            정책자금 컨설팅, 믿을 수 있는 전문가
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 block">한국중소기업지원센터와</h1>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 block">함께라면 가능합니다.</h2>
-        </div>
-
-        {/* Subtitle */}
-        <div className="text-center mb-12">
-          <p className="text-xl md:text-2xl lg:text-3xl text-white">
-            <span className="font-semibold">대표님의 도약</span>
-            <span className="text-lg md:text-xl lg:text-2xl">을 기대할 수 있도록 힘껏 밀어드리겠습니다.</span>
-          </p>
-        </div>
-
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-          {/* Card 1 */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center">
-            <div className="mb-4">
-              <img
-                src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/b37be23b8a3fd.png"
-                alt="check icon"
-                className="w-9 h-9 mx-auto"
-                loading="lazy"
-              />
+        {/* 데스크톱 레이아웃 (md 이상) */}
+        <div className="hidden md:flex justify-between items-start gap-8">
+          {/* 왼쪽: 텍스트 컨텐츠 */}
+          <div className="flex-1">
+            {/* 메인 타이틀 */}
+            <div className="mb-8">
+              <span
+                className="block text-4xl lg:text-5xl text-white mb-6"
+                style={{ fontFamily: 'InkLiquid, sans-serif' }}
+                data-aos="fade-right"
+              >
+                정책자금 컨설팅, 믿을 수 있는 전문가
+              </span>
+              <h1
+                className="text-5xl font-bold text-white mb-4 block"
+                data-aos="fade-right"
+                data-aos-delay="200"
+              >
+                한국중소기업지원센터와
+              </h1>
+              <h2
+                className="text-5xl text-white mb-4 block"
+                data-aos="fade-right"
+                data-aos-delay="400"
+              >
+                함께라면 가능합니다.
+              </h2>
             </div>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-900">
-              <strong>매 달 50억원 이상</strong> 정책자금 조달 성공
-            </p>
+
+            {/* 서브 타이틀 */}
+            <div className="mb-12">
+              <p
+                className="text-2xl lg:text-3xl text-white"
+                data-aos="fade-left"
+                data-aos-delay="600"
+              >
+                <span className="font-semibold">대표님의 도약</span>
+                <span className="text-xl lg:text-2xl">을 기대할 수 있도록 힘껏 밀어드리겠습니다.</span>
+              </p>
+            </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center">
-            <div className="mb-4">
-              <img
-                src="https://cdn.imweb.me/upload/S20231213aa2eeb2497234/b37be23b8a3fd.png"
-                alt="check icon"
-                className="w-9 h-9 mx-auto"
-                loading="lazy"
-              />
+          {/* 오른쪽: 통계 카드 */}
+          <div className="flex flex-col gap-4 max-w-xs flex-shrink-0">
+            {/* 카드 1 */}
+            <div
+              className="bg-orange-500 p-6 text-white"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <p className="text-xl font-bold mb-2">
+                매 달 50억원 이상
+              </p>
+              <p className="text-sm opacity-90">정책자금 조달 성공</p>
             </div>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-900">
-              <strong>연 간 1,000곳 이상 기업</strong>과 함께 한 신뢰
-            </p>
+
+            {/* 카드 2 */}
+            <div
+              className="bg-gray-800 p-6 text-white"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <p className="text-xl font-bold mb-2">
+                연 간 1,000곳 이상 기업
+              </p>
+              <p className="text-sm opacity-90">과 함께 한 신뢰</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 모바일 레이아웃 (md 미만) */}
+        <div className="md:hidden flex flex-col gap-2">
+          {/* 텍스트 컨텐츠 */}
+          <div>
+            {/* 메인 타이틀 */}
+            <div className="mb-2">
+              <span
+                className="block text-sm text-white font-light"
+                data-aos="fade-right"
+              >
+                정책자금 컨설팅, 믿을 수 있는 전문가
+              </span>
+              <h1
+                className="text-lg font-bold text-white block mb-0 leading-tight"
+                data-aos="fade-right"
+                data-aos-delay="200"
+              >
+                한국중소기업지원센터와
+              </h1>
+              <h2
+                className="text-lg text-white block leading-tight"
+                data-aos="fade-right"
+                data-aos-delay="400"
+              >
+                함께라면 가능합니다.
+              </h2>
+            </div>
+
+            {/* 서브 타이틀 */}
+            <div className="mb-8">
+              <p
+                className="text-xs text-white"
+                data-aos="fade-left"
+                data-aos-delay="600"
+              >
+                <span className="font-semibold">대표님의 도약</span>
+                <span className="text-xs">을 기대할 수 있도록 <br /> 힘껏 밀어드리겠습니다.</span>
+              </p>
+            </div>
+          </div>
+
+          {/* 통계 카드 */}
+          <div className="flex flex-col gap-3">
+            {/* 카드 1 */}
+            <div
+              className="bg-orange-500 p-4 text-white"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <p className="text-base font-bold mb-1">
+                매 달 50억원 이상
+              </p>
+              <p className="text-xs opacity-90">정책자금 조달 성공</p>
+            </div>
+
+            {/* 카드 2 */}
+            <div
+              className="bg-gray-800 p-4 text-white"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <p className="text-base font-bold mb-1">
+                연 간 1,000곳 이상 기업
+              </p>
+              <p className="text-xs opacity-90">과 함께 한 신뢰</p>
+            </div>
           </div>
         </div>
       </div>

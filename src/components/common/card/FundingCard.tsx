@@ -42,7 +42,7 @@ function FundingCard({ funding }: FundingCardProps) {
 
         {/* 2행: 오른쪽 정렬 금액 */}
         <div className="flex justify-end">
-          <span className="text-2xl font-bold text-[#214BAB]">
+          <span className="text-2xl font-bold text-[#000000]">
             {funding.amount}
           </span>
         </div>

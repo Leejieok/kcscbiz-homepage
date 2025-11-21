@@ -40,7 +40,7 @@ function HeroNecessity2() {
       mainHeading={mainHeading}
       subHeading=""
       sections={sections}
-      backgroundImages={backgroundImages}
+      images={backgroundImages}
       backgroundColor="#ffffff"
       showCheckIcon={false}
     />

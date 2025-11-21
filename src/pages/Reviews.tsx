@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import HelpSection from "@/components/review/HelpSection";
 import RealReviewSection from "@/components/review/RealReviewSection";
 import ReviewSection from "@/components/review/ReviewSection";
+import Navbar from "@/components/Navbar";
 
 function Reviews() {
   const currentUrl = window.location.href;
@@ -9,6 +10,7 @@ function Reviews() {
 
   return (
     <>
+      <Navbar />
       <Helmet>
         {/* 기본 메타 태그 */}
         <title>고객 후기 | 100% 실제 대표님들의 정책자금 승인 후기</title>
@@ -49,7 +51,7 @@ function Reviews() {
         <link rel="alternate" hrefLang="ko" href={currentUrl} />
       </Helmet>
 
-      <div className="min-h-screen text-white py-20">
+      <div className="min-h-screen text-white">
         <ReviewSection/>
         <RealReviewSection/>
         <HelpSection/>

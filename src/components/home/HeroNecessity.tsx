@@ -1,11 +1,12 @@
 import { consultingData } from '@/data/consultingContent';
 import ConsultingSection from '../section/ConsultingSection';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function HeroNecessity() {
   const backgroundImages = [
-    'https://cdn.imweb.me/thumbnail/20250307/c7608c7b6d7e2.png',
-    'https://cdn.imweb.me/thumbnail/20250307/dddf4ad7955d7.png',
-    'https://cdn.imweb.me/thumbnail/20250307/19736215ba905.png'
+    FIREBASE_IMAGES.images.need01,
+    FIREBASE_IMAGES.images.need02,
+    FIREBASE_IMAGES.images.need03
   ];
 
   return (
@@ -13,7 +14,7 @@ function HeroNecessity() {
       mainHeading={consultingData.mainHeading}
       subHeading={consultingData.subHeading}
       sections={consultingData.sections}
-      backgroundImages={backgroundImages}
+      images={backgroundImages}
       backgroundColor="#f5f7fd"
     />
   );

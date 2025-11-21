@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 interface FormData {
   companyName: string;
   phone: string;
@@ -23,7 +24,31 @@ function ConsultationForm() {
     privacyAgreed: false,
   });
 
-  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 전화번호 포맷팅 함수
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, '');
+
+    // 길이에 따라 포맷팅
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+    } else {
+      // 최대 11자리까지만 허용
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+    }
+  };
+
+  // 전화번호 유효성 검증 함수
+  const validatePhoneNumber = (phone: string) => {
+    const numbers = phone.replace(/[^\d]/g, '');
+    return numbers.length === 10 || numbers.length === 11;
+  };
 
   const handleCheckboxChange = (field: 'services' | 'referralSource', value: string) => {
     setFormData((prev) => {
@@ -42,16 +67,72 @@ function ConsultationForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.privacyAgreed) {
-      alert('개인정보 수집 및 이용에 동의해주세요.');
-      return;
-    }
-    console.log('Form submitted:', formData);
-    alert('상담 신청이 완료되었습니다.');
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
 
+      if (isSubmitting) return; // 중복 제출 방지
+      setIsSubmitting(true);
+
+      if (!formData.privacyAgreed) {
+          alert('개인정보 수집 및 이용에 동의해주세요.');
+          setIsSubmitting(false);
+          return;
+      }
+
+      // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
+      if (!formData.companyName || !formData.phone || !formData.industry ||
+          !formData.location || formData.services.length === 0 ||
+          formData.referralSource.length === 0 || !formData.requests) {
+            alert('모든 필수 항목을 입력해주세요.');
+            setIsSubmitting(false);
+            return;
+      }
+
+      // 전화번호 형식 검증
+      if (!validatePhoneNumber(formData.phone)) {
+        alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+        setIsSubmitting(false);
+        return;
+      }
+
+
+      try {
+          // 🚫 Firebase Functions HTTP 호출 로직 제거
+          
+          // ✅ Firestore에 직접 데이터 저장 (consultations 컬렉션)
+          // Functions의 onFormCreated가 'consultations' 컬렉션을 바라보도록 수정 필요
+          // (이전 응답에서 'formData'로 변경 제안했으나, 이 클라이언트 코드는 'consultations'의 원래 필드를 사용하므로, 
+          // Functions 코드를 'consultations'로 유지하거나, 여기 컬렉션명을 'formData'로 변경하고 
+          // 필드명도 맞추는 것이 좋습니다. 여기서는 원본 필드에 맞게 'consultations'에 저장합니다.)
+
+          const docRef = await addDoc(collection(db, 'consultations'), {
+              ...formData,
+              createdAt: serverTimestamp(), // Firestore 서버 타임스탬프 사용
+              status: "pending", // 초기 상태
+          });
+          
+          console.log("✅ Firestore 저장 완료! Document ID: ", docRef.id);
+          alert('상담 신청이 완료되었습니다.');
+
+          // 폼 초기화
+          setFormData({
+              companyName: '',
+              phone: '',
+              industry: '',
+              location: '',
+              services: [],
+              referralSource: [],
+              requests: '',
+              privacyAgreed: false,
+          });
+
+      } catch (error) {
+          console.error('❌ Form submission error:', error);
+          alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+      } finally {
+          setIsSubmitting(false);
+      }
+  };
   return (
     <>
       {/* Title Section */}
@@ -95,21 +176,20 @@ function ConsultationForm() {
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
                 <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
-                  <span className="text-[#214bab]">어떤 도움</span>
-                  <span className="text-[#110d0d]">이</span>
+                  <span className="text-[#214bab]">대표님의 한 걸음</span>
                 </h6>
                 <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] mb-8">
-                  필요하신가요?
+                  우리가 함께 엽니다.
                 </h6>
 
                 <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  한국중소기업비즈니스센터는
+                  한국중소기업지원센터는
                 </p>
                 <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
                   대표님의 사업의 성공을 진심으로 기원합니다.
                 </p>
                 <p className="text-lg md:text-xl text-[#ff7800] font-bold leading-[2.2]">
-                  좋은 인연이 되기를 바랍니다.
+                  작은 고민부터 큰 도약까지, 함께하겠습니다
                 </p>
               </div>
             </div>
@@ -124,20 +204,29 @@ function ConsultationForm() {
                     <span className="text-red-500 ml-1">*</span>
                   </label>
                   <div className="border border-gray-300 rounded-lg p-4 max-h-40 overflow-y-auto bg-gray-50 text-sm text-gray-700 mb-3">
-                    <p className="mb-2">
-                      한국중소기업 비즈니스센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
+                    <p className="mb-3">
+                      한국중소기업지원센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
                     </p>
-                    <p className="font-semibold mb-1">제1조 (개인정보의 처리목적)</p>
-                    <p className="mb-2">
-                      회원 가입 및 관리, 서비스 제공, 고충 처리 등을 목적으로 개인정보를 처리합니다.
+
+                    <p className="font-semibold mb-1">1. 수집 목적</p>
+                    <p className="mb-3">
+                      상담 신청 접수 및 처리, 컨설팅 서비스 제공, 고객 문의 응대 및 상담 내용 관리
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setShowPrivacy(!showPrivacy)}
-                      className="text-blue-600 hover:underline text-sm"
-                    >
-                      {showPrivacy ? '간략히 보기' : '전체 내용 보기'}
-                    </button>
+
+                    <p className="font-semibold mb-1">2. 수집 항목</p>
+                    <p className="mb-3">
+                      회사명, 연락처, 업종, 사업장 소재지, 필요한 컨설팅 서비스, 문의 경로, 상담 요청사항
+                    </p>
+
+                    <p className="font-semibold mb-1">3. 보유 및 이용 기간</p>
+                    <p className="mb-3">
+                      상담 완료 후 3년간 보관하며, 보유 기간이 경과하면 지체 없이 파기합니다.
+                    </p>
+
+                    <p className="font-semibold mb-1">4. 동의 거부 시 불이익</p>
+                    <p className="mb-2">
+                      개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부 시 상담 신청 서비스 이용이 제한됩니다.
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <input
@@ -181,7 +270,8 @@ function ConsultationForm() {
                     type="tel"
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, phone: formatPhoneNumber(e.target.value) })}
+                    placeholder="010-1234-5678"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />

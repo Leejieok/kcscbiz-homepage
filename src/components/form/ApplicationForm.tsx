@@ -1,6 +1,22 @@
 import { useState } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 
-function ApplicationForm() {
+interface ApplicationFormProps {
+  title?: {
+    highlight: string;
+    main: string;
+  };
+}
+
+function ApplicationForm({ title }: ApplicationFormProps) {
+  const defaultTitle = {
+    highlight: '단 10명만 받는',
+    main: '[소수정예] 컨설팅'
+  };
+
+  const displayTitle = title || defaultTitle;
+
   const [formData, setFormData] = useState({
     companyName: '',
     contact: '',
@@ -12,6 +28,8 @@ function ApplicationForm() {
     requests: '',
     privacyAgreed: false
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const industries = [
     '제조업',
@@ -41,6 +59,30 @@ function ApplicationForm() {
     '기타'
   ];
 
+  // 전화번호 포맷팅 함수
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, '');
+
+    // 길이에 따라 포맷팅
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+    } else {
+      // 최대 11자리까지만 허용
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+    }
+  };
+
+  // 전화번호 유효성 검증 함수
+  const validatePhoneNumber = (phone: string) => {
+    const numbers = phone.replace(/[^\d]/g, '');
+    return numbers.length === 10 || numbers.length === 11;
+  };
+
   const handleCheckboxChange = (field: 'consultingServices' | 'referralSource', value: string) => {
     setFormData(prev => {
       const currentValues = prev[field];
@@ -57,82 +99,144 @@ function ApplicationForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isSubmitting) return; // 중복 제출 방지
+    setIsSubmitting(true);
 
     // 필수 항목 검증
     if (!formData.privacyAgreed) {
       alert('개인정보 수집 및 이용에 동의해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.companyName) {
       alert('회사명을 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.contact) {
       alert('연락처를 입력해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
+    if (!validatePhoneNumber(formData.contact)) {
+      alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.industry) {
       alert('업종을 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.location) {
       alert('사업장 소재지를 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (formData.consultingServices.length === 0) {
       alert('필요한 컨설팅 서비스를 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (formData.referralSource.length === 0) {
       alert('문의 경로를 선택해주세요.');
+      setIsSubmitting(false);
       return;
     }
     if (!formData.requests) {
       alert('상담 시 요청사항을 입력해주세요.');
+      setIsSubmitting(false);
       return;
     }
 
-    console.log('Form submitted:', formData);
-    alert('상담 신청이 완료되었습니다!');
+    try {
+      // Firestore의 consultations 컬렉션에 저장
+      // ConsultationForm과 필드명을 맞추기 위해 매핑
+      const docRef = await addDoc(collection(db, 'consultations'), {
+        companyName: formData.companyName,
+        phone: formData.contact, // contact -> phone으로 매핑
+        industry: formData.industry,
+        location: formData.location,
+        services: formData.consultingServices, // consultingServices -> services로 매핑
+        referralSource: formData.referralSource,
+        requests: formData.requests,
+        privacyAgreed: formData.privacyAgreed,
+        createdAt: serverTimestamp(),
+        status: 'pending'
+      });
+
+      console.log('✅ Firestore 저장 완료! Document ID: ', docRef.id);
+      alert('상담 신청이 완료되었습니다!');
+
+      // 폼 초기화
+      setFormData({
+        companyName: '',
+        contact: '',
+        industry: '',
+        location: '',
+        consultingServices: [],
+        consultingServicesEtc: '',
+        referralSource: [],
+        requests: '',
+        privacyAgreed: false
+      });
+
+    } catch (error) {
+      console.error('❌ Form submission error:', error);
+      alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-16 bg-white hidden md:block">
-      <main className="container mx-auto px-4 max-w-4xl">
+    <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
+      <main className="container mx-auto px-2 sm:px-4 max-w-4xl">
         {/* 제목 */}
-        <div className="animate-fadeInUp mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
+        <div className="animate-fadeInUp mb-6 sm:mb-8" style={{ animationDelay: '0.5s', animationDuration: '1s' }}>
           <h2 className="text-center">
-            <span className="block text-5xl text-[#214bab] mb-2">선착순 10명</span>
-            <span className="block text-5xl text-gray-900">무료 상담 신청하기</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#214bab] mb-1 sm:mb-2">{displayTitle.highlight}</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">{displayTitle.main}</span>
           </h2>
         </div>
 
-        <div className="h-3"></div>
+        <div className="h-2 sm:h-3"></div>
 
         {/* 폼 */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {/* 개인정보 수집 및 이용 동의 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg font-medium text-gray-700 mb-2">
               개인정보 수집 및 이용 동의
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <div className="border border-gray-300 rounded-lg p-4 max-h-64 overflow-y-auto bg-gray-50 text-sm leading-relaxed">
-              <p className="mb-4">한국중소기업지원센터(이하 '회사'라 한다)는 개인정보 보호법 제30조에 따라 정보 주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리지침을 수립, 공개합니다.</p>
+            <div className="border border-gray-300 rounded-lg p-3 sm:p-4 max-h-48 sm:max-h-64 overflow-y-auto bg-gray-50 text-xs sm:text-sm leading-relaxed">
+              <p className="mb-3">
+                한국중소기업지원센터는 개인정보 보호법에 따라 정보 주체의 개인정보를 보호하고 있습니다.
+              </p>
 
-              <p className="font-bold mb-2">제1조 (개인정보의 처리목적)</p>
-              <p className="mb-4">한국중소기업지원센터는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
+              <p className="font-semibold mb-1">1. 수집 목적</p>
+              <p className="mb-3">
+                상담 신청 접수 및 처리, 컨설팅 서비스 제공, 고객 문의 응대 및 상담 내용 관리
+              </p>
 
-              <p className="mb-2">1. 홈페이지 회원 가입 및 관리</p>
-              <p className="mb-4">회원 가입 의사 확인, 회원제 서비스 제공에 따른 본인 식별․인증, 회원자격 유지․관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정 이용 방지, 만 14세 미만 아동의 개인정보처리 시 법정대리인의 동의 여부 확인, 각종 고지․통지, 고충 처리 등을 목적으로 개인정보를 처리합니다.</p>
+              <p className="font-semibold mb-1">2. 수집 항목</p>
+              <p className="mb-3">
+                회사명, 연락처, 업종, 사업장 소재지, 필요한 컨설팅 서비스, 문의 경로, 상담 요청사항
+              </p>
 
-              <p className="mb-2">2. 재화 또는 서비스 제공</p>
-              <p className="mb-4">물품 배송, 서비스 제공, 계약서 및 청구서 발송, 콘텐츠 제공, 맞춤서비스 제공, 본인인증, 연령인증, 요금 결제 및 정산, 채권추심 등을 목적으로 개인정보를 처리합니다.</p>
+              <p className="font-semibold mb-1">3. 보유 및 이용 기간</p>
+              <p className="mb-3">
+                상담 완료 후 3년간 보관하며, 보유 기간이 경과하면 지체 없이 파기합니다.
+              </p>
 
-              <p className="mb-2">3. 고충 처리</p>
-              <p className="mb-4">민원인의 신원 확인, 민원사항 확인, 사실조사를 위한 연락․통지, 처리 결과 통보 등의 목적으로 개인정보를 처리합니다.</p>
+              <p className="font-semibold mb-1">4. 동의 거부 시 불이익</p>
+              <p className="mb-2">
+                개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부 시 상담 신청 서비스 이용이 제한됩니다.
+              </p>
             </div>
             <div className="mt-3">
               <label className="flex items-center cursor-pointer">
@@ -149,7 +253,7 @@ function ApplicationForm() {
 
           {/* 회사명 */}
           <div className="form-group">
-            <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="companyName" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               회사명
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -158,30 +262,31 @@ function ApplicationForm() {
               id="companyName"
               value={formData.companyName}
               onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 연락처 */}
           <div className="form-group">
-            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="contact" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               연락처
               <span className="text-red-500 ml-1">*</span>
             </label>
             <input
-              type="text"
+              type="tel"
               id="contact"
               value={formData.contact}
-              onChange={(e) => setFormData(prev => ({ ...prev, contact: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              onChange={(e) => setFormData(prev => ({ ...prev, contact: formatPhoneNumber(e.target.value) }))}
+              placeholder="010-1234-5678"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 업종 선택 */}
           <div className="form-group">
-            <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="industry" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               업종을 선택해주세요.
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -189,7 +294,7 @@ function ApplicationForm() {
               id="industry"
               value={formData.industry}
               onChange={(e) => setFormData(prev => ({ ...prev, industry: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-sm sm:text-base"
               autoComplete="off"
             >
               <option value="">(선택)</option>
@@ -201,7 +306,7 @@ function ApplicationForm() {
 
           {/* 사업장 소재지 */}
           <div className="form-group">
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="location" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               사업장 소재지
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -210,14 +315,14 @@ function ApplicationForm() {
               id="location"
               value={formData.location}
               onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
 
           {/* 필요한 컨설팅 서비스 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               필요한 컨설팅 서비스
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -260,7 +365,7 @@ function ApplicationForm() {
 
           {/* 문의 경로 */}
           <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               어떤 경로로 문의를 하게 되었나요?
               <span className="text-red-500 ml-1">*</span>
               <span className="text-gray-500 text-xs ml-2">(최대 2개)</span>
@@ -283,7 +388,7 @@ function ApplicationForm() {
 
           {/* 상담 시 요청사항 */}
           <div className="form-group">
-            <label htmlFor="requests" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="requests" className="block text-base sm:text-lg md:text-xl font-medium text-gray-700 mb-2">
               상담 시 요청사항
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -292,7 +397,7 @@ function ApplicationForm() {
               value={formData.requests}
               onChange={(e) => setFormData(prev => ({ ...prev, requests: e.target.value }))}
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm sm:text-base"
               autoComplete="off"
             />
           </div>
@@ -301,7 +406,7 @@ function ApplicationForm() {
           <div className="text-center pt-4">
             <button
               type="submit"
-              className="px-12 py-3 bg-blue-600 text-white text-lg font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 bg-blue-600 text-white text-base sm:text-lg font-medium rounded-lg hover:bg-blue-700 transition-colors"
             >
               작성
             </button>

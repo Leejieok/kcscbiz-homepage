@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import AboutIntroduce from "@/components/about/AboutIntroduce";
 import AboutSection from "@/components/about/AboutSection";
-import HeroNecessity3 from "@/components/home/HeroNecessity3";
+// import AboutPromises from "@/components/about/AboutPromises";
+import HeroNecessity3 from '@/components/home/HeroNecessity3';
 
 function About() {
   const currentUrl = window.location.href;
@@ -54,6 +55,7 @@ function About() {
         <AboutSection/>
         <AboutIntroduce/>
         <HeroNecessity3/>
+        {/* <AboutPromises/> */}
       </div>
     </>
   )

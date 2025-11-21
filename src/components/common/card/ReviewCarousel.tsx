@@ -66,7 +66,7 @@ function ReviewCarousel() {
   // };
 
   return (
-    <div className="relative w-full mx-auto bg-white overflow-hidden">
+    <div className="relative w-full max-w-[1280px] mx-auto bg-white overflow-hidden">
 
       {/* 캐러셀 컨테이너 */}
       <div className="relative">

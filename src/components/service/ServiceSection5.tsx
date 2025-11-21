@@ -33,10 +33,10 @@ function ServiceSection5() {
         {/* Header */}
         <div className="mb-12">
           <div className="animate-fadeInUp font-extrabold" style={{ animationDelay: '0.5s' }}>
-            <h2 className="text-5xl text-center mb-4">
+            <h2 className="lg:text-5xl text-md text-center mb-1 lg:mb-4">
               정책자금, 전문 컨설턴트와 함께라면
             </h2>
-            <h2 className="text-5xl text-center">
+            <h2 className="lg:text-5xl text-md text-center">
               대표님도 <span className="text-blue-700">문제없이 지원 가능</span>합니다!
             </h2>
           </div>

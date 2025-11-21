@@ -3,12 +3,12 @@ import HeroSection from '@/components/home/HeroSection';
 import HeroService from '@/components/home/HeroService';
 import HeroReview from '@/components/home/HeroReview';
 import HeroIntroduction from '@/components/home/HeroIntruduction';
-import HeroBrand from '@/components/home/HeroBrand';
+// import HeroBrand from '@/components/home/HeroBrand';
 import HeroNecessity from '@/components/home/HeroNecessity';
 import HeroBeforeAfter from '@/components/home/HeroBeforeAfter';
 import HeroHmm from '@/components/home/HeroHmm';
 import HeroSecret from '@/components/home/HeroSecret';
-import HeroNecessity2 from '@/components/home/HeroNecessity2';
+// import HeroNecessity2 from '@/components/home/HeroNecessity2';
 import HeroNecessity3 from '@/components/home/HeroNecessity3';
 import HeroConsulting from '@/components/home/HeroConsulting';
 import HeroPartner from '@/components/home/HeroPartner';
@@ -64,17 +64,19 @@ function Home() {
         <HeroSection/>
         <HeroService/>
         <HeroReview/>
+        {/* 모바일 전용 구분선 */}
+        <div className="md:hidden border-t border-gray-500 mx-4"></div>
         <HeroIntroduction/>
-        <HeroBrand/>
+        {/* <HeroBrand/> */}
         <HeroNecessity/>
         <HeroBeforeAfter/>
         <HeroHmm/>
         <HeroSecret/>
-        <HeroNecessity2/>
+        {/* <HeroNecessity2/> */}
         <HeroNecessity3/>
         <HeroConsulting/>
-        <HeroPartner/>
         <ApplicationForm/>
+        <HeroPartner/>
       </div>
     </>
   )

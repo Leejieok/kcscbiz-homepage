@@ -4,6 +4,7 @@ import GuideSection from '../../components/service/corporate-business/GuideSecti
 import ProcessSection from '../../components/service/corporate-business/ProcessSection';
 import HookSection from '../../components/service/corporate-business/HookSection';
 import ApplicationForm from '@/components/form/ApplicationForm';
+import NavbarDark from "@/components/NavbarDark";
 
 // 법인사업자 컨설팅 페이지
 function Service2() {
@@ -12,6 +13,7 @@ function Service2() {
 
   return (
     <>
+      <NavbarDark />
       <Helmet>
         {/* 기본 메타 태그 */}
         <title>법인사업자 컨설팅 | 법인 설립부터 세무까지 원스톱 지원</title>
@@ -36,16 +38,6 @@ function Service2() {
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
-        <meta name="twitter:title" content="법인사업자 컨설팅 | 법인 설립부터 세무까지 원스톱 지원" />
-        <meta
-          name="twitter:description"
-          content="법인사업자를 위한 종합 컨설팅 서비스. 설립부터 세무관리까지"
-        />
-        <meta name="twitter:image" content="/images/corporate-twitter-image.jpg" />
-
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
         <meta name="robots" content="index, follow" />
@@ -67,7 +59,12 @@ function Service2() {
         <GuideSection/>
         <ProcessSection/>
         <HookSection/>
-        <ApplicationForm/>
+        <ApplicationForm 
+          title={{
+            highlight: '대표님 상황에 꼭 맞춘',
+            main: '법인사업자 솔루션 신청하기'
+          }}
+        />
       </div>
     </>
   )

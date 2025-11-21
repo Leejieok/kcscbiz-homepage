@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 
 function ReviewSection() {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -65,38 +66,51 @@ function ReviewSection() {
   };
 
   return (
-    <section className="py-20 px-5" id="wb-hanbizstats-wrapper" ref={sectionRef}>
-      <div className="max-w-[1400px] mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-5 leading-[1.4]">
+    <section
+      className="pt-28 pb-20 px-5 relative min-h-[500px] flex items-center"
+      id="wb-hanbizstats-wrapper"
+      ref={sectionRef}
+      style={{
+        backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.reviewBG})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
+      <div className="max-w-[1400px] mx-auto relative z-10 w-full">
+        {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-5 leading-[1.4]">
           한국중소기업지원센터가<br />숫자로 증명합니다.
         </h1>
 
         <p className="text-lg md:text-xl lg:text-2xl text-[#666] mb-12 md:mb-16 leading-[1.6]">
           정책자금, 어디서부터 시작해야할지 막막하셨다면<br />지금부터 집중해서 모든 과정을 확인하세요.
-        </p>
+        </p> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1400px] mx-auto">
-          <div className="transition-transform duration-300 ease-in-out">
-            <div className="text-base md:text-lg lg:text-xl text-black font-semibold mb-3">누적 정책자금 승인 금액</div>
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#4285f4] flex items-baseline gap-1" id="wb-amount-counter">
-              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black" data-target="84.6">0</span>
-              <span className="text-2xl md:text-3xl lg:text-4xl text-[#4285f4] font-semibold">억+</span>
+          <div className="transition-transform duration-300 ease-in-out flex flex-col items-center">
+            <div className="text-base md:text-lg lg:text-xl text-white font-semibold mb-3">누적 정책자금 승인 금액</div>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white flex items-baseline justify-center gap-1" id="wb-amount-counter">
+              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black text-white" data-target="84.6">0</span>
+              <span className="text-2xl md:text-3xl lg:text-4xl text-white font-semibold">억+</span>
             </div>
           </div>
 
-          <div className="transition-transform duration-300 ease-in-out">
-            <div className="text-base md:text-lg lg:text-xl text-black font-semibold mb-3">정책자금 승인률</div>
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#4285f4] flex items-baseline gap-1" id="wb-rate-counter">
-              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black" data-target="97">0</span>
-              <span className="text-2xl md:text-3xl lg:text-4xl text-[#4285f4] font-semibold">%</span>
+          <div className="transition-transform duration-300 ease-in-out flex flex-col items-center">
+            <div className="text-base md:text-lg lg:text-xl text-white font-semibold mb-3">정책자금 승인률</div>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white flex items-baseline justify-center gap-1" id="wb-rate-counter">
+              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black text-white" data-target="97">0</span>
+              <span className="text-2xl md:text-3xl lg:text-4xl text-white font-semibold">%</span>
             </div>
           </div>
 
-          <div className="transition-transform duration-300 ease-in-out">
-            <div className="text-base md:text-lg lg:text-xl text-black font-semibold mb-3">누적상담기업수</div>
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#4285f4] flex items-baseline gap-1" id="wb-companies-counter">
-              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black" data-target="4267">0</span>
-              <span className="text-2xl md:text-3xl lg:text-4xl text-[#4285f4] font-semibold">명+</span>
+          <div className="transition-transform duration-300 ease-in-out flex flex-col items-center">
+            <div className="text-base md:text-lg lg:text-xl text-white font-semibold mb-3">누적상담기업수</div>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white flex items-baseline justify-center gap-1" id="wb-companies-counter">
+              <span className="wb-counter-value text-4xl md:text-5xl lg:text-6xl font-black text-white" data-target="4267">0</span>
+              <span className="text-2xl md:text-3xl lg:text-4xl text-white font-semibold">명+</span>
             </div>
           </div>
         </div>
