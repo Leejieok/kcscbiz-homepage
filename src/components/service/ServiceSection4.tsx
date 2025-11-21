@@ -64,15 +64,15 @@ const policyMobileCards: PolicyCard[] = [
 
 function ServiceSection4() {
   const desktopRef = useRef<HTMLDivElement>(null);
-  const mobileRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isInViewport, setIsInViewport] = useState(false);
 
+  // Desktop Scroll Logic
   useEffect(() => {
     const handleScroll = () => {
-      const isMobile = window.innerWidth < 1024;
-      const containerRef = isMobile ? mobileRef.current : desktopRef.current;
+      if (window.innerWidth < 1024) return; // Skip for mobile
 
+      const containerRef = desktopRef.current;
       if (!containerRef) return;
 
       const rect = containerRef.getBoundingClientRect();
@@ -99,12 +99,10 @@ function ServiceSection4() {
     };
   }, []);
 
-  const renderCards = (isMobile: boolean) => {
-    const cards = isMobile ? policyMobileCards : policyCards;
-    const cardsPerScreen = 1;
-    const totalScreens = cards.length;
+  const renderDesktopCards = () => {
+    const totalScreens = policyCards.length;
 
-    return cards.map((card, index) => {
+    return policyCards.map((card, index) => {
       const cardProgress = Math.max(0, Math.min(1, scrollProgress * totalScreens - index));
       const opacity = Math.sin(cardProgress * Math.PI);
       const translateY = (1 - cardProgress) * 120;
@@ -129,21 +127,21 @@ function ServiceSection4() {
               boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
               display: 'flex',
               flexDirection: 'column',
-              padding: isMobile ? '2rem' : '2.5rem'
+              padding: '2.5rem'
             }}
           >
             {/* Icon */}
-            <div className="mb-6">
+            <div className="mb-6 flex justify-center">
               <img
                 src={card.icon}
                 alt=""
-                className="w-32 lg:w-64 h-32 lg:h-64 object-contain"
+                className="w-48 h-48 object-contain"
               />
             </div>
 
             {/* Title */}
             <h2
-              className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold mb-4 whitespace-pre-line ${card.bgColor === 'white' ? 'text-gray-900' : 'text-white'
+              className={`text-3xl font-bold mb-4 whitespace-pre-line ${card.bgColor === 'white' ? 'text-gray-900' : 'text-white'
                 }`}
             >
               {card.title}
@@ -151,7 +149,7 @@ function ServiceSection4() {
 
             {/* Description */}
             <p
-              className={`${isMobile ? 'text-sm' : 'text-lg'} leading-relaxed ${card.bgColor === 'white' ? 'text-gray-700' : 'text-gray-300'
+              className={`text-lg leading-relaxed ${card.bgColor === 'white' ? 'text-gray-700' : 'text-gray-300'
                 }`}
             >
               {card.description}
@@ -164,7 +162,7 @@ function ServiceSection4() {
 
   return (
     <>
-      {/* Desktop Layout */}
+      {/* Desktop Layout (Scroll Animation) */}
       <div className="hidden lg:block">
         <div
           ref={desktopRef}
@@ -185,7 +183,7 @@ function ServiceSection4() {
             >
               <div className="absolute inset-0 bg-black/40" />
               <div className="relative w-full h-full">
-                {renderCards(false)}
+                {renderDesktopCards()}
               </div>
 
               {/* Progress Indicator */}
@@ -207,45 +205,40 @@ function ServiceSection4() {
         </div>
       </div>
 
-      {/* Mobile Layout */}
-      <div className="lg:hidden">
-        <div
-          ref={mobileRef}
-          style={{
-            minHeight: `${policyMobileCards.length * 100}vh`,
-            position: 'relative'
-          }}
-        >
-          {isInViewport && (
+      {/* Mobile Layout (Vertical List) */}
+      <div className="lg:hidden relative w-full py-16 px-4"
+        style={{
+          backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.brandBG})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex flex-col gap-8">
+          {policyMobileCards.map((card, index) => (
             <div
-              className="fixed top-0 left-0 right-0 h-screen flex items-center justify-center px-4"
-              style={{
-                backgroundImage: `url(${FIREBASE_IMAGES.backgrounds.brandBG})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
+              key={index}
+              className={`w-full rounded-2xl p-8 shadow-xl ${card.bgColor === 'white' ? 'bg-white/95 backdrop-blur-sm' : 'bg-gray-900/95 backdrop-blur-sm'
+                }`}
             >
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="relative w-full h-full">
-                {renderCards(true)}
+              <div className="mb-6 flex justify-center">
+                <img
+                  src={card.icon}
+                  alt=""
+                  className="w-32 h-32 object-contain"
+                />
               </div>
-
-              {/* Progress Indicator */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-                {policyMobileCards.map((_, index) => {
-                  const isActive = scrollProgress * policyMobileCards.length >= index &&
-                    scrollProgress * policyMobileCards.length < index + 1;
-                  return (
-                    <div
-                      key={index}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${isActive ? 'w-8 bg-[#ff7800]' : 'w-1.5 bg-white/40'
-                        }`}
-                    />
-                  );
-                })}
-              </div>
+              <h2 className={`text-2xl font-bold mb-4 whitespace-pre-line text-center ${card.bgColor === 'white' ? 'text-gray-900' : 'text-white'
+                }`}>
+                {card.title}
+              </h2>
+              <p className={`text-base leading-relaxed text-center ${card.bgColor === 'white' ? 'text-gray-700' : 'text-gray-300'
+                }`}>
+                {card.description}
+              </p>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </>

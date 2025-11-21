@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
   { path: '/location', label: '고객 센터' },
   { path: '/reviews', label: '실제 고객 후기' },
   { path: '/contact', label: '상담신청' },
-  { path: '/careers', label: '인재채용' },
+  // { path: '/careers', label: '인재채용' },
 ];
 
 const mobileNavItems: NavItem[] = [
@@ -30,9 +30,9 @@ const mobileNavItems: NavItem[] = [
     label: '서비스 소개',
     subMenu: [
       { path: '/service/policy-funds', label: '정책자금 컨설팅' },
-      { path: '/service/tax-refund', label: '세금환급 컨설팅' },
-      { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
-      { path: '/service/certification', label: '기업인증 컨설팅' },
+      // { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      // { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      // { path: '/service/certification', label: '기업인증 컨설팅' },
     ],
   },
   { path: '/reviews', label: '고객 후기' },
