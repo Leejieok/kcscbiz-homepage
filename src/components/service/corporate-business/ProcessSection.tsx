@@ -1,15 +1,15 @@
 import { processSteps } from '@/data/processSteps';
 
 function ProcessSection() {
-  return(
-    <section className="w-full px-4 py-20 bg-white">
+  return (
+    <section className="w-full px-4 py-8 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* 타이틀 */}
-        <div className="mb-12 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-tight mb-8">
-            기업의 시작부터 안정적인 성장을
+        <div className="mb-4 lg:mb-12 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+          <h2 className="text-xl md:text-4xl lg:text-5xl font-bold text-center tracking-tight lg:mb-8">
+            기업의 시작부터 <br className="md:hidden" />안정적인 성장을
           </h2>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-blue-700 tracking-tight">
+          <h2 className="text-xl md:text-4xl lg:text-5xl font-bold text-center text-blue-700 tracking-tight">
             끝까지 함께 합니다.
           </h2>
         </div>
@@ -38,12 +38,12 @@ function ProcessSection() {
                 </div>
 
                 {/* 타이틀 */}
-                <h3 className="text-white text-2xl font-semibold mb-4">
+                <h3 className="text-white text-lg md:text-xl lg:text-2xl font-semibold mb-4">
                   {step.title}
                 </h3>
 
                 {/* 설명 */}
-                <p className="text-white text-lg leading-relaxed">
+                <p className="text-white text-sm md:text-base lg:text-lg leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -75,12 +75,12 @@ function ProcessSection() {
                 </div>
 
                 {/* 타이틀 */}
-                <h3 className="text-white text-2xl font-semibold mb-4">
+                <h3 className="text-white text-lg md:text-xl lg:text-2xl font-semibold mb-4">
                   {step.title}
                 </h3>
 
                 {/* 설명 */}
-                <p className="text-white text-lg leading-relaxed">
+                <p className="text-white text-sm md:text-base lg:text-lg leading-relaxed">
                   {step.description}
                 </p>
               </div>

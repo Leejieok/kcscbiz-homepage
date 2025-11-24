@@ -31,8 +31,8 @@ const mobileNavItems: NavItem[] = [
     subMenu: [
       { path: '/service/policy-funds', label: '정책자금 컨설팅' },
       { path: '/service/tax-refund', label: '세금환급 컨설팅' },
-      // { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
-      // { path: '/service/certification', label: '기업인증 컨설팅' },
+      { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      { path: '/service/certification', label: '기업인증 컨설팅' },
     ],
   },
   { path: '/reviews', label: '고객 후기' },
@@ -293,7 +293,7 @@ const Navbar = () => {
 
                 {/* Sub menu mobile */}
                 {openedSubMenuIndex === index && item.subMenu && (
-                  <ul className="bg-gray-500 px-4 py-2">
+                  <ul className="bg-gray-50 px-4 py-2">
                     {item.subMenu.map((sub) => (
                       <li key={sub.path}>
                         <Link
