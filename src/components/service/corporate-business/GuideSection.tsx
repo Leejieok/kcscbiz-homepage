@@ -21,16 +21,13 @@ function GuideSection() {
         {/* 혜택 카드 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
           {corporateBenefits.map((benefit, index) => {
-            // 각 카드마다 다른 그라데이션 색상 배열
+            // 각 카드마다 다른 채도의 파란색 그라데이션 적용
             const gradientColors = [
+              'from-blue-400 to-blue-500',
               'from-blue-500 to-blue-600',
-              'from-green-500 to-green-600',
-              'from-purple-500 to-purple-600',
-              'from-orange-500 to-orange-600',
-              'from-pink-500 to-pink-600',
+              'from-blue-600 to-blue-700',
               'from-indigo-500 to-indigo-600',
-              'from-teal-500 to-teal-600',
-              'from-red-500 to-red-600'
+              'from-indigo-600 to-indigo-700'
             ];
             const gradientClass = gradientColors[index % gradientColors.length];
 

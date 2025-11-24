@@ -35,6 +35,7 @@ const mobileNavItems: NavItem[] = [
       { path: '/service/certification', label: '기업인증 컨설팅' },
     ],
   },
+  { path: '/cases', label: '자주묻는 질문' },
   { path: '/reviews', label: '고객 후기' },
   { path: '/contact', label: '상담신청' },
 ];

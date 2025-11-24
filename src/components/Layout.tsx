@@ -10,6 +10,7 @@ const Layout = () => {
   const isTransparentNav =
     location.pathname === '/' ||
     location.pathname === '/about' ||
+    location.pathname === '/cases' ||
     location.pathname === '/service' ||
     location.pathname === '/reviews' ||
     location.pathname === '/contact' ||
