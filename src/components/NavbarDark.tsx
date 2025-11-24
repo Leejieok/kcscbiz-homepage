@@ -4,296 +4,320 @@ import type { NavItem } from '@/types/nav';
 import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
 import ContactButton from '@/components/common/button/ContactButton';
 
-const NavbarDark = () => {
+const navItems: NavItem[] = [
+  { path: '/about', label: '회사소개' },
+  {
+    path: '/service',
+    label: '서비스 소개',
+    subMenu: [
+      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+      { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      { path: '/service/certification', label: '기업인증 컨설팅' },
+    ],
+  },
+  { path: '/cases', label: '자주묻는 질문' },
+  { path: '/location', label: '고객 센터' },
+  { path: '/reviews', label: '실제 고객 후기' },
+  { path: '/contact', label: '상담신청' },
+  // { path: '/careers', label: '인재채용' },
+];
+
+const mobileNavItems: NavItem[] = [
+  { path: '/about', label: '회사소개' },
+  {
+    path: '/service',
+    label: '서비스 소개',
+    subMenu: [
+      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+      { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      // { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      // { path: '/service/certification', label: '기업인증 컨설팅' },
+    ],
+  },
+  { path: '/reviews', label: '고객 후기' },
+  { path: '/contact', label: '상담신청' },
+];
+
+const Navbar = () => {
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
   const [menuLineStyle, setMenuLineStyle] = useState({ left: 0, width: 0 });
+  const [openedSubMenuIndex, setOpenedSubMenuIndex] = useState<number | null>(null);
   const menuItemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
 
-  const navItems: NavItem[] = [
-    {
-      path: '/about',
-      label: '회사소개',
-    },
-    {
-      path: '/service',
-      label: '서비스 소개',
-      subMenu: [
-        { path: '/service/policy-funds', label: '정책자금 컨설팅' },
-        { path: '/service/tax-refund', label: '세금환급 컨설팅' },
-        { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
-        { path: '/service/certification', label: '기업인증 컨설팅' },
-      ],
-    },
-    {
-      path: '/cases',
-      label: '자주묻는 질문',
-    },
-    {
-      path: '/location',
-      label: '고객 센터',
-    },
-    {
-      path: '/reviews',
-      label: '실제 고객 후기',
-    },
-    {
-      path: '/contact',
-      label: '상담신청',
-    },
-    {
-      path: '/careers',
-      label: '인재채용',
-    },
-  ];
-
-  // Sticky 헤더 처리
+  // ---------- Sticky ----------
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
+      setIsSticky(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 메뉴 라인 인디케이터 위치 계산
+  // ---------- Underline animation ----------
   useEffect(() => {
-    if (hoveredMenuIndex !== null && menuItemsRef.current[hoveredMenuIndex] && navRef.current) {
-      const menuItem = menuItemsRef.current[hoveredMenuIndex];
-      const nav = navRef.current;
-      const navRect = nav.getBoundingClientRect();
-      const itemRect = menuItem.getBoundingClientRect();
-
-      setMenuLineStyle({
-        left: itemRect.left - navRect.left,
-        width: itemRect.width,
-      });
+    if (hoveredMenuIndex !== null && menuItemsRef.current[hoveredMenuIndex]) {
+      const element = menuItemsRef.current[hoveredMenuIndex];
+      if (element && navRef.current) {
+        const navRect = navRef.current.getBoundingClientRect();
+        const itemRect = element.getBoundingClientRect();
+        setMenuLineStyle({
+          left: itemRect.left - navRect.left,
+          width: itemRect.width,
+        });
+      }
     } else {
-      const checkIsActive = (path: string) => {
-        if (path === '/') {
-          return location.pathname === '/';
-        }
-        return location.pathname.startsWith(path);
-      };
-
-      const activeIndex = navItems.findIndex(item => checkIsActive(item.path));
-      if (activeIndex !== -1 && menuItemsRef.current[activeIndex] && navRef.current) {
-        const menuItem = menuItemsRef.current[activeIndex];
-        const nav = navRef.current;
-        const navRect = nav.getBoundingClientRect();
-        const itemRect = menuItem.getBoundingClientRect();
-
-        setMenuLineStyle({
-          left: itemRect.left - navRect.left,
-          width: itemRect.width,
-        });
-      } else {
-        setMenuLineStyle({ left: 0, width: 0 });
-      }
+      setMenuLineStyle({ left: 0, width: 0 });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoveredMenuIndex, location.pathname]);
-
-  // 윈도우 리사이즈 시 메뉴 라인 위치 재계산
-  useEffect(() => {
-    const handleResize = () => {
-      if (hoveredMenuIndex !== null && menuItemsRef.current[hoveredMenuIndex] && navRef.current) {
-        const menuItem = menuItemsRef.current[hoveredMenuIndex];
-        const nav = navRef.current;
-        const navRect = nav.getBoundingClientRect();
-        const itemRect = menuItem.getBoundingClientRect();
-
-        setMenuLineStyle({
-          left: itemRect.left - navRect.left,
-          width: itemRect.width,
-        });
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, [hoveredMenuIndex]);
 
-  // 모바일 메뉴 열렸을 때 스크롤 방지
+  // ---------- Prevent body scroll when menu open ----------
   useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isMobileOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileOpen]);
 
+  // ---------- Active route ----------
   const isActive = (path: string) => {
-    if (path === '/') {
-      return location.pathname === '/';
-    }
+    if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileOpen(!isMobileOpen);
   };
 
   const closeMobileMenu = () => {
     setIsMobileOpen(false);
+    setOpenedSubMenuIndex(null);
   };
 
-  const renderNavLink = (item: NavItem) => {
-    const isActivePath = isActive(item.path);
+  // -------------------------------------------------------
+  // 🤍 SAFE AREA + NAVBAR HEIGHT 문제 완벽 해결
+  // -------------------------------------------------------
+  const baseHeight = 60; // mobile nav height
+  const desktopHeight = 80;
 
-    if (item.isExternal) {
-      return (
-        <a
-          href={item.path}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`lg:text-lg font-semibold duration-300 py-8 inline-block relative ${
-            isSticky ? 'text-gray-800 hover:text-blue-500' : 'text-gray-800 hover:text-blue-500'
-          }`}
-        >
-          {item.label}
-        </a>
-      );
-    }
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
 
-    return (
-      <Link
-        to={item.path}
-        className={`lg:text-lg font-semibold transition-colors duration-300 py-8 inline-block relative ${
-          isSticky
-            ? isActivePath
-              ? 'text-blue-500'
-              : 'text-gray-800 hover:text-blue-500'
-            : isActivePath
-              ? 'text-blue-500'
-              : 'text-gray-800 hover:text-blue-500'
-        }`}
-        onClick={closeMobileMenu}
-      >
-        {item.label}
-      </Link>
-    );
-  };
+  const safeTop = "env(safe-area-inset-top)";
+  const headerHeight = isDesktop
+    ? `${desktopHeight}px`
+    : `calc(${baseHeight}px + env(safe-area-inset-top))`;
+
+  const headerPaddingTop = isDesktop ? "0px" : safeTop;
+
+  // -------------------------------------------------------
 
   return (
     <header
-        className={`w-full z-[999] h-[92px] transition-all duration-300 fixed top-0 left-0 right-0 ${
-          isSticky
-            ? 'bg-white/95 backdrop-blur-md border-b shadow-md'
-            : 'bg-white'
-        }`}
-      >
-      <div
-        className='px-3 mx-auto'
-        style={{
-          width: 'calc(100vw - clamp(0px, calc((100vw - 1600px) * 0.9888), 310px))'
-        }}
-      >
-          <div className="flex items-center justify-center gap-3 relative">
-            {/* 로고 */}
-            <div className="w-auto py-4 absolute left-0">
-              <Link to="/" onClick={closeMobileMenu}>
-                <img
-                  src={FIREBASE_IMAGES.assets.logoBlack}
-                  width={240}
-                  alt="한국중소기업지원센터"
-                  className="h-auto max-w-full"
-                  loading="lazy"
-                />
-              </Link>
-            </div>
+      className={`
+    fixed left-0 right-0 z-[9999] transition-all duration-300 
+    ${isSticky
+          ? "bg-white/95 backdrop-blur-md shadow-2xl"
+          : (window.innerWidth < 1024
+            ? "bg-white/90 backdrop-blur-md"
+            : "bg-white"
+          )
+        }
+  `}
+      style={{
+        top: 0,
+        height: headerHeight,
+        paddingTop: headerPaddingTop,
+      }}
+    >
 
-            {/* 데스크톱 메뉴 & 모바일 토글 */}
-            <div className="text-right lg:text-center">
-              {/* 데스크톱 네비게이션 */}
-              <nav
-                ref={navRef}
-                className="hidden lg:inline-block relative"
+
+      {/* Navbar container */}
+      <div className="mx-auto w-full h-full flex items-center justify-between px-4 md:px-8">
+
+        {/* Logo */}
+        <Link to="/" onClick={closeMobileMenu}>
+          <img
+            src={FIREBASE_IMAGES.assets.logoBlack}
+            className="h-auto w-[100px] md:w-[240px] max-h-[40px] object-contain"
+            alt="한국중소기업지원센터"
+          />
+        </Link>
+
+        {/* Center Menu (Desktop) */}
+        <nav ref={navRef} className="hidden lg:flex items-center relative">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item, index) => (
+              <li
+                key={item.path}
+                ref={(el) => {
+                  menuItemsRef.current[index] = el;
+                }}
+                className="relative group"
+                onMouseEnter={() => setHoveredMenuIndex(index)}
+                onMouseLeave={() => setHoveredMenuIndex(null)}
               >
-                <ul className="flex items-center gap-8 justify-center">
-                  {navItems.map((item, index) => (
-                    <li
-                      key={item.path}
-                      className="relative group"
-                      ref={(el) => {
-                        menuItemsRef.current[index] = el;
-                      }}
-                      onMouseEnter={() => setHoveredMenuIndex(index)}
-                      onMouseLeave={() => setHoveredMenuIndex(null)}
-                    >
-                      {renderNavLink(item)}
-
-                      {/* 드롭다운 서브메뉴 */}
-                      {item.subMenu && (
-                        <ul className="absolute top-full left-0 bg-white/95 backdrop-blur-sm min-w-[220px] py-4 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
-                          {item.subMenu.map((subItem) => (
-                            <li key={subItem.path}>
-                              <Link
-                                to={subItem.path}
-                                className={`block px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-blue-500 hover:pl-8 transition-all duration-300 ${
-                                  location.pathname === subItem.path
-                                    ? 'bg-gray-50 text-blue-500'
-                                    : ''
-                                }`}
-                                onClick={closeMobileMenu}
-                              >
-                                {subItem.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-                {/* 메뉴 라인 인디케이터 */}
-                <div
-                  id="menuLine"
-                  className="absolute bottom-0 h-0.5 bg-blue-500 transition-all duration-300 ease-out"
-                  style={{
-                    left: `${menuLineStyle.left}px`,
-                    width: `${menuLineStyle.width}px`,
-                    opacity: menuLineStyle.width > 0 ? 1 : 0,
-                  }}
-                />
-              </nav>
-
-              {/* 모바일 메뉴 토글 버튼 */}
-              <button
-                className="inline-block lg:hidden p-2 text-gray-800 hover:scale-110 transition-transform duration-300"
-                onClick={toggleMobileMenu}
-                aria-label="메뉴 열기"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                  fill="none"
+                <Link
+                  to={item.path}
+                  onClick={closeMobileMenu}
+                  className={`
+                    lg:text-lg font-semibold duration-300 py-8 inline-block
+                    ${isSticky
+                      ? isActive(item.path)
+                        ? "text-blue-500"
+                        : "text-gray-800 hover:text-blue-500"
+                      : isActive(item.path)
+                        ? "text-blue-500"
+                        : "text-gray-800 hover:text-blue-500"
+                    }
+                  `}
                 >
-                  <path
-                    d="M24.4444 26V28H0V26H24.4444ZM40 19V21H0V19H40ZM40 12V14H15.5556V12H40Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                  {item.label}
+                </Link>
 
-            {/* 문의하기 버튼 (데스크톱만) */}
-            <div className="hidden lg:block absolute right-0">
-              <ContactButton onClick={closeMobileMenu} />
-            </div>
-          </div>
+                {/* Sub menu */}
+                {item.subMenu && (
+                  <ul className="
+                    absolute top-full left-0 bg-white/95 backdrop-blur-sm
+                    min-w-[220px] py-4 rounded-lg shadow-xl
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    translate-y-2 group-hover:translate-y-0
+                    transition-all duration-300 z-50
+                  ">
+                    {item.subMenu.map((sub) => (
+                      <li key={sub.path}>
+                        <Link
+                          to={sub.path}
+                          onClick={closeMobileMenu}
+                          className={`block px-6 py-3 
+                            text-gray-800 hover:bg-gray-50 hover:text-blue-500
+                            transition-all duration-300`}
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Underline */}
+          <div
+            className="absolute bottom-0 h-0.5 bg-blue-400 transition-all duration-300 ease-out"
+            style={{
+              transform: `translateX(${menuLineStyle.left}px)`,
+              width: `${menuLineStyle.width}px`,
+              opacity: menuLineStyle.width > 0 ? 1 : 0,
+            }}
+          />
+        </nav>
+
+        {/* Hamburger */}
+        <button
+          className="lg:hidden text-gray-800 text-3xl pr-1"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+        >
+          ☰
+        </button>
+
+        {/* Desktop contact button */}
+        <div className="hidden lg:flex">
+          <ContactButton onClick={closeMobileMenu} />
+        </div>
       </div>
-    </header>
-  )
-}
 
-export default NavbarDark;
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`
+          fixed inset-0 bg-black/40 z-[1000] transition-opacity duration-300 
+          ${isMobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+        `}
+        onClick={closeMobileMenu}
+      />
+
+      {/* Mobile Menu Panel */}
+      <aside
+        className={`
+          fixed top-0 right-0 h-screen w-11/12 sm:w-3/4 bg-white shadow-2xl
+          z-[1002] transition-transform duration-300
+          ${isMobileOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+        style={{ paddingTop: headerPaddingTop }}
+      >
+        {/* Close button (mobile menu) */}
+        <button
+          onClick={closeMobileMenu}
+          className="absolute top-4 right-4 p-2 rounded-fulltransition"
+          aria-label="메뉴 닫기"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="w-6 h-6 text-gray-700"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <div className="p-4">
+          <ul className="flex flex-col gap-1">
+            {mobileNavItems.map((item, index) => (
+              <li key={item.path} className="border-b last:border-0">
+                {item.subMenu ? (
+                  <button
+                    onClick={() =>
+                      setOpenedSubMenuIndex(
+                        openedSubMenuIndex === index ? null : index
+                      )
+                    }
+                    className="w-full px-4 py-4 flex items-center justify-between"
+                  >
+                    <span className="text-base font-medium">{item.label}</span>
+                    <span>▾</span>
+                  </button>
+                ) : (
+                  <Link
+                    to={item.path}
+                    onClick={closeMobileMenu}
+                    className="block px-4 py-4 text-base"
+                  >
+                    {item.label}
+                  </Link>
+                )}
+
+                {/* Sub menu mobile */}
+                {openedSubMenuIndex === index && item.subMenu && (
+                  <ul className="bg-gray-500 px-4 py-2">
+                    {item.subMenu.map((sub) => (
+                      <li key={sub.path}>
+                        <Link
+                          to={sub.path}
+                          onClick={closeMobileMenu}
+                          className="block px-4 py-3 text-sm"
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="absolute bottom-4 left-4 right-4">
+          <ContactButton onClick={closeMobileMenu} />
+        </div>
+      </aside>
+    </header>
+  );
+};
+
+export default Navbar;

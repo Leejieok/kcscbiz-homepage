@@ -9,7 +9,10 @@ const Layout = () => {
   // 투명한 Navbar를 사용할 경로 (홈, 서비스 메인만 해당)
   const isTransparentNav =
     location.pathname === '/' ||
+    location.pathname === '/about' ||
     location.pathname === '/service' ||
+    location.pathname === '/reviews' ||
+    location.pathname === '/contact' ||
     location.pathname === '/service/policy-funds';
 
   return (
