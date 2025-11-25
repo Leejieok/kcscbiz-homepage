@@ -1,86 +1,74 @@
-import { useState } from 'react';
 import { galleryImages } from '@/data/galleryImages';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function GallerySection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-  };
-
   return (
     <section className="w-full py-[80px] bg-[#f5f7fd]">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="relative">
-          {/* 갤러리 컨테이너 */}
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-1000 ease-in-out"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / 4)}%)`
-              }}
-            >
-              {galleryImages.map((image, index) => (
+        <div className="relative group">
+          <Swiper
+            modules={[Autoplay, Navigation]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                autoplay: false, // 데스크톱에서는 자동재생 끄기 (선택사항, 켜두려면 true로 변경)
+              },
+            }}
+            loop={true}
+            className="w-full"
+          >
+            {galleryImages.map((image, index) => (
+              <SwiperSlide key={index}>
                 <div
-                  key={index}
-                  className="flex-shrink-0 px-[5px]"
-                  style={{ width: '25%' }}
-                >
-                  <div
-                    className="bg-cover bg-center bg-no-repeat rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                    style={{
-                      backgroundImage: `url(${image.thumbnail})`,
-                      minHeight: '404px',
-                      height: '404px'
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+                  className="bg-cover bg-center bg-no-repeat rounded-lg cursor-pointer hover:opacity-90 transition-opacity shadow-md"
+                  style={{
+                    backgroundImage: `url(${image.thumbnail})`,
+                    minHeight: '404px',
+                    height: '404px'
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          {/* 네비게이션 버튼 */}
+          {/* 커스텀 네비게이션 버튼 */}
           <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white/80 hover:bg-white rounded shadow-lg flex items-center justify-center transition-all"
+            className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all z-10 opacity-0 group-hover:opacity-100 disabled:opacity-0"
             aria-label="Previous"
           >
-            <svg
-              className="w-6 h-6 text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white/80 hover:bg-white rounded shadow-lg flex items-center justify-center transition-all"
+            className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all z-10 opacity-0 group-hover:opacity-100 disabled:opacity-0"
             aria-label="Next"
           >
-            <svg
-              className="w-6 h-6 text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>

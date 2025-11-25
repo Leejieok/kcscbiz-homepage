@@ -54,13 +54,13 @@ function ServiceMain() {
       </Helmet>
 
       <div>
-        <ServiceSection/>
-        <ServiceSection3/>
-        <ServiceSection2/>
-        <ServiceSection4/>
-        <ServiceSection5/>
-        <ServiceSection6/>
-        <ApplicationForm 
+        <ServiceSection />
+        <ServiceSection3 />
+        <ServiceSection4 />
+        <ServiceSection2 />
+        <ServiceSection5 />
+        <ServiceSection6 />
+        <ApplicationForm
           title={{
             highlight: '대표님 상황에 꼭 맞춘',
             main: '정책자금 솔루션 신청하기'

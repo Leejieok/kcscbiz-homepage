@@ -68,70 +68,70 @@ function ConsultationForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (isSubmitting) return; // 중복 제출 방지
-      setIsSubmitting(true);
+    if (isSubmitting) return; // 중복 제출 방지
+    setIsSubmitting(true);
 
-      if (!formData.privacyAgreed) {
-          alert('개인정보 수집 및 이용에 동의해주세요.');
-          setIsSubmitting(false);
-          return;
-      }
+    if (!formData.privacyAgreed) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
 
-      // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
-      if (!formData.companyName || !formData.phone || !formData.industry ||
-          !formData.location || formData.services.length === 0 ||
-          formData.referralSource.length === 0 || !formData.requests) {
-            alert('모든 필수 항목을 입력해주세요.');
-            setIsSubmitting(false);
-            return;
-      }
+    // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
+    if (!formData.companyName || !formData.phone || !formData.industry ||
+      !formData.location || formData.services.length === 0 ||
+      formData.referralSource.length === 0 || !formData.requests) {
+      alert('모든 필수 항목을 입력해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
 
-      // 전화번호 형식 검증
-      if (!validatePhoneNumber(formData.phone)) {
-        alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
-        setIsSubmitting(false);
-        return;
-      }
+    // 전화번호 형식 검증
+    if (!validatePhoneNumber(formData.phone)) {
+      alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+      setIsSubmitting(false);
+      return;
+    }
 
 
-      try {
-          // 🚫 Firebase Functions HTTP 호출 로직 제거
-          
-          // ✅ Firestore에 직접 데이터 저장 (consultations 컬렉션)
-          // Functions의 onFormCreated가 'consultations' 컬렉션을 바라보도록 수정 필요
-          // (이전 응답에서 'formData'로 변경 제안했으나, 이 클라이언트 코드는 'consultations'의 원래 필드를 사용하므로, 
-          // Functions 코드를 'consultations'로 유지하거나, 여기 컬렉션명을 'formData'로 변경하고 
-          // 필드명도 맞추는 것이 좋습니다. 여기서는 원본 필드에 맞게 'consultations'에 저장합니다.)
+    try {
+      // 🚫 Firebase Functions HTTP 호출 로직 제거
 
-          const docRef = await addDoc(collection(db, 'consultations'), {
-              ...formData,
-              createdAt: serverTimestamp(), // Firestore 서버 타임스탬프 사용
-              status: "pending", // 초기 상태
-          });
-          
-          console.log("✅ Firestore 저장 완료! Document ID: ", docRef.id);
-          alert('상담 신청이 완료되었습니다.');
+      // ✅ Firestore에 직접 데이터 저장 (consultations 컬렉션)
+      // Functions의 onFormCreated가 'consultations' 컬렉션을 바라보도록 수정 필요
+      // (이전 응답에서 'formData'로 변경 제안했으나, 이 클라이언트 코드는 'consultations'의 원래 필드를 사용하므로, 
+      // Functions 코드를 'consultations'로 유지하거나, 여기 컬렉션명을 'formData'로 변경하고 
+      // 필드명도 맞추는 것이 좋습니다. 여기서는 원본 필드에 맞게 'consultations'에 저장합니다.)
 
-          // 폼 초기화
-          setFormData({
-              companyName: '',
-              phone: '',
-              industry: '',
-              location: '',
-              services: [],
-              referralSource: [],
-              requests: '',
-              privacyAgreed: false,
-          });
+      const docRef = await addDoc(collection(db, 'consultations'), {
+        ...formData,
+        createdAt: serverTimestamp(), // Firestore 서버 타임스탬프 사용
+        status: "pending", // 초기 상태
+      });
 
-      } catch (error) {
-          console.error('❌ Form submission error:', error);
-          alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-      } finally {
-          setIsSubmitting(false);
-      }
+      console.log("✅ Firestore 저장 완료! Document ID: ", docRef.id);
+      alert('상담 신청이 완료되었습니다.');
+
+      // 폼 초기화
+      setFormData({
+        companyName: '',
+        phone: '',
+        industry: '',
+        location: '',
+        services: [],
+        referralSource: [],
+        requests: '',
+        privacyAgreed: false,
+      });
+
+    } catch (error) {
+      console.error('❌ Form submission error:', error);
+      alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <>
@@ -175,21 +175,29 @@ function ConsultationForm() {
             {/* Left Side - Sticky Text */}
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
-                <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
+                <h6 className="text-xl md:text-4xl lg:text-5xl font-normal lg:mb-4 leading-tight">
                   <span className="text-[#214bab]">대표님의 한 걸음</span>
                 </h6>
-                <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] mb-8">
-                  우리가 함께 엽니다.
+                <h6 className="text-2xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] lg:mb-8 mb-6">
+                  <span className="relative inline-block">
+                    <span className="relative z-10">더 큰 도약</span>
+                    {/* 형광펜 효과 (선택 사항) */}
+                    <span className="absolute bottom-1 left-0 w-full h-3 bg-orange-200/50 -z-0 md:h-4"></span>
+                  </span>
+                  이 되도록.
                 </h6>
+                <p className="text-lg md:text-xl text-[#544d4d] lg:leading-[1.8] mb-4">
+                  혼자 고민하면 <strong>'걱정'</strong>으로 끝나지만,<br className="hidden md:block" />
+                  함께 나누면 <strong>'전략'</strong>이 됩니다.
+                </p>
 
-                <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  한국중소기업지원센터는
+                <p className="text-lg md:text-xl text-[#544d4d] lg:leading-[1.8] mb-6">
+                  한국중소기업지원센터는<br />
+                  막연한 응원이 아닌, <strong>확실한 해답</strong>을 드립니다.
                 </p>
-                <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  대표님의 사업의 성공을 진심으로 기원합니다.
-                </p>
-                <p className="text-lg md:text-xl text-[#ff7800] font-bold leading-[2.2]">
-                  작은 고민부터 큰 도약까지, 함께하겠습니다
+                <p className="text-lg md:text-xl text-[#ff7800] font-bold lg:leading-[2.2]">
+                  성공으로 가는 지름길,<br className="md:hidden" />
+                  저희가 가장 앞에서 뚫겠습니다.
                 </p>
               </div>
             </div>

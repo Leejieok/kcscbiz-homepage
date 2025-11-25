@@ -14,10 +14,10 @@ function BannerSection() {
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-white mb-2">
+            <h1 className="lg:text-4xl text-2xl font-bold text-white mb-2">
               자주묻는 질문
             </h1>
-            <h2 className="text-lg text-gray-300 tracking-[5px]">
+            <h2 className="lg:text-lg text-sm text-gray-300 tracking-[5px]">
               FAQ
             </h2>
           </div>

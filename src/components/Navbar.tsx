@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
   { path: '/location', label: '고객 센터' },
   { path: '/reviews', label: '실제 고객 후기' },
   { path: '/contact', label: '상담신청' },
-  { path: '/careers', label: '인재채용' },
+  // { path: '/careers', label: '인재채용' },
 ];
 
 const mobileNavItems: NavItem[] = [
@@ -28,8 +28,14 @@ const mobileNavItems: NavItem[] = [
   {
     path: '/service',
     label: '서비스 소개',
-    subMenu: [{ path: '/service/policy-funds', label: '정책자금 컨설팅' }],
+    subMenu: [
+      { path: '/service/policy-funds', label: '정책자금 컨설팅' },
+      { path: '/service/tax-refund', label: '세금환급 컨설팅' },
+      { path: '/service/corporate-business', label: '법인사업자 컨설팅' },
+      { path: '/service/certification', label: '기업인증 컨설팅' },
+    ],
   },
+  { path: '/cases', label: '자주묻는 질문' },
   { path: '/reviews', label: '고객 후기' },
   { path: '/contact', label: '상담신청' },
 ];
@@ -92,7 +98,7 @@ const Navbar = () => {
   // -------------------------------------------------------
   // 🤍 SAFE AREA + NAVBAR HEIGHT 문제 완벽 해결
   // -------------------------------------------------------
- const baseHeight = 60; // mobile nav height
+  const baseHeight = 60; // mobile nav height
   const desktopHeight = 80;
 
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
@@ -107,23 +113,23 @@ const Navbar = () => {
   // -------------------------------------------------------
 
   return (
-<header
-  className={`
+    <header
+      className={`
     fixed left-0 right-0 z-[9999] transition-all duration-300 
     ${isSticky
-      ? "bg-[rgba(26,26,46,0.55)] backdrop-blur-md shadow-2xl"
-      : (window.innerWidth < 1024
-          ? "bg-[rgba(26,26,46,0.35)] backdrop-blur-md"
-          : "bg-transparent"
-        )
-    }
+          ? "bg-[rgba(26,26,46,0.55)] backdrop-blur-md shadow-2xl"
+          : (window.innerWidth < 1024
+            ? "bg-[rgba(26,26,46,0.35)] backdrop-blur-md"
+            : "bg-transparent"
+          )
+        }
   `}
-  style={{
-  top: 0,
-  height: headerHeight,
-  paddingTop: headerPaddingTop,
-}}
->
+      style={{
+        top: 0,
+        height: headerHeight,
+        paddingTop: headerPaddingTop,
+      }}
+    >
 
 
       {/* Navbar container */}
@@ -241,24 +247,24 @@ const Navbar = () => {
         style={{ paddingTop: headerPaddingTop }}
       >
         {/* Close button (mobile menu) */}
-<button
-  onClick={closeMobileMenu}
-  className="absolute top-4 right-4 p-2 rounded-fulltransition"
-  aria-label="메뉴 닫기"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-6 h-6 text-gray-700"
-  >
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-</button>
+        <button
+          onClick={closeMobileMenu}
+          className="absolute top-4 right-4 p-2 rounded-fulltransition"
+          aria-label="메뉴 닫기"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="w-6 h-6 text-gray-700"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
 
         <div className="p-4">
           <ul className="flex flex-col gap-1">

@@ -17,21 +17,21 @@ import ApplicationForm from '@/components/form/ApplicationForm';
 function Home() {
   const currentUrl = window.location.href;
   const siteName = "한국중소기업지원센터"; // 실제 서비스명으로 변경하세요
-  
+
   return (
     <>
       <Helmet>
         {/* 기본 메타 태그 */}
         <title>정책자금 신청부터 승인까지 A to Z | 소상공인 정책자금 간편조회</title>
-        <meta 
-          name="description" 
-          content="정책자금 신청부터 승인까지 완벽 지원. 중소기업, 소상공인, 자영업자를 위한 맞춤형 정책자금 컨설팅. 100% 실제 고객 후기, 무료 상담 신청하세요." 
+        <meta
+          name="description"
+          content="정책자금 신청부터 승인까지 완벽 지원. 중소기업, 소상공인, 자영업자를 위한 맞춤형 정책자금 컨설팅. 100% 실제 고객 후기, 무료 상담 신청하세요."
         />
-        <meta 
-          name="keywords" 
-          content="정책자금, 정책자금 신청, 정책자금 컨설팅, 소상공인 자금, 중소기업 자금, 창업자금, 사업자금 대출, 정책자금 승인, 자영업자 지원금" 
+        <meta
+          name="keywords"
+          content="정책자금, 정책자금 신청, 정책자금 컨설팅, 소상공인 자금, 중소기업 자금, 창업자금, 사업자금 대출, 정책자금 승인, 자영업자 지원금"
         />
-        
+
         {/* Open Graph (Facebook, 카카오톡 등) */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />
@@ -43,7 +43,7 @@ function Home() {
         <meta property="og:image" content="/images/og-image.png" />
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content="ko_KR" />
-        
+
         {/* 추가 SEO 메타 태그 */}
         <meta name="author" content={siteName} />
         <meta name="robots" content="index, follow" />
@@ -52,31 +52,31 @@ function Home() {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="Korean" />
         <meta name="revisit-after" content="7 days" />
-        
+
         {/* Canonical URL (중복 콘텐츠 방지) */}
         <link rel="canonical" href={currentUrl} />
-        
+
         {/* 추가 링크 태그 */}
         <link rel="alternate" hrefLang="ko" href={currentUrl} />
       </Helmet>
 
       <div className="w-full">
-        <HeroSection/>
-        <HeroService/>
-        <HeroReview/>
+        <HeroSection />
+        <HeroService />
+        <HeroReview />
         {/* 모바일 전용 구분선 */}
         <div className="md:hidden border-t border-gray-500 mx-4"></div>
-        <HeroIntroduction/>
+        <HeroIntroduction />
         {/* <HeroBrand/> */}
-        <HeroNecessity/>
-        <HeroBeforeAfter/>
-        <HeroHmm/>
-        <HeroSecret/>
+        <HeroNecessity />
+        <HeroBeforeAfter />
+        <HeroHmm />
+        <HeroSecret />
         {/* <HeroNecessity2/> */}
-        <HeroNecessity3/>
-        <HeroConsulting/>
-        <ApplicationForm/>
-        <HeroPartner/>
+        <HeroNecessity3 />
+        <HeroConsulting />
+        <ApplicationForm />
+        <HeroPartner />
       </div>
     </>
   )

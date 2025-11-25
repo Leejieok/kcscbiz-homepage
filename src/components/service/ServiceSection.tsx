@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FIREBASE_IMAGES } from '@/constants/firebaseImages';
+import { Link } from 'react-router-dom';
 
 interface FundingCardData {
   id: number;
@@ -80,13 +81,13 @@ function ServiceSection() {
 
               {/* CTA Button */}
               <div className="animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-                <a
-                  href="/consulting1#s20250308c7f899e620f1e"
+                <Link
+                  to="/contact"
                   className="inline-block px-6 py-3 border-2 border-blue-400 text-blue-400 hover:text-white font-medium hover:bg-blue-500 hover:border-blue-500 transition-colors rounded-full"
                   aria-label="업종별 정책자금 한도 상담 신청하기"
                 >
                   놓치고 있는 정책자금 바로 알아보기
-                </a>
+                </Link>
               </div>
             </header>
           </div>
@@ -198,7 +199,7 @@ function ServiceSection() {
           {/* CTA Button */}
           <div className="flex justify-center animate-fadeInUp -mb-8" style={{ animationDelay: '0.5s' }}>
             <a
-              href="/consulting1#s20250308c7f899e620f1e"
+              href="/contact"
               className="inline-block px-4 py-2 border-2 border-blue-400 text-center text-blue-400 hover:text-white font-medium hover:bg-blue-500 hover:border-blue-500 transition-colors rounded-full text-sm"
             >
               놓치고 있는 정책자금 알아보기

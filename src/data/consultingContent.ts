@@ -9,12 +9,12 @@ export interface ContentSection {
 
 export const consultingData = {
   mainHeading: {
-    highlight: "비용을 들여서까지",
-    text: "컨설팅이 맞는 선택인지 걱정되나요?"
+    highlight: "왜 남들은 맡길까?",
+    text: "왜 5,000명의 사장님들은 우리에게 맡기셨을까요?\n "
   },
-  
-  subHeading: "정책자금이 먼 이야기처럼 느껴지셨다면 잠시만 멈춰서 이유부터 함께 살펴보세요.",
-  
+
+  subHeading: "직접 준비해서 겪을 시행착오와 기회비용보다, 전문가에게 맡겼을 때 얻는 '확실한 자금'의 가치가 훨씬 크기 때문입니다.",
+
   sections: [
     {
       necessity: "필요성 1",

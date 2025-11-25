@@ -4,7 +4,7 @@ import ChechlistSection from "../../components/service/tax-refund/ChecklistSecti
 import HookSection from "../../components/service/tax-refund/HookSection";
 import ProblemSection from "../../components/service/tax-refund/ProblemSection";
 import SolutionSection from "../../components/service/tax-refund/SolutionSection";
-import NavbarDark from "@/components/NavbarDark";
+
 
 //세금환급 컨설팅 페이지
 function Service1() {
@@ -13,7 +13,7 @@ function Service1() {
 
   return (
     <>
-      <NavbarDark />
+
       <Helmet>
         {/* 기본 메타 태그 */}
         <title>세금환급 컨설팅 | 과납한 세금 5년치 환급 받기</title>
@@ -55,11 +55,11 @@ function Service1() {
       </Helmet>
 
       <div>
-        <ProblemSection/>
-        <ChechlistSection/>
-        <HookSection/>
-        <SolutionSection/>
-        <ApplicationForm 
+        <ProblemSection />
+        <ChechlistSection />
+        <HookSection />
+        <SolutionSection />
+        <ApplicationForm
           title={{
             highlight: '대표님 상황에 꼭 맞춘',
             main: '세금환급 솔루션 신청하기'
