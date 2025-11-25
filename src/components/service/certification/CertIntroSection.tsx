@@ -1,4 +1,3 @@
-import CheckIcon from '@/components/common/icon/CheckIcon';
 import { certificationDetails } from '@/data/certificationDetails';
 
 function CertIntroSection() {

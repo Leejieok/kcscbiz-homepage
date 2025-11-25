@@ -68,70 +68,70 @@ function ConsultationForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (isSubmitting) return; // 중복 제출 방지
-      setIsSubmitting(true);
+    if (isSubmitting) return; // 중복 제출 방지
+    setIsSubmitting(true);
 
-      if (!formData.privacyAgreed) {
-          alert('개인정보 수집 및 이용에 동의해주세요.');
-          setIsSubmitting(false);
-          return;
-      }
+    if (!formData.privacyAgreed) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
 
-      // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
-      if (!formData.companyName || !formData.phone || !formData.industry ||
-          !formData.location || formData.services.length === 0 ||
-          formData.referralSource.length === 0 || !formData.requests) {
-            alert('모든 필수 항목을 입력해주세요.');
-            setIsSubmitting(false);
-            return;
-      }
+    // ⚠️ 필수 필드 클라이언트 측 검증 추가 (Functions에서 하던 역할 보완)
+    if (!formData.companyName || !formData.phone || !formData.industry ||
+      !formData.location || formData.services.length === 0 ||
+      formData.referralSource.length === 0 || !formData.requests) {
+      alert('모든 필수 항목을 입력해주세요.');
+      setIsSubmitting(false);
+      return;
+    }
 
-      // 전화번호 형식 검증
-      if (!validatePhoneNumber(formData.phone)) {
-        alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
-        setIsSubmitting(false);
-        return;
-      }
+    // 전화번호 형식 검증
+    if (!validatePhoneNumber(formData.phone)) {
+      alert('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+      setIsSubmitting(false);
+      return;
+    }
 
 
-      try {
-          // 🚫 Firebase Functions HTTP 호출 로직 제거
-          
-          // ✅ Firestore에 직접 데이터 저장 (consultations 컬렉션)
-          // Functions의 onFormCreated가 'consultations' 컬렉션을 바라보도록 수정 필요
-          // (이전 응답에서 'formData'로 변경 제안했으나, 이 클라이언트 코드는 'consultations'의 원래 필드를 사용하므로, 
-          // Functions 코드를 'consultations'로 유지하거나, 여기 컬렉션명을 'formData'로 변경하고 
-          // 필드명도 맞추는 것이 좋습니다. 여기서는 원본 필드에 맞게 'consultations'에 저장합니다.)
+    try {
+      // 🚫 Firebase Functions HTTP 호출 로직 제거
 
-          const docRef = await addDoc(collection(db, 'consultations'), {
-              ...formData,
-              createdAt: serverTimestamp(), // Firestore 서버 타임스탬프 사용
-              status: "pending", // 초기 상태
-          });
-          
-          console.log("✅ Firestore 저장 완료! Document ID: ", docRef.id);
-          alert('상담 신청이 완료되었습니다.');
+      // ✅ Firestore에 직접 데이터 저장 (consultations 컬렉션)
+      // Functions의 onFormCreated가 'consultations' 컬렉션을 바라보도록 수정 필요
+      // (이전 응답에서 'formData'로 변경 제안했으나, 이 클라이언트 코드는 'consultations'의 원래 필드를 사용하므로, 
+      // Functions 코드를 'consultations'로 유지하거나, 여기 컬렉션명을 'formData'로 변경하고 
+      // 필드명도 맞추는 것이 좋습니다. 여기서는 원본 필드에 맞게 'consultations'에 저장합니다.)
 
-          // 폼 초기화
-          setFormData({
-              companyName: '',
-              phone: '',
-              industry: '',
-              location: '',
-              services: [],
-              referralSource: [],
-              requests: '',
-              privacyAgreed: false,
-          });
+      const docRef = await addDoc(collection(db, 'consultations'), {
+        ...formData,
+        createdAt: serverTimestamp(), // Firestore 서버 타임스탬프 사용
+        status: "pending", // 초기 상태
+      });
 
-      } catch (error) {
-          console.error('❌ Form submission error:', error);
-          alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-      } finally {
-          setIsSubmitting(false);
-      }
+      console.log("✅ Firestore 저장 완료! Document ID: ", docRef.id);
+      alert('상담 신청이 완료되었습니다.');
+
+      // 폼 초기화
+      setFormData({
+        companyName: '',
+        phone: '',
+        industry: '',
+        location: '',
+        services: [],
+        referralSource: [],
+        requests: '',
+        privacyAgreed: false,
+      });
+
+    } catch (error) {
+      console.error('❌ Form submission error:', error);
+      alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <>

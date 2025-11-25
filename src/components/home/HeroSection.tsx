@@ -8,6 +8,7 @@ import 'swiper/swiper-bundle.css';
 import heroImg from '@/assets/images/hero.webp';
 import hero2Img from '@/assets/images/hero2.webp';
 import hero3Img from '@/assets/images/hero3.webp';
+import { heroSlides } from '@/data/heroData';
 
 // ...existing code...
 const slideImages = [
@@ -20,6 +21,7 @@ function HeroSection() {
   const paginationRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,6 +40,9 @@ function HeroSection() {
     }
   }, []);
 
+  // Get current slide data
+  const currentSlide = heroSlides[mobileActiveIndex];
+
   return (
     <>
       {/* 모바일: block md:hidden */}
@@ -51,6 +56,7 @@ function HeroSection() {
           spaceBetween={0}
           slidesPerView={1}
           autoplay={{ delay: 3200, disableOnInteraction: false }}
+          onSlideChange={(swiper) => setMobileActiveIndex(swiper.realIndex)}
           className="w-full h-full"
         >
           {slideImages.map((image, index) => (
@@ -68,14 +74,15 @@ function HeroSection() {
         <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[120px]">
           <div className="w-full max-w-[720px] text-left">
             <p className="text-white text-sm leading-tight font-thin mb-2">
-              대표님, 이제는 준비하실 차례입니다.
+              {currentSlide.mainCopy[0]}<br className="md:hidden" />{currentSlide.mainCopy[1]}
             </p>
             <h2 className="text-white font-bold text-lg leading-tight mb-2">
-              정책자금 신청부터 승인까지<br />
-              <span className="text-blue-300">맞춤형 컨설팅 직접 증명합니다.</span>
+              <span className="text-blue-300">{currentSlide.mainCopy[2]}<br className="md:hidden" />{currentSlide.mainCopy[3]}</span>
+              <br />
             </h2>
             <p className="text-white text-xs leading-relaxed mb-4 max-w-xs">
-              정책자금 컨설팅, 혹시 고민 중이신가요? <br />딱 3분만 집중해주세요.
+              {currentSlide.subCopy[0]}<br />{currentSlide.subCopy[1]} <br className="md:hidden" />
+              {currentSlide.subCopy[2]}
             </p>
           </div>
         </div>
