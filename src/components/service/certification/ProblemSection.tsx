@@ -1,4 +1,5 @@
 import { certifications } from '@/data/certifications';
+import { Link } from 'react-router-dom';
 
 function ProblemSection() {
   return (
@@ -45,15 +46,15 @@ function ProblemSection() {
 
             {/* 버튼 */}
             <div className="flex justify-center lg:justify-start animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5"
               >
                 지금 바로 신청하기
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
 

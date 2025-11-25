@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function HookSection() {
   return (
     <section
@@ -26,12 +28,12 @@ function HookSection() {
 
         {/* 버튼 */}
         <div className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-block px-2 md:px-4 lg:px-8 py-2 md:py-4 lg:py-4 border-2 border-orange-500 text-orange-500 hover:text-white text-lg font-semibold rounded-full hover:bg-orange-500 transition-colors duration-300"
           >
             아까운 세금 환급 받기
-          </a>
+          </Link>
         </div>
       </div>
     </section>

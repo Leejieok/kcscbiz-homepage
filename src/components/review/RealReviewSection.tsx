@@ -64,22 +64,27 @@ function RealReviewSection() {
           </div>
         </div>
 
-        {/* Keyword Search Section */}
+        {/* Keyword Search Section - Mobile Responsive */}
         <div className="mb-12">
-          <div className="flex items-center gap-4">
-            <h3 className="text-2xl font-bold text-gray-900 whitespace-nowrap">키워드 검색</h3>
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <div className="flex flex-wrap gap-3">
+          {/* Mobile: Stack vertically, Desktop: Horizontal layout */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-4">
+            {/* Title and divider line */}
+            <div className="flex items-center gap-4 lg:flex-1">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 whitespace-nowrap">키워드 검색</h3>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            {/* Filter buttons */}
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   type="button"
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-6 py-3 rounded-full border-2 text-lg font-medium transition-all ${
-                    activeFilter === filter
+                  className={`px-4 md:px-6 py-2 md:py-3 rounded-full border-2 text-sm md:text-lg font-medium transition-all ${activeFilter === filter
                       ? 'border-gray-900 bg-gray-900 text-white'
                       : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   {filter}
                 </button>
