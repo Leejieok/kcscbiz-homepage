@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /main/
+  RewriteBase /
 
   # HTTPS 강제 리다이렉트
   RewriteCond %{HTTPS} off
@@ -9,7 +9,7 @@
   # React Router - 모든 요청을 index.html로
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /main/index.html [L]
+  RewriteRule . /index.html [L]
 </IfModule>
 
 # MIME 타입 설정
