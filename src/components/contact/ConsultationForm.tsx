@@ -175,21 +175,29 @@ function ConsultationForm() {
             {/* Left Side - Sticky Text */}
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
-                <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
+                <h6 className="text-xl md:text-4xl lg:text-5xl font-normal lg:mb-4 leading-tight">
                   <span className="text-[#214bab]">대표님의 한 걸음</span>
                 </h6>
-                <h6 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] mb-8">
-                  우리가 함께 엽니다.
+                <h6 className="text-2xl md:text-4xl lg:text-5xl font-normal text-[#110d0d] lg:mb-8 mb-6">
+                  <span className="relative inline-block">
+                    <span className="relative z-10">더 큰 도약</span>
+                    {/* 형광펜 효과 (선택 사항) */}
+                    <span className="absolute bottom-1 left-0 w-full h-3 bg-orange-200/50 -z-0 md:h-4"></span>
+                  </span>
+                  이 되도록.
                 </h6>
+                <p className="text-lg md:text-xl text-[#544d4d] lg:leading-[1.8] mb-4">
+                  혼자 고민하면 <strong>'걱정'</strong>으로 끝나지만,<br className="hidden md:block" />
+                  함께 나누면 <strong>'전략'</strong>이 됩니다.
+                </p>
 
-                <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  한국중소기업지원센터는
+                <p className="text-lg md:text-xl text-[#544d4d] lg:leading-[1.8] mb-6">
+                  한국중소기업지원센터는<br />
+                  막연한 응원이 아닌, <strong>확실한 해답</strong>을 드립니다.
                 </p>
-                <p className="text-lg md:text-xl text-[#544d4d] leading-[2.2] mb-2">
-                  대표님의 사업의 성공을 진심으로 기원합니다.
-                </p>
-                <p className="text-lg md:text-xl text-[#ff7800] font-bold leading-[2.2]">
-                  작은 고민부터 큰 도약까지, 함께하겠습니다
+                <p className="text-lg md:text-xl text-[#ff7800] font-bold lg:leading-[2.2]">
+                  성공으로 가는 지름길,<br className="md:hidden" />
+                  저희가 가장 앞에서 뚫겠습니다.
                 </p>
               </div>
             </div>

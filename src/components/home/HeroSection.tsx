@@ -40,8 +40,9 @@ function HeroSection() {
     }
   }, []);
 
-  // Get current slide data
-  const currentSlide = heroSlides[mobileActiveIndex];
+  // Get current slide data for mobile and desktop
+  const currentMobileSlide = heroSlides[mobileActiveIndex];
+  const currentDesktopSlide = heroSlides[activeIndex];
 
   return (
     <>
@@ -74,15 +75,15 @@ function HeroSection() {
         <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[120px]">
           <div className="w-full max-w-[720px] text-left">
             <p className="text-white text-sm leading-tight font-thin mb-2">
-              {currentSlide.mainCopy[0]}<br className="md:hidden" />{currentSlide.mainCopy[1]}
+              {currentMobileSlide.mainCopy[0]}<br className="md:hidden" />{currentMobileSlide.mainCopy[1]}
             </p>
             <h2 className="text-white font-bold text-lg leading-tight mb-2">
-              <span className="text-blue-300">{currentSlide.mainCopy[2]}<br className="md:hidden" />{currentSlide.mainCopy[3]}</span>
+              <span className="text-blue-300">{currentMobileSlide.mainCopy[2]}<br className="md:hidden" />{currentMobileSlide.mainCopy[3]}</span>
               <br />
             </h2>
             <p className="text-white text-xs leading-relaxed mb-4 max-w-xs">
-              {currentSlide.subCopy[0]}<br />{currentSlide.subCopy[1]} <br className="md:hidden" />
-              {currentSlide.subCopy[2]}
+              {currentMobileSlide.subCopy[0]}<br />{currentMobileSlide.subCopy[1]} <br className="md:hidden" />
+              {currentMobileSlide.subCopy[2]}
             </p>
           </div>
         </div>
@@ -113,13 +114,14 @@ function HeroSection() {
                   {/* Main Content */}
                   <header className="flex flex-col gap-2 sm:gap-4">
                     <p className="text-white text-base sm:text-xl md:text-2xl lg:text-7xl leading-tight font-thin" data-aos="fade-right">
-                      대표님, 이제는 준비하실 차례입니다.
+                      {currentDesktopSlide.mainCopy[0]}{currentDesktopSlide.mainCopy[1]}
                     </p>
                     <span className="text-white font-bold text-sm sm:text-lg md:text-xl lg:text-5xl leading-tight block">
-                      정책자금 신청부터 승인까지 <span className="text-blue-300 pt-1 sm:pt-2">맞춤형 컨설팅 직접 증명합니다.</span>
+                      <span className="text-blue-300 pt-1 sm:pt-2">{currentDesktopSlide.mainCopy[2]}{currentDesktopSlide.mainCopy[3]}</span>
                     </span>
                     <p className="text-white text-xs sm:text-base md:text-xl lg:text-2xl leading-relaxed mt-3 sm:mt-6 max-w-3xl" data-aos="fade-left">
-                      <strong>정책자금 컨설팅,</strong> 혹시 고민 중이신가요?<br />그렇다면 딱 3분만 집중해주세요.<br />
+                      {currentDesktopSlide.subCopy[0]}<br />{currentDesktopSlide.subCopy[1]}<br />
+                      {currentDesktopSlide.subCopy[2]}
                     </p>
                     <a href="#contact" className="flex flex-col items-end sm:gap-2 text-white text-sm sm:text-base md:text-lg font-semibold mt-4 sm:mt-8 w-fit pointer-events-auto hover:opacity-80 transition-opacity" data-aos="fade-in" data-aos-delay="500" aria-label="무료 상담 신청하기">
                       <p className="go_txt">무료 상담 신청하기</p>

@@ -62,7 +62,17 @@ function ServiceSection3() {
       // Opacity: fade in and out
       let opacity = 0;
       if (cardProgress >= 0 && cardProgress <= 1) {
-        opacity = Math.sin(cardProgress * Math.PI); // Smooth fade in/out
+        // Keep card at full opacity for longer (between 0.2 and 0.8 of its duration)
+        if (cardProgress < 0.2) {
+          // Fade in quickly
+          opacity = cardProgress / 0.2;
+        } else if (cardProgress > 0.8) {
+          // Fade out quickly
+          opacity = (1 - cardProgress) / 0.2;
+        } else {
+          // Stay at full opacity
+          opacity = 1;
+        }
       }
 
       // Transform: slight movement

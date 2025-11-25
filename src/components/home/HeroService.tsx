@@ -275,16 +275,19 @@ function HeroService() {
                   className="txt01 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight"
                   data-aos="fade-right"
                 >
-                  <span className="block mb-2 sm:mb-3 md:mb-4">정책자금 컨설팅,</span>
-                  <span className="block mb-2 sm:mb-3 md:mb-4">정말 믿어도 될지 걱정되시죠?</span>
+                  <span className="block mb-2 sm:mb-3 md:mb-4 text-blue-600">"우리는 결과로 말합니다"</span>
+                  <span className="block mb-2 sm:mb-3 md:mb-4">'누구'와 준비하느냐가</span>
+                  <span className="block">승인율을 결정합니다.</span>
+
                 </p>
                 <p
                   className="txt02 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mt-3 sm:mt-4"
                   data-aos="fade-left"
                 >
-                  쉽게 속일 듯한 낮은 금리 광고에 지치셨다면, <br />
-                  이제는 올바른 길에서 시작해보세요. <br />
-                  <strong>한국중소기업지원센터가</strong> 고객님 곁에서 함께 챙겨드립니다.
+                  지키지 못할 '최저 금리' 약속보다,<br />
+                  기업 상황에 맞는 '확실한 자금 조달' 결과를 보여드립니다. <br />
+                  <strong>한국중소기업지원센터는</strong> <br />대표님의 사업 성공을 위한 금융 로드맵을 설계합니다.
+
                 </p>
               </div>
 
