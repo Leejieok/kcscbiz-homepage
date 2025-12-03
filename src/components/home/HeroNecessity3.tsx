@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 function HeroNecessity3() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // 모바일 여부 확인
   useEffect(() => {
@@ -19,6 +20,17 @@ function HeroNecessity3() {
 
   // 사용할 데이터 선택
   const activeData = isMobile ? promiseMobileData : promiseData;
+
+  // 자동 넘기기
+  useEffect(() => {
+    if (isHovered) return; // 마우스 호버 시 자동 넘기기 중지
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === activeData.promises.length - 1 ? 0 : prev + 1));
+    }, 4000); // 4초마다 자동 넘기기
+
+    return () => clearInterval(interval);
+  }, [activeData.promises.length, isHovered]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? activeData.promises.length - 1 : prev - 1));
@@ -45,7 +57,11 @@ function HeroNecessity3() {
 
         {/* 책 넘기기 스타일 카드 */}
         <div className="relative max-w-5xl mx-auto px-8 sm:px-12 md:px-0">
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-300 overflow-hidden transition-all duration-500">
+          <div
+            className="bg-white rounded-xl sm:rounded-2xl border border-gray-300 overflow-hidden transition-all duration-500"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
               {/* 왼쪽: 이미지 */}
               <div
@@ -108,9 +124,8 @@ function HeroNecessity3() {
                 key={index}
                 type="button"
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 sm:h-3 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-blue-700 w-6 sm:w-8' : 'bg-gray-300 w-2 sm:w-3'
-                }`}
+                className={`h-2 sm:h-3 rounded-full transition-all ${index === currentIndex ? 'bg-blue-700 w-6 sm:w-8' : 'bg-gray-300 w-2 sm:w-3'
+                  }`}
                 aria-label={`${index + 1}번째 약속으로 이동`}
               />
             ))}

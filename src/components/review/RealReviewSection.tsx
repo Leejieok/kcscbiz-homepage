@@ -7,12 +7,18 @@ function RealReviewSection() {
 
   const filters = ['전체', '저신용자', '소상공인', '정부지원금', '대환'];
 
-  // 키워드에 따라 리뷰 필터링
+  // 키워드에 따라 리뷰 필터링 및 최신순 정렬
   const filteredReviews = useMemo(() => {
-    if (activeFilter === '전체') {
-      return reviews;
-    }
-    return reviews.filter(review => review.keywords.includes(activeFilter));
+    let filtered = activeFilter === '전체'
+      ? reviews
+      : reviews.filter(review => review.keywords.includes(activeFilter));
+
+    // 날짜 기준 내림차순 정렬 (최신순)
+    return filtered.sort((a, b) => {
+      const dateA = new Date(a.date.replace(/\./g, '-'));
+      const dateB = new Date(b.date.replace(/\./g, '-'));
+      return dateB.getTime() - dateA.getTime();
+    });
   }, [activeFilter]);
 
   const stats = [
@@ -82,8 +88,8 @@ function RealReviewSection() {
                   type="button"
                   onClick={() => setActiveFilter(filter)}
                   className={`px-4 md:px-6 py-2 md:py-3 rounded-full border-2 text-sm md:text-lg font-medium transition-all ${activeFilter === filter
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
                     }`}
                 >
                   {filter}

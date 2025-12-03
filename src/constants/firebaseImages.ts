@@ -21,6 +21,7 @@ export const FIREBASE_IMAGES = {
     icon02: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F02.webp?alt=media&token=82b7c8bd-d8d9-4c8c-b4c1-b7ead6ca2610",
     icon03: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F03.webp?alt=media&token=e432bea8-e343-4967-86b4-283e9479b7e9",
     icon04: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2F04.webp?alt=media&token=31955b4b-88d9-45f9-aea2-a12f63de68fe",
+    sublogo: "https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/assets%2Fsublogo.webp?alt=media&token=487b7523-a0a9-4f97-b4f0-ebe46f806a1a"
   },
 
   // 📁 images/ - 콘텐츠 이미지
@@ -29,6 +30,16 @@ export const FIREBASE_IMAGES = {
     hero: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fhero.webp?alt=media&token=a9a015b3-0a55-41c7-ab4b-2143e2df9939', // images/hero.webp
     hero2: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fhero2.webp?alt=media&token=55f8e3a0-9659-4368-b16a-b14c551433f0', // images/hero2.webp
     hero3: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fhero3.webp?alt=media&token=7ba7c110-94aa-4562-881a-e0aebac4276a', // images/hero3.webp
+
+    // Heroservice 이미지
+    heroservice01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice01.webp?alt=media&token=265942d7-c379-4e9b-bc3d-b663e7f94001', // images/heroservice.webp
+    heroservice02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice02.webp?alt=media&token=9284ed5b-9064-4c5f-8c2c-05cfd460ab93',
+    heroservice03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice03.webp?alt=media&token=1112de18-ad38-42ee-9516-d92e74f46a7b',
+
+    // HeroservicePC 이미지
+    heroservicePC01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2FheroservicePC01.webp?alt=media&token=97b14525-bfba-4f51-b22f-3d84624b7dae',
+    heroservicePC02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2FheroservicePC02.webp?alt=media&token=7fd2f965-553e-4fb6-a90b-a442d9470dce',
+    heroservicePC03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice03PC.webp?alt=media&token=393b5af1-1ae3-4aca-af8d-66945d656853',
 
     // Need 시리즈
     need01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fneed01.webp?alt=media&token=517fb15b-512e-4db2-b8a1-a6826028f9fe', // images/need01.webp

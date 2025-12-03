@@ -139,7 +139,7 @@ const Navbar = () => {
         <Link to="/" onClick={closeMobileMenu}>
           <img
             src={FIREBASE_IMAGES.assets.logo}
-            className="h-auto w-[100px] md:w-[240px] max-h-[40px] object-contain"
+            className="h-auto w-[140px] md:w-[240px] max-h-[50px] object-contain"
             alt="한국중소기업지원센터"
           />
         </Link>

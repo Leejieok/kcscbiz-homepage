@@ -34,9 +34,9 @@ const iconBanners = [
   {
     id: 3,
     title: '누적 상담 기업 수',
-    data: '5,351+ 명',
+    data: '5,351+',
     targetValue: 5623,
-    suffix: '+ 명',
+    suffix: '+',
     delay: 600,
     icon: FIREBASE_IMAGES.images.icon3,
     color: '#2F283B',
@@ -138,16 +138,22 @@ function HeroService() {
             <div className="flex flex-col gap-4">
               {/* 텍스트 영역 */}
               <div>
-                <p className="text-lg font-bold text-gray-900 leading-none mb-3">
+                {/* <p className="text-lg font-bold text-gray-900 leading-none mb-3">
                   <span className="block mb-2 text-blue-600 text-xl">"우리는 결과로 말합니다"</span>
-                  <span className="block mb-2">'누구'와 준비하느냐가</span>
-                  <span className="block">승인율을 결정합니다.</span>
+                  <span className="block mb-2">대표님의 기업에 맞는</span>
+                  <span className="block">금융 전략을 설계해드립니다.</span>
+                </p> */}
+                <p className="">
+                  <span className="block mb-4 text-lg font-bold text-gray-900 leading-none mb-3">더 알아보기</span>
+                  <img src={FIREBASE_IMAGES.assets.sublogo} alt="손쉬운정책자금" className="h-12 mb-2 object-contain" />
+                  <span className="block">대표님의 기업에 맞는</span>
+                  <span className="block">금융 전략을 설계해드립니다.</span>
                 </p>
-                <p className="text-sm text-gray-700 tracking-tight leading-relaxed">
+                {/* <p className="text-sm text-gray-700 tracking-tight leading-relaxed">
                   지키지 못할 '최저 금리' 약속보다, <br />기업 상황에 맞는 '확실한 자금 조달'<br />
                   결과를 보여드립니다. <br />
                   <strong>한국중소기업지원센터는</strong> <br />대표님의 사업 성공을 위한<br className="md:hidden" /> 금융 로드맵을 설계합니다.
-                </p>
+                </p> */}
               </div>
 
               {/* 모바일: 더보기 버튼 */}
@@ -196,23 +202,12 @@ function HeroService() {
             >
               {slides_mb.map((slide) => (
                 <SwiperSlide key={slide.id}>
-                  <div className="relative min-h-[220px] rounded-lg overflow-hidden">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${slide.image})` }}
-                    ></div>
-                    <div className="absolute inset-0 bg-black/65"></div>
-
-                    <div className="absolute inset-0 flex items-center justify-center px-6 z-10">
-                      <div className="text-center text-white w-full">
-                        <p className="text-sm font-bold mb-3 leading-tight whitespace-pre-line">
-                          {slide.title}
-                        </p>
-                        <p className="text-xs text-white/90 leading-relaxed whitespace-pre-line">
-                          {slide.description}
-                        </p>
-                      </div>
-                    </div>
+                  <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '3/2' }}>
+                    <img
+                      src={slide.image}
+                      alt={`슬라이드 ${slide.id}`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </SwiperSlide>
               ))}
@@ -276,11 +271,11 @@ function HeroService() {
                   data-aos="fade-right"
                 >
                   <span className="block mb-2 sm:mb-3 md:mb-4 text-blue-600">"우리는 결과로 말합니다"</span>
-                  <span className="block mb-2 sm:mb-3 md:mb-4">'누구'와 준비하느냐가</span>
-                  <span className="block">승인율을 결정합니다.</span>
+                  <span className="block mb-2 sm:mb-3 md:mb-4">대표님의 기업에 맞는</span>
+                  <span className="block">금융 전략을 설계해드립니다.</span>
 
                 </p>
-                <p
+                {/* <p
                   className="txt02 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mt-3 sm:mt-4"
                   data-aos="fade-left"
                 >
@@ -288,7 +283,7 @@ function HeroService() {
                   기업 상황에 맞는 '확실한 자금 조달' 결과를 보여드립니다. <br />
                   <strong>한국중소기업지원센터는</strong> <br />대표님의 사업 성공을 위한 금융 로드맵을 설계합니다.
 
-                </p>
+                </p> */}
               </div>
 
               {/* 웹: 오른쪽 박스 (페이지네이션 + 더보기 버튼) */}
@@ -326,7 +321,7 @@ function HeroService() {
           </div>
 
           {/* 웹: 배경 이미지 슬라이더 */}
-          <div className="swiper-container img_slide swiper-container-fade mx-auto relative overflow-hidden list-none p-0 z-[1] rounded-lg sm:rounded-xl md:rounded-[20px] bg-black max-w-[1280px] px-2 sm:px-3">
+          <div className="swiper-container img_slide swiper-container-fade mx-auto relative overflow-hidden list-none p-0 z-[1] max-w-[1280px] px-2 sm:px-3">
             <Swiper
               onSwiper={(swiper) => {
                 swiperRefDesktop.current = swiper;
@@ -359,29 +354,11 @@ function HeroService() {
                   className={`swiper-slide ${slide.bgClass} w-full h-full relative min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[400px]`}
                 >
                   {/* 배경 이미지 */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url(${slide.image})`,
-                    }}
-                  >
-
-                  </div>
-
-                  {/* 오버레이 */}
-                  <div className="absolute inset-0 bg-black/65"></div>
-
-                  {/* 슬라이드 텍스트 - 오른쪽에 배치 */}
-                  <div className="absolute inset-0 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:px-8 lg:px-12 xl:pr-20 z-10">
-                    <div className="text-center sm:text-right text-white max-w-2xl">
-                      <p className="slide_txt01 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight whitespace-pre-line">
-                        {slide.title}
-                      </p>
-                      <p className="slide_txt02 text-xs sm:text-sm md:text-base lg:text-lg text-white/90 leading-relaxed whitespace-pre-line">
-                        {slide.description}
-                      </p>
-                    </div>
-                  </div>
+                  <img
+                    src={slide.image}
+                    alt={`슬라이드 ${slide.id}`}
+                    className="w-full h-full object-cover"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

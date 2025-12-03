@@ -75,10 +75,10 @@ function HeroSection() {
         <div className="absolute inset-0 flex items-start justify-start z-20 px-4 pt-[120px]">
           <div className="w-full max-w-[720px] text-left">
             <p className="text-white text-sm leading-tight font-thin mb-2">
-              {currentMobileSlide.mainCopy[0]}<br className="md:hidden" />{currentMobileSlide.mainCopy[1]}
+              {currentMobileSlide.mainCopy[0]}<br className="md:hidden" />{currentMobileSlide.mainCopy[1]}<br className="md:hidden" />{currentMobileSlide.mainCopy[2]}
             </p>
             <h2 className="text-white font-bold text-lg leading-tight mb-2">
-              <span className="text-blue-300">{currentMobileSlide.mainCopy[2]}<br className="md:hidden" />{currentMobileSlide.mainCopy[3]}</span>
+              <span className="text-blue-300">{currentMobileSlide.mainCopy[3]}<br className="md:hidden" />{currentMobileSlide.mainCopy[4]}</span>
               <br />
             </h2>
             <p className="text-white text-xs leading-relaxed mb-4 max-w-xs">
@@ -113,11 +113,12 @@ function HeroSection() {
                 <div className="flex flex-col gap-4 sm:gap-8">
                   {/* Main Content */}
                   <header className="flex flex-col gap-2 sm:gap-4">
-                    <p className="text-white text-base sm:text-xl md:text-2xl lg:text-7xl leading-tight font-thin" data-aos="fade-right">
-                      {currentDesktopSlide.mainCopy[0]}{currentDesktopSlide.mainCopy[1]}
+                    <p className="text-white text-base sm:text-xl md:text-2xl lg:text-6xl leading-tight font-thin" data-aos="fade-right">
+                      <span className="block mb-2 sm:mb-3">{currentDesktopSlide.mainCopy[0]}{currentDesktopSlide.mainCopy[1]}</span>
+                      <span className="block">{currentDesktopSlide.mainCopy[2]}</span>
                     </p>
                     <span className="text-white font-bold text-sm sm:text-lg md:text-xl lg:text-5xl leading-tight block">
-                      <span className="text-blue-300 pt-1 sm:pt-2">{currentDesktopSlide.mainCopy[2]}{currentDesktopSlide.mainCopy[3]}</span>
+                      <span className="text-blue-300 pt-1 sm:pt-2">{currentDesktopSlide.mainCopy[3]}{currentDesktopSlide.mainCopy[4]}</span>
                     </span>
                     <p className="text-white text-xs sm:text-base md:text-xl lg:text-2xl leading-relaxed mt-3 sm:mt-6 max-w-3xl" data-aos="fade-left">
                       {currentDesktopSlide.subCopy[0]}<br />{currentDesktopSlide.subCopy[1]}<br />

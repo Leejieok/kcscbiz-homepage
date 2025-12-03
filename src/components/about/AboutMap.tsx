@@ -83,7 +83,7 @@ function AboutMap() {
                 <h3 className="text-lg font-bold text-gray-900 mb-2">연락처</h3>
                 <p className="text-gray-600 text-sm">
                   <a href="tel:051-852-4243" className="hover:text-blue-600 transition-colors">
-                    051-852-4243
+                    1555-4243
                   </a>
                 </p>
               </div>
