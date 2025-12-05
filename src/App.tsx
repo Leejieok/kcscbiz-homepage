@@ -14,6 +14,7 @@ const Service3 = lazy(() => import('./pages/services/Service3'))
 const Cases = lazy(() => import('./pages/Cases'))
 const Location = lazy(() => import('./pages/Location'))
 const LocationWrite = lazy(() => import('./pages/LocationWrite'))
+const LocationBoardDetail = lazy(() => import('./pages/LocationBoardDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Request = lazy(() => import('./pages/Request'))
 const Reviews = lazy(() => import('./pages/Reviews'))
@@ -33,7 +34,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path='/' element={<Layout/>}>
+        <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={
             <Suspense fallback={<PageLoader />}>
@@ -83,6 +84,11 @@ function App() {
           <Route path="location/write" element={
             <Suspense fallback={<PageLoader />}>
               <LocationWrite />
+            </Suspense>
+          } />
+          <Route path="location/board/:id" element={
+            <Suspense fallback={<PageLoader />}>
+              <LocationBoardDetail />
             </Suspense>
           } />
           <Route path="reviews" element={

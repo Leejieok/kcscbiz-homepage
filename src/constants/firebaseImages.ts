@@ -96,6 +96,13 @@ export const FIREBASE_IMAGES = {
     onebyone: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fonebyone.webp?alt=media&token=781c2910-c852-4aa8-a692-5343955d1c39', // images/onebyone.webp
     seconds: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fseconds.webp?alt=media&token=264260d1-7147-403a-9866-0350c5dfc79d', // images/seconds.webp
     tree: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Ftree.webp?alt=media&token=ee58fc50-6e24-41ae-9a0f-d5058d75446f', // images/tree.webp
+    article01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle01.webp?alt=media&token=4a2ec74f-3ad6-4151-9ab9-008586dade5d',
+    article02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle02.webp?alt=media&token=cf4f7803-a5c7-44f7-acdd-e3ec008910c1',
+    article03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle03.webp?alt=media&token=9f6aa014-0a48-4971-a536-97cff2c131de',
+    article04: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle04.webp?alt=media&token=acc1c267-5578-429c-acf9-2a389d98c3b9',
+    article05: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle05.webp?alt=media&token=4ebf200a-8bf9-4740-9922-b5acfbf11be4',
+    article06: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle06.webp?alt=media&token=7eb5a858-4b55-4497-93e3-3f00631367eb',
+    article07: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Farticle07.webp?alt=media&token=aa161493-ee9d-4558-9b2a-5d78afa57ab6',
   },
 
   // 📁 backgrounds/ - 배경 이미지

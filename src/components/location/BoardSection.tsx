@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBoardPosts } from '@/data/boardData';
-import type {  BoardPost } from '@/data/boardData';
+import type { BoardPost } from '@/data/boardData';
 
 function BoardSection() {
   const navigate = useNavigate();
@@ -30,6 +30,11 @@ function BoardSection() {
   // 글쓰기 페이지로 이동
   const handleWriteClick = () => {
     navigate('/location/write');
+  };
+
+  // 게시글 상세 페이지로 이동
+  const handlePostClick = (postId: number) => {
+    navigate(`/location/board/${postId}`);
   };
 
   return (
@@ -62,6 +67,7 @@ function BoardSection() {
             currentPosts.map((post, index) => (
               <div
                 key={post.id}
+                onClick={() => handlePostClick(post.id)}
                 className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 <div className="col-span-1 text-center text-gray-600">
@@ -95,11 +101,10 @@ function BoardSection() {
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`px-3 py-2 rounded ${
-                currentPage === 1
-                  ? 'text-gray-400 cursor-not-allowed'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`px-3 py-2 rounded ${currentPage === 1
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-gray-700 hover:bg-gray-100'
+                }`}
             >
               ‹
             </button>
@@ -109,11 +114,10 @@ function BoardSection() {
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`px-4 py-2 rounded ${
-                  currentPage === page
-                    ? 'bg-blue-700 text-white font-semibold'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded ${currentPage === page
+                  ? 'bg-blue-700 text-white font-semibold'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 {page}
               </button>
@@ -123,11 +127,10 @@ function BoardSection() {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className={`px-3 py-2 rounded ${
-                currentPage === totalPages
-                  ? 'text-gray-400 cursor-not-allowed'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`px-3 py-2 rounded ${currentPage === totalPages
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-gray-700 hover:bg-gray-100'
+                }`}
             >
               ›
             </button>

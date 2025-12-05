@@ -1,0 +1,66 @@
+/* 게시글 본문 스타일 */
+.board-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.board-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.board-content p {
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.board-content h1,
+.board-content h2,
+.board-content h3,
+.board-content h4,
+.board-content h5,
+.board-content h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #0d0f11;
+}
+
+.board-content ul,
+.board-content ol {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.board-content li {
+  margin-bottom: 8px;
+}
+
+.board-content a {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.board-content a:hover {
+  color: #1e40af;
+}
+
+.board-content strong {
+  font-weight: 600;
+}
+
+.board-content em {
+  font-style: italic;
+}
+
+.board-content blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #6b7280;
+  font-style: italic;
+}
