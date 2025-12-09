@@ -32,9 +32,9 @@ export const FIREBASE_IMAGES = {
     hero3: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fhero3.webp?alt=media&token=7ba7c110-94aa-4562-881a-e0aebac4276a', // images/hero3.webp
 
     // Heroservice 이미지
-    heroservice01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice01.webp?alt=media&token=265942d7-c379-4e9b-bc3d-b663e7f94001', // images/heroservice.webp
-    heroservice02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice02.webp?alt=media&token=9284ed5b-9064-4c5f-8c2c-05cfd460ab93',
-    heroservice03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice03.webp?alt=media&token=1112de18-ad38-42ee-9516-d92e74f46a7b',
+    heroservice01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice01.png?alt=media&token=ddf8287c-8965-4cb5-87b6-d541ce345c26', // images/heroservice.webp
+    heroservice02: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice02.png?alt=media&token=93b43fa1-4544-4dde-8e04-d57e78def4ad',
+    heroservice03: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2Fheroservice03.png?alt=media&token=75b000ef-5e80-47e5-b776-e5b3345bb8d5',
 
     // HeroservicePC 이미지
     heroservicePC01: 'https://firebasestorage.googleapis.com/v0/b/kcsc-db-home.firebasestorage.app/o/images%2FheroservicePC01.webp?alt=media&token=97b14525-bfba-4f51-b22f-3d84624b7dae',
